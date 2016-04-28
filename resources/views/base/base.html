@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %} FoodTalk {% endblock %}</title>
+{% block head %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{% endblock %} 
+{% block style %}
+<link rel="stylesheet" href="/assets/css/main.css" />
+{% endblock %} 
+{% block scripts %}
+{% endblock %}
+</head>
+<body>
+	<div id="wrapper">
+		{% block header %}
+		<header id="header">
+			<div class="inner">
+				<a href="index.html" class="logo"> <span class="title">FOODTALK</span>
+				</a> <a href="#" class="button login special small">Login</a>
+				<div class="search">
+					<input type="text" name="name" id="name" placeholder="search" /> <a
+						href="" class="searchbutton"><i class="fa fa-search"
+						aria-hidden="true"></i></a>
+				</div>
+
+			</div>
+		</header>
+		{% endblock %}
+		{% block profile %}{% endblock %}
+		{% block posts %}{% endblock %}
+		{% block footer %}
+				<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; FoodTalk. All rights reserved</li>
+							</ul>
+						</div>
+					</footer> 
+			{% endblock %}
+
+	</div>
+</body>
+</html>

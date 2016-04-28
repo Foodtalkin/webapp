@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% block style %}{{ parent() }}
+{% endblock %}
+{# comment in twig #}
+{% block profile %}
+<div class="main" id="open-content">
+						<div class="inner">
+							<section class="tiles open_post_container">
+									<article class="style1 open_post">
+											<div class="image open_post_image">
+												<img src="{{post.postImage}}" alt="Food Talk" />
+												<div class="img-grd">
+												</div>
+												<p id="stars" class="star-{{post.rating}} p-b-no">
+														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+												</p>
+											</div>
+											<div class="details_open_post">
+												<div class="caption">
+													<h3 class="username l-s-l"> {{ post.dishName }} @ {{ post.restaurantName }} </h3>
+													<h4 class="username">by {{ post.dishName }}</h4>
+												</div>
+												<h6>
+													<span class="inhead_number" style="font-size:.9em;">{{ post.like_count }} <span style="font-weight:700;">Likes</span></span>
+													|
+													<span class="inhead_number" style="font-size:.9em;">{{ post.comment_count }} <span style="font-weight:700;">Comments</span></span>
+												</h6>
+												<div class="review">
+													<p>{{ post.tip }}</p>
+													<ul>
+														{% for comment in comments %}
+
+														<li><p class="user-name"><a href="/{{comment.userName}}">{{comment.userName}}</a></p> <p class="user-name">{{comment.comment}}<a href=""></a></p></li>
+														
+														{% endfor %}
+														
+{#														
+														<li><p class="user-name"><a href="">sepinaco</a></p> <p class="user-name"><a href="">@julipichan</a></p></li>
+														<li><p class="user-name"><a href="">julipichan</a></p> <p>Puaaaaaaaff que me muero 😍😍😍😍 con lo k me gustan las cokies 😍😍 </p></li>
+														<li><p class="user-name"><a href="">sonalisonali</a></p> <p class="user-name"><a href="">@lexii_rosee</a></p> <p>kind of scary looking but the concept is great</p></li>
+														<li><p class="user-name"><a href="">glittergirl_24</a></p> <p>I wanna eat dat 😣</p></li>
+														<li><p class="user-name"><a href="">rasleen04</a></p> <p>Haha..but I don't know how to make this baby 😘😁 </p><p class="user-name"><a href="">@parmeetkaur</a></p></li>
+														<li><p class="user-name"><a href="">trishala_3</a></p> <p>I've had an overdose of chocolate since morning @ashitanarang some other day for sure :D 😂</p></li>
+#}
+													</ul>
+												</div>
+											</div>
+									</article>
+							</section>
+						</div>
+					</div>
+							
+{% endblock %}
