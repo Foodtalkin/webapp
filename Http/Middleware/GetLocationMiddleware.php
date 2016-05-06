@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ExampleMiddleware
+class GetLocationMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,12 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
+    	
+    	if(!isset($_COOKIE['location'])){
+    		header('Location: https://store.foodtalk.in/tt.php');
+    		exit(1);
+    	}
+    	
         return $next($request);
     }
 }

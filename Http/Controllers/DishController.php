@@ -3,31 +3,29 @@ namespace App\Http\Controllers;
   
 // use DB;
 // use App\Models\Contact;
-use App\Repository\User;
+use App\Repository\Dish;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Repository\Post;
 // use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller{
+class DishController extends Controller{
   
 	
 	
-	public function profile($userName){
+	public function profile($id){
 				
-		$obj = new User($userName);
-// 		$data = array (
-// 				'profile' => $user->profile,
-// 				'posts'=> $user->imgePost,
-// 		);
 		
-		return  $this->render('user/get', (array) $obj , self::SUCCESS_OK);
+		$obj = new Dish($id);
+		
+		return  $this->render('dish/get', (array) $obj , self::SUCCESS_OK);
 			
 	}
 	
 	public function nextPostPage($userName, $page){
 		
 		
-		$posts = User::nextPostPage($userId, 2);
+// 		$posts = User::nextPostPage($userId, 2);
 		
 		return  $this->render('user/get', $data , self::SUCCESS_OK);
 	}

@@ -1,0 +1,19 @@
+<div class="4u">
+	<h3>Restaurants</h3>
+{% if restaurants is empty %}	
+<p> No Such Restaurants</p>
+ {% else %}
+{% for restaurant in restaurants %}
+	<div class="result">
+		<a href="/{{restaurant.id}}"> <span class="r-image"> <img
+				src="/images/pic08.jpg" alt="">
+		</span> <span class="r-name">
+			<h6>{{ restaurant.restaurantName }}</h6>
+			<p> {{ restaurant.area }}</p>
+
+		</span>
+		</a>
+	</div>
+{% endfor %} 
+{% endif %}
+</div>

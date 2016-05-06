@@ -13,20 +13,20 @@
 {% endblock %}
 </head>
 <body>
+					<form action="/search" method="post">
 	<div id="wrapper">
 		{% block header %}
 		<header id="header">
 			<div class="inner">
-				<a href="index.html" class="logo"> <span class="title">FOODTALK</span>
-				</a> <a href="#" class="button login special small">Login</a>
+				{{ loginStatus() |raw}}
 				<div class="search">
-					<input type="text" name="name" id="name" placeholder="search" /> <a
-						href="" class="searchbutton"><i class="fa fa-search"
-						aria-hidden="true"></i></a>
+						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="search" minlength=2 /> 
+						<a href="" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 
 			</div>
 		</header>
+		</form>	
 		{% endblock %}
 		{% block profile %}{% endblock %}
 		{% block posts %}{% endblock %}
