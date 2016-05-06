@@ -57,7 +57,10 @@ function renderTwig($view, array $data = []) {
 		return $html;
 	} );
 	
-	$loader = new Twig_Loader_Filesystem ( '/var/www/html/webapp/app/resources/views' );
+// 	echo __DIR__;
+// 	die('DEAD');
+	
+	$loader = new Twig_Loader_Filesystem ( env('APP_ROOT').'app/resources/views' );
 	$twig = new Twig_Environment ( $loader, array () )
 	// 'cache' => '/var/www/html/webapp/storage/twig_cache',
 	;
