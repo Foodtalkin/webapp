@@ -50,13 +50,12 @@ function renderTwig($view, array $data = []) {
 			$html = '<a href="/' . $_SESSION ['user'] ['userName'] . '" class="logo" title="My home"> <span class="title">FOODTALK</span>';
 			$html .= '</a> <a href="/logout" class="button login special small">Logout</a>';
 		} else {
-			$html = '<a href="/" class="logo" title="My home"> <span class="title">FOODTALK</span>';
+			$html = '<a href="/index.html" class="logo" title="My home"> <span class="title">FOODTALK</span>';
 			$html .= '</a> <a href="/login" class="button login special small">Login</a>';
 		}
 		
 		return $html;
 	} );
-	
 	
 	$loader = new Twig_Loader_Filesystem ( env('APP_ROOT').'app/resources/views' );
 
