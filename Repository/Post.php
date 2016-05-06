@@ -7,6 +7,7 @@ use App\Repository\Base\BaseRepository;
 class Post extends BaseRepository
 {
 
+	const REPOSITORY = __CLASS__;
 	public  $post = null;
 	public  $comments = null;
 // 	public  $favourites = null;
@@ -20,7 +21,7 @@ class Post extends BaseRepository
 		$this->post = $data['post'];
 		$this->comments = $data['comments'];
 // 		$this->favourites = $userProfile['favourites'];
-		
+		parent::__construct();
 	}
 	
 // 	public static function nextPostPage($userId, $page = 2){		

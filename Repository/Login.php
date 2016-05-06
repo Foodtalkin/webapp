@@ -4,22 +4,24 @@
 // use App\Models\Base\BaseModel;
 use App\Repository\Base\BaseRepository;
 
-class Restaurant extends BaseRepository
+class Login extends BaseRepository
 {
 
 	const REPOSITORY = __CLASS__;
 	public  $profile = null;
-	public  $posts = null;
+	public  $isNewUser = false;
 	
 	
-	public function __construct($Id)
+	public function __construct($user)
 	{
-		$postData['restaurantId'] = $Id;		
 		
-		$userProfile = $this->post(self::RESTAURANT_PROFILE, $postData);
+		$result = $this->post(self::USER_AUTH, $user, false);
 		
-		$this->profile = $userProfile['restaurantProfile'];
-		$this->posts = $userProfile['images'];
+		$this->profile = $result['profile'];
+		
+		if((boolval($result['isNewUser'])))
+			$this->isNewUser = true;
+		
 		parent::__construct();
 	}
 	

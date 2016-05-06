@@ -7,8 +7,9 @@ use App\Repository\Base\BaseRepository;
 class User extends BaseRepository
 {
 
+	const REPOSITORY = __CLASS__;
 	public  $profile = null;
-	public  $imgePost = null;
+	public  $posts = null;
 	public  $favourites = null;
 	
 	
@@ -18,9 +19,9 @@ class User extends BaseRepository
 		$userProfile = $this->post(self::USER_PROFILE, $postData);
 		
 		$this->profile = $userProfile['profile'];
-		$this->imgePost = $userProfile['imagePosts'];
+		$this->posts = $userProfile['imagePosts'];
 		$this->favourites = $userProfile['favourites'];
-		
+		parent::__construct();
 	}
 	
 	public static function nextPostPage($userId, $page = 2){		

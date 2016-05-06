@@ -13,12 +13,12 @@ class RestaurantController extends Controller{
 	
 	
 	public function profile($restaurantId){
-				
-		$restaurant = new Restaurant($restaurantId);
-		$data = array ('profile' => $user->profile);
 		
-		return  $this->render('restaurant/get', $data , self::SUCCESS_OK);
-			
+		
+		$restaurant = new Restaurant($restaurantId);		
+		
+		return  $this->render('restaurant/get', (array)$restaurant , self::SUCCESS_OK);
+		
 	}
 	
 	public function nextPostPage(){

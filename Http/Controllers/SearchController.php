@@ -3,31 +3,35 @@ namespace App\Http\Controllers;
   
 // use DB;
 // use App\Models\Contact;
-use App\Repository\User;
+use App\Repository\Search;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller{
+class SearchController extends Controller{
   
 	
 	
-	public function profile($userName){
+	public function search(Request $request){
 				
-		$obj = new User($userName);
-// 		$data = array (
-// 				'profile' => $user->profile,
-// 				'posts'=> $user->imgePost,
-// 		);
+		$txt = $request->input('search');
+		$obj = new Search($txt);
 		
-		return  $this->render('user/get', (array) $obj , self::SUCCESS_OK);
+		return  $this->render('search/get', (array) $obj , self::SUCCESS_OK);
 			
 	}
+
+	public function index(Request $request){
+		
+		return  $this->render('search/get', [] , self::SUCCESS_OK);
+			
+	}
+	
 	
 	public function nextPostPage($userName, $page){
 		
 		
-		$posts = User::nextPostPage($userId, 2);
+// 		$posts = User::nextPostPage($userId, 2);
 		
 		return  $this->render('user/get', $data , self::SUCCESS_OK);
 	}

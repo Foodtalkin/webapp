@@ -19,6 +19,7 @@ class Controller extends BaseController
 	
 	public function __construct()
 	{
+// 		session_start();
 		//
 	}
 	

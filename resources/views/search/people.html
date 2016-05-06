@@ -1,0 +1,19 @@
+<div class="4u">
+	<h3>People</h3>
+{% if users is empty %}	
+<p> No Such User</p>
+ {% else %}	
+
+{% for user in users %}
+	<div class="result">
+		<a href="/{{ user.userName }}"> <span class="r-image"> <img
+				src="{{ user.thumb }}" alt="">
+		</span> <span class="r-name">
+				<h6>{{ user.userName }}</h6>
+				<p> {{ user.fullName }}</p>
+		</span>
+		</a>
+	</div>
+{% endfor %}
+{% endif %}
+</div>
