@@ -27,9 +27,9 @@ session_start();
 // 	return response( '{"message":"welcom to '.$_SERVER['HTTP_HOST'].'"}', 200, ['Content-type'=>'application/json']);
 // });
 
-// 	$app->get('/', function ()  {
-// 		return view('test', ['name' => 'James']);
-// 	});
+	$app->get('favicon.ico', function ()  {
+		return '404';
+	});
 	
 	
 // 		$app->get('/twig', function ()  {

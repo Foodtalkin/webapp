@@ -45,7 +45,7 @@ class BaseRepository
 	public static final  function post($api , array $postData, $authRequired = true, $tojson = true) {
 
 		if($authRequired)
-			if(isset($_SESSION['sessionId']) && empty($_SESSION['sessionId']))
+			if(isset($_SESSION['sessionId']) && empty(!$_SESSION['sessionId']))
 				$postData['sessionId'] = $_SESSION['sessionId'];
 			else 
 				$postData['sessionId'] = 'GUEST';

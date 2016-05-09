@@ -12,12 +12,27 @@ class Login extends BaseRepository
 	public  $isNewUser = false;
 	
 	
+	public static function logout(){
+		session_destroy();
+		return redirect('/login');
+	}
+	
+	
 	public function __construct($user)
 	{
 		
 		$result = $this->post(self::USER_AUTH, $user, false);
 		
-		$this->profile = $result['profile'];
+		if (isset($result['profile'])){
+			$this->profile = $result['profile'];
+			$_SESSION['user'] = $this->profile;
+			$_SESSION['sessionId'] = $result['sessionId'];
+				
+		}else {
+			
+			return self::logout();
+		}
+		
 		
 		if((boolval($result['isNewUser'])))
 			$this->isNewUser = true;

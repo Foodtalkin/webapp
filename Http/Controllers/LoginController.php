@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Repository\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Jsonable;
 // use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller{
@@ -14,6 +15,7 @@ class LoginController extends Controller{
 	
 	public function index(){
 
+		
 		if(isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
 			return redirect('/'.$_SESSION['user']['userName']);
 		}
@@ -56,18 +58,11 @@ class LoginController extends Controller{
 		$user['image'] = 'https://graph.facebook.com/'.$request->input('facebookId').'/picture?type=large';
 		
 		$webUser = new Login($user);
-// 		var_dump($login);
 		
-		if($webUser){
-			$_SESSION['user'] = $webUser->profile;
-		}
-		
-// 		$webUser = json_decode((array)$login, true);
-		return response ()->json ( $webUser );
-// 		return json_encode($webUser);
-		
-// 		$posts = User::nextPostPage($userId, 2);
-		
+// 		if(is_array($webUser))		
+			return response ()->json ( $webUser );
+// 		else 
+// 			return $webUser;
 // 		return  $this->render('user/get', $data , self::SUCCESS_OK);
 	}
 	
@@ -75,12 +70,7 @@ class LoginController extends Controller{
 	
   
 	public function logout() {
-		
-		unset($_SESSION);
-// 		unset($_SESSION['refral_url']);
-		session_destroy();
-		return redirect('/login');
-				
+		return Login::logout();				
 	}
 	
 // 	// gets a user with id
