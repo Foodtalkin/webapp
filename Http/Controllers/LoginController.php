@@ -44,7 +44,7 @@ class LoginController extends Controller{
 		$user['fullName'] = $request->input('fullName');
 		$user['gender'] = $request->input('gender');
 		$user['facebookId'] = $request->input('facebookId');
-		$user['email'] = $request->input('gender');
+		$user['email'] = $request->input('email');
 		$user['latitude'] = $request->input('latitude');
 		$user['longitude'] = $request->input('longitude');
 
