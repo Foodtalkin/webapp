@@ -23,19 +23,27 @@ class Login extends BaseRepository
 		
 		$result = $this->post(self::USER_AUTH, $user, false);
 		
+		if($result['status'] == 'error'){
+			$this->error = $result['errorCode'];
+		}
+		
 		if (isset($result['profile'])){
 			$this->profile = $result['profile'];
 			$_SESSION['user'] = $this->profile;
 			$_SESSION['sessionId'] = $result['sessionId'];
-				
-		}else {
 			
-			return self::logout();
+			if(isset($user['email']))
+				$_SESSION['user']['email'] = $user['email'];
+				
 		}
+// 		else {
+			
+// 			return self::logout();
+// 		}
 		
 		
-		if((boolval($result['isNewUser'])))
-			$this->isNewUser = true;
+		if(isset($result['isNewUser']))
+			$this->isNewUser = (boolval($result['isNewUser']));
 		
 		parent::__construct();
 	}

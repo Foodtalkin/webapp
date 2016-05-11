@@ -7,7 +7,7 @@
 -->
 <html>
 	<head>
-		<title>Phantom by HTML5 UP</title>
+		<title>Foodtalk Log In or Sign Up</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -16,6 +16,8 @@
 		
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <link rel="shortcut icon" href="http://foodtalk.in/img/favicon.png" />
+		
 	</head>
 	<body>
 		<!-- Wrapper -->
@@ -145,13 +147,8 @@
       
       $.post( "/login", postData )
       .done(function( data ) {
-		console.log(data);
-		if(data.profile.userName.length < 2){
-			$('#userName').show();
-			
-		}else{
+			console.log(data);
 			window.location.replace('/redirect')
-		}
       });
 
       

@@ -44,9 +44,17 @@ session_start();
 // 		$app->post('user/{id}/{ptype:participation|rsvp}','UserController@participation');
 
 $app->get('redirect',[ 'uses' =>'LoginController@redirect']);
+
 $app->get('login',[ 'uses' =>'LoginController@index']);
 $app->post('login',[ 'uses' =>'LoginController@login']);
+
+$app->get('signup',[ 'uses' =>'LoginController@signup']);
+$app->post('signup',[ 'uses' =>'LoginController@dosignup']);
+
+$app->get('tour',[ 'uses' =>'LoginController@tour']);
+
 $app->get('logout',[ 'uses' =>'LoginController@logout']);
+
 
 $app->post('search',[ 'uses' =>'SearchController@search']);
 $app->get('search',[ 'uses' =>'SearchController@index']);

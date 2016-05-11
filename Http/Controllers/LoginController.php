@@ -7,7 +7,6 @@ use App\Repository\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Jsonable;
-// use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller{
   
@@ -32,12 +31,78 @@ class LoginController extends Controller{
 	
 	public function redirect(){
 		
-			if(isset($_SESSION['refral_url'])){
-				return redirect($_SESSION['refral_url']);
-			}elseif (isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 )
-				return redirect('/'.$_SESSION['user']['userName']);
-			else 
-				return redirect('/');
+			if (isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
+				
+				if(isset($_SESSION['refral_url']))
+					return redirect($_SESSION['refral_url']);
+				else
+					return redirect('/'.$_SESSION['user']['userName']);
+				
+			}else{
+				return redirect('/signup');
+			}
+	}
+
+	public function tour(){
+		
+		if( isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']) ) > 1 )
+			return  $this->render('login/tour', $_SESSION['user'] , self::SUCCESS_OK);
+		else
+			return redirect('/login');
+	}
+	
+	
+	
+	public function dosignup(Request $request){
+		
+		if( isset($_POST['userName']) and strlen(trim($_POST['userName']) ) > 1 )
+			$user['userName'] = $request->input('userName');
+		else{
+			return redirect('/signup');
+		}
+		$user['fullName'] = $_SESSION['user']['fullName'];
+		$user['facebookId'] = $_SESSION['user']['facebookId'];
+		$user['deviceToken'] = 'web';
+		$user['signInType'] = 'F';
+		$user['image'] = 'https://graph.facebook.com/'.$_SESSION['user']['facebookId'].'/picture?type=large';
+		
+		if( isset($_POST['email']) and strlen(trim($_POST['email']) ) > 1 )
+			$user['email'] = $request->input('email');
+		else{
+			$user['email'] = $_SESSION['user']['email'];
+		}
+		
+		$webUser = new Login($user);
+		
+		if($webUser->error){
+			if($webUser->error =='23000'){
+				$user['userNameNotAvilable'] = true;
+			}
+			return  $this->render('login/signup', $user , self::SUCCESS_OK);
+		}
+		return redirect('/tour');
+	}
+	
+	
+	public function signup(){
+		
+		if(isset($_SESSION['user'])){
+			$user = $_SESSION['user'];
+			
+			if(isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
+				return redirect('/redirect');
+			}
+			
+			if(isset($_SESSION['user']['email']) and strlen(trim($_SESSION['user']['email']))>1 ){
+			}
+			else 	
+				$user['nofbemail'] = true;
+				
+			return  $this->render('login/signup', $user , self::SUCCESS_OK);
+			
+		}else {
+			return redirect('/login');
+		}
 	}
 	
 	public function login(Request $request){
@@ -59,11 +124,7 @@ class LoginController extends Controller{
 		
 		$webUser = new Login($user);
 		
-// 		if(is_array($webUser))		
 			return response ()->json ( $webUser );
-// 		else 
-// 			return $webUser;
-// 		return  $this->render('user/get', $data , self::SUCCESS_OK);
 	}
 	
 	
@@ -72,44 +133,5 @@ class LoginController extends Controller{
 	public function logout() {
 		return Login::logout();				
 	}
-	
-// 	// gets a user with id
-// 	public function get(Request $request, $id,$type, $with = false) {
-		
-// 		$contact = Contact::find ( $id );		
-// 		return $this->sendResponse ( $contact );
-// 	}
-  
-//     public function create(Request $request){
-
-//     	$attributes = $this->getResponseArr ( $request );
-//     	$contact = Contact::create ( $attributes );
-//     	return $this->sendResponse ( $contact );
-    	
-//     }
-  
-// 	public function delete($id) {
-// 		$contact = Contact::find ( $id );
-		
-// 		if ($contact) {
-// 			$contact->delete ();
-// 			return $this->sendResponse ( true, self::REQUEST_ACCEPTED, 'entity deleted' );
-// 		} else {
-// 			return $this->sendResponse ( null );
-// 		}
-// 	}
-  
-//     public function update(Request $request,$id){
-//     	$contact = Contact::find ( $id );
-    	
-//     	if ($contact) {
-//     		$contact->update ( $this->getResponseArr ( $request ) );
-//     		return $this->sendResponse ( $contact );
-    			
-//     	} else {
-//     		return $this->sendResponse ( null );
-//     	}
-//     }
-  
 }
 ?>

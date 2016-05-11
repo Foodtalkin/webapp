@@ -5,8 +5,8 @@ namespace App\Repository\Base;
 class BaseRepository
 {
 	
-	public  $repository = null;
-	
+	public $repository = null;
+	public $error = null;
 	
 	
 	
@@ -30,6 +30,7 @@ class BaseRepository
 	
 	
 	public function __construct(){
+			
 	 $this->repository = get_called_class();
 	}
 	

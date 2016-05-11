@@ -1,0 +1,48 @@
+{% extends "login/base.html" %}
+{% block body %}
+		<div class="reveal">
+			<div class="slides">
+				<section data-transition="slide fade-out" data-transition-speed="slow">
+					<h3 class="heading">Create Profile</h3>
+					<img src="{{ image }}" alt="" class="image-user">
+					<div class="form">
+		<form  method="post">
+							{% if userName is defined %}
+							<input type="text" name="userName" required="required" value="{{ userName }}" placeholder="Choose a User Name">
+							{% endif %}
+							
+							{% if userNameNotAvilable is defined %}
+							<p class="details" style="color: red;">User name not avilable</p>
+							{% endif %}
+							
+							{% if nofbemail is defined %}
+							<input type="email" required="required" name="email" value="{{ email }}" placeholder="Email">
+							{% endif %}
+							
+							<input type="submit" value="CONTINUE">
+<!--
+				<a href="index.html" class="my-btn" id="next1">CONTINUE</a>
+-->
+		</form>
+
+					</div>
+					
+				</section>
+			</div>
+		</div>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+{% endblock %}

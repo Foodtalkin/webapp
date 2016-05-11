@@ -1,0 +1,99 @@
+{% extends "login/base.html" %}
+{% block body %}
+
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/assets/css/print/pdf.css' : '/assets/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<div class="reveal">
+			<div class="slides">
+				<section data-transition="slide fade-out" data-transition-speed="slow">
+					<h3 class="heading">Discover</h3>
+					<div class="image-con image-con1">
+						<img src="/images/icons/drink2.png" id="i1-d"  alt="" class="animated slideInLeft">
+						<img src="/images/icons/location.png" id="i1-l" alt="" class="animated slideInDown">
+						<img src="/images/icons/compass.png" id="i1-c" alt="" class="animated fadeIn">
+						<img src="/images/icons/search.png" id="i1-s" alt="" class="animated slideInUp">
+						<img src="/images/icons/map.png" id="i1-m" alt="" class="animated slideInRight">
+					</div>
+					<p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Etiam vel diam maximus, tincidunt lacus sit amet, lobortis purus.</p>
+					<a href="#" class="navigate-next my-btn" id="next1">NEXT</a>
+					<a href="/redirect" class="skip">skip</a>
+				</section>
+				<section data-transition="slide-in fade-out" data-transition-speed="slow">
+					<h3 class="heading">Share</h3>
+					<div class="image-con image-con2">
+						<img src="images/icons/camera.png" id="i2-c" alt="" class="animated">
+						<img src="images/icons/pencil.png" id="i2-p" alt="" class="animated ">
+						<img src="images/icons/heart.png" id="i2-h" alt="" class="animated ">
+						<img src="images/icons/pic.png" id="i2-pi" alt="" class="animated ">
+						<img src="images/icons/share.png" id="i2-sh" alt="" class="animated ">
+						
+					</div>
+					<p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Etiam vel diam maximus, tincidunt lacus sit amet, lobortis purus.</p>
+					<a href="#" class="navigate-next my-btn" id="next2">NEXT</a>
+					<a href="/redirect" class="skip">skip</a>
+				</section>
+				<section data-transition="slide-in fade-out" data-transition-speed="slow">
+					<h3 class="heading">Cash Out!</h3>
+					<div class="image-con image-con3">
+						<img src="images/icons/trophy.png" id="i3-t" alt="" class="animated ">
+						<img src="images/icons/bag.png" id="i3-b" alt="" class="animated">
+						<img src="images/icons/coinbag.png" id="i3-c" alt="" class="animated ">
+						<img src="images/icons/currency.png" id="i3-cu" alt="" class="animated ">
+						<img src="images/icons/madel.png" id="i3-m" alt="" class="animated ">
+						
+						
+					</div>
+					<p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Etiam vel diam maximus, tincidunt lacus sit amet, lobortis purus.</p>
+					<a href="/redirect" class="my-btn">Let's Get FOODTALKIN</a>
+				</section>
+			</div>
+		</div>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+		<script>
+		$(document).ready(function() {
+			
+			    Reveal.addEventListener( 'slidechanged', function( event ) {
+				    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				    
+				    	if(event.indexh == 1){
+					    	$('.image-con2 img:nth-child(1)').delay(25000).addClass('slideInLeft');
+							$('.image-con2 img:nth-child(2)').delay(25000).addClass('slideInDown');
+							$('.image-con2 img:nth-child(3)').delay(25000).addClass('fadeIn');
+							$('.image-con2 img:nth-child(4)').delay(25000).addClass('slideInUp');
+							$('.image-con2 img:nth-child(5)').delay(25000).addClass('slideInRight');
+					    }
+					    if(event.indexh == 2){
+					    	$('.image-con3 img:nth-child(1)').delay(25000).addClass('slideInLeft');
+							$('.image-con3 img:nth-child(2)').delay(25000).addClass('slideInDown');
+							$('.image-con3 img:nth-child(3)').delay(25000).addClass('fadeIn');
+							$('.image-con3 img:nth-child(4)').delay(25000).addClass('slideInUp');
+							$('.image-con3 img:nth-child(5)').delay(25000).addClass('slideInRight');
+					    }
+				    
+				    
+				} );
+				
+			
+		});
+		</script>
+{% endblock %}
