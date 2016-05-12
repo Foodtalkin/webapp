@@ -44,6 +44,9 @@ function renderTwig($view, array $data = []) {
 		return $title;
 	} );
 	
+	
+	
+	
 	$loginStatus = new Twig_SimpleFunction ( 'loginStatus', function () {
 		
 		if (isset ( $_SESSION ['user'] )) {
@@ -56,6 +59,13 @@ function renderTwig($view, array $data = []) {
 		
 		return $html;
 	} );
+	
+	$restroInfo = new Twig_SimpleFunction ( 'restroInfo', function ($profile) {
+	
+		return '';
+	} );
+	
+	
 	
 	$loader = new Twig_Loader_Filesystem ( env('APP_ROOT').'app/resources/views' );
 

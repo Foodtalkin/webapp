@@ -17,6 +17,8 @@ class RestaurantController extends Controller{
 		
 		$restaurant = new Restaurant($restaurantId);		
 		
+		var_dump($restaurant->profile);
+		
 		return  $this->render('restaurant/get', (array)$restaurant , self::SUCCESS_OK);
 		
 	}
