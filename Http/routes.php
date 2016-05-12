@@ -22,55 +22,38 @@ session_start();
 // });
 
 
-// $app->get('/', function() use ($app) {
-
-// 	return response( '{"message":"welcom to '.$_SERVER['HTTP_HOST'].'"}', 200, ['Content-type'=>'application/json']);
-// });
-
-	$app->get('favicon.ico', function ()  {
-		return '404';
-	});
+$app->get('favicon.ico', function ()  {
+	return '404';
+});
 	
-	
-// 		$app->get('/twig', function ()  {
-// 			$loader = new Twig_Loader_Filesystem('/var/www/html/webapp/resources/views');				
-// 			$twig = new Twig_Environment($loader, array(
-// // 					'cache' => '/var/www/html/webapp/storage/twig_cache',
-// 			));
-// 			echo $twig->render('tests.html', array('name' => 'Fabien', 'dir'=>__DIR__));
-// // 			return view('test', ['name' => 'James']);
-// 		});
-
-// 		$app->post('user/{id}/{ptype:participation|rsvp}','UserController@participation');
-
-$app->get('redirect',[ 'uses' =>'LoginController@redirect']);
-
-$app->get('login',[ 'uses' =>'LoginController@index']);
-$app->post('login',[ 'uses' =>'LoginController@login']);
-
 $app->get('signup',[ 'uses' =>'LoginController@signup']);
 $app->post('signup',[ 'uses' =>'LoginController@dosignup']);
-
-$app->get('tour',[ 'uses' =>'LoginController@tour']);
-
 $app->get('logout',[ 'uses' =>'LoginController@logout']);
-
-
-$app->post('search',[ 'uses' =>'SearchController@search']);
-$app->get('search',[ 'uses' =>'SearchController@index']);
-
+$app->post('login',[ 'uses' =>'LoginController@login']);
 
 $app->group([
-		'middleware' => 'getlocation',
-		'prefix' => 'dish',
+		'middleware' => ['logincheck'],
 		'namespace' => 'App\Http\Controllers'
 ], function($app)
 {
-	$app->get('{id}',[ 'uses' =>'DishController@profile']);
-});
+	
+	$app->get('redirect',[ 'uses' =>'LoginController@redirect']);
+	$app->get('login',['middleware' => 'logincheck', 'uses' =>'LoginController@index']);
+	$app->get('tour',[ 'uses' =>'LoginController@tour']);
+	
+	$app->post('search',[ 'uses' =>'SearchController@search']);
+	$app->get('search',[ 'uses' =>'SearchController@index']);
 
-
+	$app->get('dish/{id}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
+	
 	$app->get('post/{id}','PostController@profile');
+	
+	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
+	
+		$ctrl = getContrller($id);
+		return $ctrl->profile($id);
+	
+	});
 	
 	$app->get('/{id}', function (Request $request, $id) {
 					
@@ -78,14 +61,8 @@ $app->group([
 		return $ctrl->profile($id);
 	
 	});
-
-	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
+});
 	
-		$ctrl = getContrller($id);
-		return $ctrl->profile($id);
-	
-	});
-
 
 function getContrller($id){
 	if(is_numeric($id)){
