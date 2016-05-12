@@ -24,7 +24,15 @@ class Dish extends BaseRepository
 			$postData['latitude'] = $location->latitude;
 		}
 		
+// 		abort(404, 'newsas');
+		
 		$result = $this->post(self::DISH_POST, $postData);
+		
+		if($result['status'] == 'error'){
+			$this->error = $result['errorCode'];
+			abort(404);
+		}
+		
 		
 		$this->profile['dishName'] = $dishName;
 		$this->profile['dishUrl'] = $Id;

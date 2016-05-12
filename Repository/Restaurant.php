@@ -18,6 +18,13 @@ class Restaurant extends BaseRepository
 		
 		$userProfile = $this->post(self::RESTAURANT_PROFILE, $postData);
 		
+
+		if($userProfile['status'] == 'error'){
+			$this->error = $userProfile['errorCode'];
+// 			echo $userProfile['errorCode'];
+			abort(404);
+		}
+		
 		$this->profile = $userProfile['restaurantProfile'];
 		$this->posts = $userProfile['images'];
 		parent::__construct();

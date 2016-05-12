@@ -18,6 +18,12 @@ class User extends BaseRepository
 		$postData['selectedUserId'] = $userId;		
 		$userProfile = $this->post(self::USER_PROFILE, $postData);
 		
+		if($userProfile['status'] == 'error'){
+			$this->error = $userProfile['errorCode'];
+// 			echo $userProfile['errorCode'];
+			abort(404);
+		}
+		
 		$this->profile = $userProfile['profile'];
 		$this->posts = $userProfile['imagePosts'];
 		$this->favourites = $userProfile['favourites'];

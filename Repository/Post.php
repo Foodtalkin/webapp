@@ -18,6 +18,14 @@ class Post extends BaseRepository
 		$postData['postId'] = $userId;		
 		$data = $this->post(self::POST_GET, $postData);
 		
+		
+		if($data['status'] == 'error'){
+			$this->error = $data['errorCode'];
+			// 			echo $userProfile['errorCode'];
+			abort(404);
+		}
+		
+		
 		$this->post = $data['post'];
 		$this->comments = $data['comments'];
 // 		$this->favourites = $userProfile['favourites'];
