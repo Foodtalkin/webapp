@@ -45,13 +45,18 @@ $app->group([
 	$app->get('search',[ 'uses' =>'SearchController@index']);
 
 	$app->get('dish/{id}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
+	$app->get('dish/{id}/page/{page}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
+	
 	
 	$app->get('post/{id}','PostController@profile');
 	
 	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
 	
 		$ctrl = getContrller($id);
-		return $ctrl->profile($id);
+		
+		
+		
+		return $ctrl->profile($id, $page);
 	
 	});
 	

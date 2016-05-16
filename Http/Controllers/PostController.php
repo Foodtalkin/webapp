@@ -14,25 +14,11 @@ class PostController extends Controller{
 	
 	
 	public function profile($id){
-				
-		$obj = new Post($id);
-		$data = array (
-				'post' => $obj->post,
-				'comments'=> $obj->comments,
-		);
 		
-		return  $this->render('post/get', $data , self::SUCCESS_OK);
-			
-	}
-	
-	public function nextPostPage($userName, $page){
+		$obj = Post::profile($id);
+		return  $this->render('post/get', (array)$obj , self::SUCCESS_OK);
 		
-		
-		$posts = User::nextPostPage($userId, 2);
-		
-		return  $this->render('user/get', $data , self::SUCCESS_OK);
-	}
-	
+	}	
   
 // 	public function listAll() {
 				

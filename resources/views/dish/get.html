@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
 
 {% block style %}{{ parent() }}
 {% endblock %}
@@ -6,6 +6,6 @@
 {% block profile %}
 {% include "dish/profile.html" with {'profile': profile} %}
 {% endblock %}
-{% block posts %}   
-{% include "base/posts.html" with {'posts': posts} %}    
+{% block postcontainer %}   
+{% include "base/postcontainer.html" with {'posts': posts} %}
 {% endblock %}

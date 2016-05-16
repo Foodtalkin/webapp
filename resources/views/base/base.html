@@ -7,9 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 {% endblock %} 
 {% block style %}
-<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
 {% endblock %} 
+	<script src="/assets/js/jquery.min.js"></script>
 {% block scripts %}
+
 {% endblock %}
 </head>
 <body>
@@ -29,7 +31,7 @@
 		</form>	
 		{% endblock %}
 		{% block profile %}{% endblock %}
-		{% block posts %}{% endblock %}
+		{% block postcontainer %}{% endblock %}
 		{% block footer %}
 				<footer id="footer">
 						<div class="inner">

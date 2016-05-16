@@ -7,9 +7,7 @@ class BaseRepository
 	
 	public $repository = null;
 	public $error = null;
-	
-	
-	
+	protected $apiResponse = null;
 	
 	const  USER_AUTH = 'auth/signin';
 	
@@ -18,6 +16,8 @@ class BaseRepository
 	
 	
 	const  RESTAURANT_PROFILE = 'restaurant/getProfile';
+	const  RESTAURANT_POST = 'restaurant/getImagePosts';
+	
 	
 	const  POST_GET = 'post/get';
 	const  DISH_POST = 'post/getImageCheckInPosts';
@@ -29,9 +29,20 @@ class BaseRepository
 // 	const  USER_PROFILE = 'user/Profile';
 	
 	
-	public function __construct(){
+	public function __construct($postData, $api){
+
+		$result = $this->post($api, $postData);
+		
+		if($result['status'] == 'error'){
+			$this->error = $result['errorCode'];
 			
-	 $this->repository = get_called_class();
+			if($result['errorCode'] !='23000')
+				abort(404);
+		}
+		
+		$this->apiResponse = $result;
+		$this->repository = get_called_class();
+		
 	}
 	
 	

@@ -12,32 +12,36 @@ class Restaurant extends BaseRepository
 	public  $posts = null;
 	
 	
-	public function __construct($Id)
+	public function __construct($postData, $api = self::RESTAURANT_PROFILE)
 	{
-		$postData['restaurantId'] = $Id;		
 		
-		$userProfile = $this->post(self::RESTAURANT_PROFILE, $postData);
+		parent::__construct($postData, $api);
 		
+		if(isset($this->apiResponse['restaurantProfile']))
+			$this->profile = $this->apiResponse['restaurantProfile'];
+		if(isset($this->apiResponse['images']))
+			$this->posts = $this->apiResponse['images'];
+		
+	}
 
-		if($userProfile['status'] == 'error'){
-			$this->error = $userProfile['errorCode'];
-// 			echo $userProfile['errorCode'];
-			abort(404);
-		}
-		
-		$this->profile = $userProfile['restaurantProfile'];
-		$this->posts = $userProfile['images'];
-		parent::__construct();
+	public static function profile($Id){
+
+		$postData['restaurantId'] = $Id;
+		$obj = new self($postData);
+			
+		return $obj;
+	
 	}
 	
-	public function getImagePostnext($page = 2, $userId){
+	public static function nextPostPage($Id, $page = 2){
+		
+		$postData['restaurantId'] = $Id;
+		$postData['page'] = $page;
+		
+		$obj = new self($postData, self::RESTAURANT_POST);
+		
+		return $obj;
 		
 	}
 	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
-	
-	
-     
 }

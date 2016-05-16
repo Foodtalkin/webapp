@@ -13,33 +13,38 @@ class User extends BaseRepository
 	public  $favourites = null;
 	
 	
-	public function __construct($userId)
-	{
-		$postData['selectedUserId'] = $userId;		
-		$userProfile = $this->post(self::USER_PROFILE, $postData);
+	public function __construct($postData, $api = self::USER_PROFILE)
+	{		
 		
-		if($userProfile['status'] == 'error'){
-			$this->error = $userProfile['errorCode'];
-// 			echo $userProfile['errorCode'];
-			abort(404);
-		}
+		parent::__construct($postData, $api);
 		
-		$this->profile = $userProfile['profile'];
-		$this->posts = $userProfile['imagePosts'];
-		$this->favourites = $userProfile['favourites'];
-		parent::__construct();
-	}
-	
-	public static function nextPostPage($userId, $page = 2){		
-		$postData['page'] = 2;
-		return $posts = $this->post(self::USER_POST, $postData);
+		if(isset($this->apiResponse['profile']))
+			$this->profile = $this->apiResponse['profile'];
+		if(isset($this->apiResponse['imagePosts']))
+			$this->posts = $this->apiResponse['imagePosts'];
+		if(isset($this->apiResponse['favourites']))
+			$this->favourites = $this->apiResponse['favourites'];
 		
 	}
 	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
-	
+	public static function profile($userId){
+		
+		$postData['selectedUserId'] = $userId;
+		$user = new self($postData);
+			
+		return $user;
+		
+	}
+		
+	public static function nextPostPage($userId, $page = 2){
+		
+		$postData['selectedUserId'] = $userId;
+		$postData['page'] = $page;
+		$user = new self($postData, self::USER_POST);
+		
+		return $user;		
+		
+	}	
 	
      
 }

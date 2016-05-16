@@ -13,23 +13,17 @@ class DishController extends Controller{
   
 	
 	
-	public function profile($id){
-				
+	public function profile($id, $page=1){
 		
-		$obj = new Dish($id);
+		
+		if($this->ajax)
+			$obj  =  Dish::nextPostPage($id, $page);
+		else
+			$obj = Dish::profile($id, $page);
 		
 		return  $this->render('dish/get', (array) $obj , self::SUCCESS_OK);
 			
-	}
-	
-	public function nextPostPage($userName, $page){
-		
-		
-// 		$posts = User::nextPostPage($userId, 2);
-		
-		return  $this->render('user/get', $data , self::SUCCESS_OK);
-	}
-	
+	}	
   
 // 	public function listAll() {
 				

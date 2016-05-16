@@ -21,6 +21,20 @@
 
 				</div>
 			</div>
+			<div class="profile-buttons float-right">
+			{{ followbutton(profile.userName) }}
+<a class="button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i> Follow</a>
+<!-- 					
+					<a class="button small spacial following" id="following"> Following</a>
+ -->
+					<a target="_blank" href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=https%3A%2F%2Fstg-web.foodtalk.in/{{ profile.userName }}" class="button spacial small share"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+			</div>
+			
 		</header>
 	</div>
 </div>
+
+
+{#
+<a id="gm_facebook" href="javascript:void(0)" class="facebook_new" data-social="{&quot;type&quot;:&quot;facebook&quot;, &quot;url&quot;:&quot;http://www.indiatimes.com/news/world/this-british-chef-is-so-obsessed-with-jhal-muri-he-s-selling-it-all-over-london-255079.html&quot;, &quot;text&quot;: &quot;This British Chef Is So Obsessed With Jhal Muri, He’s Selling It All Over London&quot;, &quot;image&quot;:&quot;http://media.indiatimes.in/media/facebook/2016/May/brit8_1463230738_800x420.jpg&quot;,&quot;desc&quot;:&quot;British chef Angus Denoon has made the Jhal Muri, an Indian snack, famous on the streets of London.&quot;}" onmousedown="ga('send', 'event', 'FBclicks', 'TopArticle','http://www.indiatimes.com/news/world/this-british-chef-is-so-obsessed-with-jhal-muri-he-s-selling-it-all-over-london-255079.html');"><span class="sprite">facebook</span></a>
+#}

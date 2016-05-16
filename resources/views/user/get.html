@@ -1,11 +1,10 @@
-{% extends "base/base.html" %}
-
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
 {% block style %}{{ parent() }}
 {% endblock %}
 {# comment in twig #}
 {% block profile %}
 {% include "user/profile.html" with {'profile': profile} %}
 {% endblock %}
-{% block posts %}   
-{% include "base/posts.html" with {'posts': posts} %}    
+{% block postcontainer %}   
+{% include "base/postcontainer.html" with {'posts': posts} %}
 {% endblock %}

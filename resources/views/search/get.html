@@ -1,16 +1,15 @@
-{% extends "base/base.html" %}
-
-{% block style %}{{ parent() }}
-{% endblock %}
+{% extends "base/base.html" %} 
+{% block style %}{{ parent() }} {% endblock %}
 {# comment in twig #}
-{% block posts %}
-					<div class="main" id="search">
-						<div class="inner">
-							<div class="box alt">
-								<div class="row uniform">
-
-{% include "search/people.html" with {'users': users} %}
-{% include "search/dish.html" with {'dishes': dishes} %}    
-{% include "search/restaurant.html" with {'restaurants':restaurants} %}    
-</div></div></div></div>
+{% block postcontainer %}
+<div class="main" id="search">
+	<div class="inner">
+		<div class="box alt">
+			<div class="row uniform">{% include "search/people.html" with
+				{'users': users} %} {% include "search/dish.html" with {'dishes':
+				dishes} %} {% include "search/restaurant.html" with
+				{'restaurants':restaurants} %}</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

@@ -13,35 +13,25 @@ class Post extends BaseRepository
 // 	public  $favourites = null;
 	
 	
-	public function __construct($userId)
+	public function __construct($postData, $api = self::POST_GET)
 	{
-		$postData['postId'] = $userId;		
-		$data = $this->post(self::POST_GET, $postData);
 		
+		parent::__construct($postData, $api);
 		
-		if($data['status'] == 'error'){
-			$this->error = $data['errorCode'];
-			// 			echo $userProfile['errorCode'];
-			abort(404);
-		}
+		if(isset($this->apiResponse['post']))		
+			$this->post = $this->apiResponse['post'];
+		if(isset($this->apiResponse['comments']))
+			$this->comments = $this->apiResponse['comments'];
 		
-		
-		$this->post = $data['post'];
-		$this->comments = $data['comments'];
-// 		$this->favourites = $userProfile['favourites'];
-		parent::__construct();
 	}
 	
-// 	public static function nextPostPage($userId, $page = 2){		
-// 		$postData['page'] = 2;
-// 		return $posts = $this->post(self::USER_POST, $postData);
-		
-// 	}
+	public static function profile($Id){
 	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
+		$postData['postId'] = $Id;
+		$obj = new self($postData);
+		return $obj;
 	
+	}
 	
      
 }

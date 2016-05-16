@@ -12,12 +12,17 @@ class RestaurantController extends Controller{
   
 	
 	
-	public function profile($restaurantId){
+	public function profile($restaurantId, $page=1){
 		
 		
-		$restaurant = new Restaurant($restaurantId);		
 		
-		return  $this->render('restaurant/get', (array)$restaurant , self::SUCCESS_OK);
+		if($this->ajax)
+			$obj  = Restaurant::nextPostPage($restaurantId, $page);
+		else
+			$obj = Restaurant::profile($restaurantId);
+		
+		
+		return  $this->render('restaurant/get', (array)$obj , self::SUCCESS_OK);
 		
 	}
 	

@@ -6,7 +6,7 @@ function renderTwig($view, array $data = []) {
 		
 		foreach ( $comment ['userMentioned'] as $user ) {
 			
-			$commentTxt = str_replace ( "@" . $user ['userName'], '@<p class="user-name"><a href="/' . $user ['userName'] . '">' . $user ['userName'] . '</a></p>', $commentTxt );
+			$commentTxt = str_replace ( "@" . $user ['userName'], '<p class="user-name"><a href="/' . $user ['userName'] . '">' . $user ['userName'] . '</a></p>', $commentTxt );
 		}
 		return $commentTxt;
 	} );
@@ -57,6 +57,25 @@ function renderTwig($view, array $data = []) {
 		return $html;
 	} );
 	
+	
+		$isajax = new Twig_SimpleFunction ( 'isajax', function () {
+		
+			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
+				return true;
+			else	
+			return false;
+		} );
+	
+		
+		$followbutton = new Twig_SimpleFunction ( 'followbutton', function ($user) {
+		
+			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+				return true;
+			else
+				return false;
+		} );
+		
+		
 	$loader = new Twig_Loader_Filesystem ( env('APP_ROOT').'app/resources/views' );
 
 	$twig = new Twig_Environment ( $loader, array () )
@@ -66,6 +85,9 @@ function renderTwig($view, array $data = []) {
 	$twig->addFunction ( $loginStatus );
 	$twig->addFunction ( $postTitle );
 	$twig->addFunction ( $function );
+	$twig->addFunction ( $isajax );
+	$twig->addFunction ( $followbutton );
+	
 	
 	$twig->addFilter ( $filter );
 	

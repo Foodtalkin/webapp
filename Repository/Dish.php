@@ -11,10 +11,9 @@ class Dish extends BaseRepository
 	public  $profile = null;
 	public  $posts = null;
 	
-	
-	public function __construct($Id)
+	public function __construct($postData, $api = self::DISH_POST)
 	{
-		$dishName = str_replace('-', ' ',$Id);
+		$dishName = str_replace('-', ' ',$postData['dishId'] );
 		$postData['search'] = $dishName;
 		$postData['recordCount'] = 15;
 		
@@ -24,31 +23,34 @@ class Dish extends BaseRepository
 			$postData['latitude'] = $location->latitude;
 		}
 		
-// 		abort(404, 'newsas');
-		
-		$result = $this->post(self::DISH_POST, $postData);
-		
-		if($result['status'] == 'error'){
-			$this->error = $result['errorCode'];
-			abort(404);
-		}
-		
+		parent::__construct($postData, $api);
 		
 		$this->profile['dishName'] = $dishName;
-		$this->profile['dishUrl'] = $Id;
+		$this->profile['dishUrl'] = $postData['dishId'];
 		
-		$this->posts = $result['posts'];
-		parent::__construct();
-	}
-	
-	public function getImagePostnext($page = 2, $userId){
+		if(isset($this->apiResponse['posts']))		
+			$this->posts = $this->apiResponse['posts'];
 		
 	}
 	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
-	
+	public static function profile($Id){
+		
+		$postData['dishId'] = $Id;
+		$postData['page'] = 1;
+		
+		$obj = new self($postData);
+			
+		return $obj;
+	}
+	public static function nextPostPage($Id, $page = 2){
+		
+		$postData['dishId'] = $Id;
+		$postData['page'] = $page;
+		
+		$obj = new self($postData);
+			
+		return $obj;
+	}
 	
      
 }

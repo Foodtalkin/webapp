@@ -1,7 +1,4 @@
-<div class="main" id="content">
-	<div class="inner">
-		<section class="tiles">
-		{% for post in posts %}
+{% for post in posts %}
 			<article class="style1">
 				<span class="image"> <a  href="/post/{{post.id}}"> <img src="{{post.postImage}}"
 					alt="Food Talk" />
@@ -26,7 +23,4 @@
 					</h6>
 				</div>
 			</article>
-			{% endfor %}
-		</section>
-	</div>
-</div>
+{% endfor %}

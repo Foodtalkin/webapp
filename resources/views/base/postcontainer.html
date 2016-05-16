@@ -1,0 +1,55 @@
+{% if isajax() %}
+{% include "base/posts.html" with {'posts': posts} %}
+{% else %}
+<div class="main" id="content">
+	<div class="inner">
+		<section id="posts" class="tiles">
+{% include "base/posts.html" with {'posts': posts} %}
+		</section>
+		<div id="loading" style="text-align: center;display: none;">
+		Loading....
+		</div>
+		<div id="stoploading" style="text-align: center;display: none;">
+		No more dishes
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var win = $(window);
+
+	var page = 2
+	var hasmore = true;
+	// Each time the user scrolls
+	win.scroll(function() {
+	if(hasmore){
+		// End of the document reached?
+		if ($(document).height() - win.height() == win.scrollTop()) {
+			$('#loading').show();
+			var path = window.location.pathname;
+			$.ajax({
+				async: false,
+				url: path 
+				+'/page/'+ page
+				,
+				dataType: 'html',
+				success: function(html) {
+					if( html.trim() == '' ){
+						$('#stoploading').show();
+						$('#loading').hide();
+						hasmore = false;
+					}
+					else
+						$('#posts').append(html);
+					
+					page++;
+					$('#loading').hide();
+				}
+			});
+		}
+	}
+	});
+	
+});
+</script>
+{% endif %}

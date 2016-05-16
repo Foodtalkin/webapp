@@ -18,44 +18,31 @@ class Login extends BaseRepository
 	}
 	
 	
-	public function __construct($user)
+	public function __construct($postData, $api = self::USER_AUTH)
 	{
+		parent::__construct($postData, $api);
 		
-		$result = $this->post(self::USER_AUTH, $user, false);
-		
-		if($result['status'] == 'error'){
-			$this->error = $result['errorCode'];
-		}
-		
-		if (isset($result['profile'])){
-			$this->profile = $result['profile'];
+		if(isset($this->apiResponse['profile'])){			
+			$this->profile = $this->apiResponse['profile'];
 			$_SESSION['user'] = $this->profile;
-			$_SESSION['sessionId'] = $result['sessionId'];
+			$_SESSION['sessionId'] = $this->apiResponse['sessionId'];
 			
-			if(isset($user['email']))
-				$_SESSION['user']['email'] = $user['email'];
+			if(isset($postData['email']))
+				$_SESSION['user']['email'] = $postData['email'];
 				
 		}
-// 		else {
-			
-// 			return self::logout();
-// 		}
 		
 		
-		if(isset($result['isNewUser']))
-			$this->isNewUser = (boolval($result['isNewUser']));
-		
-		parent::__construct();
-	}
-	
-	public function getImagePostnext($page = 2, $userId){
+		if(isset($this->apiResponse['isNewUser']))
+			$this->isNewUser = (boolval($this->apiResponse['isNewUser']));
 		
 	}
-	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
-	
-	
+
+	public static function doLogin($user){
+		
+		$obj = new self($user);
+		return $obj;
+		
+	}
      
 }

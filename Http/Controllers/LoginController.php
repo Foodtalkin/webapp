@@ -72,7 +72,7 @@ class LoginController extends Controller{
 			$user['email'] = $_SESSION['user']['email'];
 		}
 		
-		$webUser = new Login($user);
+		$webUser = Login :: doLogin($user);
 		
 		if($webUser->error){
 			if($webUser->error =='23000'){
@@ -122,7 +122,7 @@ class LoginController extends Controller{
 		$user['deviceToken'] = 'web';
 		$user['image'] = 'https://graph.facebook.com/'.$request->input('facebookId').'/picture?type=large';
 		
-		$webUser = new Login($user);
+		$webUser = Login :: doLogin($user);
 		
 			return response ()->json ( $webUser );
 	}

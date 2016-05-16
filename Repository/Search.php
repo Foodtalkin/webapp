@@ -30,20 +30,8 @@ class Search extends BaseRepository
 		$restaurants = $this->post(self::RESTAURANT_SEARCH, $restaurantspostData);
 		$this->restaurants = $restaurants['restaurants'];
 		
-// 		$this->favourites = $userProfile['favourites'];
-		parent::__construct();
+		$this->repository = self::REPOSITORY;
 	}
-	
-// 	public static function nextPostPage($userId, $page = 2){		
-// 		$postData['page'] = 2;
-// 		return $posts = $this->post(self::USER_POST, $postData);
-		
-// 	}
-	
-// 	public function getProfile(){
-// 		return $profile;
-// 	}
-	
 	
      
 }

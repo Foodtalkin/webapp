@@ -17,10 +17,13 @@ class Controller extends BaseController
 	const NOT_ACCEPTABLE = 406; // 404 => 'Not Found',
 	
 	
+	protected $ajax = false; 
+	
 	public function __construct()
 	{
-// 		session_start();
-		//
+		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+			$this->ajax = true;
+		}
 	}
 	
 // 	public function renderTwig($view, array $data = []){
