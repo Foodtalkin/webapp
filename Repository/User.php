@@ -20,8 +20,14 @@ class User extends BaseRepository
 		
 		if(isset($this->apiResponse['profile']))
 			$this->profile = $this->apiResponse['profile'];
+		
+		if(isset($this->apiResponse['posts']))
+			$this->posts = $this->apiResponse['posts'];
+		
 		if(isset($this->apiResponse['imagePosts']))
 			$this->posts = $this->apiResponse['imagePosts'];
+		
+		
 		if(isset($this->apiResponse['favourites']))
 			$this->favourites = $this->apiResponse['favourites'];
 		
@@ -47,8 +53,14 @@ class User extends BaseRepository
 	}	
 	
 	public static function feeds($page=1){
-		$postData['followedUserId'] = $userId;
-		$obj = new self($postData, self::USER_FOLLOW);
+		
+		$postData['postUserId'] = $_SESSION['user']['id'];
+		$postData['includeCount'] = '1';
+		$postData['recordCount'] = '15';
+		$postData['page'] = $page;
+		$postData['includeFollowed'] = '1';
+		$obj = new self($postData, self::USER_HOME_FEEDS);
+		$obj->repository = '';
 	
 		return $obj;
 	}

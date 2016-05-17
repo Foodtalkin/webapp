@@ -18,6 +18,8 @@ function renderTwig($view, array $data = []) {
 	
 	$postTitle = new Twig_SimpleFunction ( 'postTitle', function ($post, $repository = false) {
 		
+		$withUser = false;
+		
 		switch ($repository) {
 			case 'App\Repository\User' :
 				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
@@ -30,6 +32,11 @@ function renderTwig($view, array $data = []) {
 			case 'App\Repository\Restaurant' :
 				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
 				break;
+				
+			default:
+				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+				$withUser = true;
+				break;
 		}
 		// $title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
 		if ($repository == 'App\Repository\Restaurant')
@@ -40,6 +47,9 @@ function renderTwig($view, array $data = []) {
 			} else {
 				$title .= ' @ ' . $post ['restaurantName'];
 			}
+		if($withUser){
+			$title .= ' by <a href="/' . $post ['userName'] . '">' . $post ['userName'] . '</a>';
+		}
 		
 		return $title;
 	} );
