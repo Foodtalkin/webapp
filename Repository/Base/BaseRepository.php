@@ -16,6 +16,7 @@ class BaseRepository
 	const  USER_POST = 'user/getImagePosts';
 	const  USER_FOLLOW = 'follower/follow';
 	const  USER_UNFOLLOW = 'follower/unfollow';
+	const  USER_HOME_FEEDS = 'post/list';
 	
 	
 	const  RESTAURANT_PROFILE = 'restaurant/getProfile';

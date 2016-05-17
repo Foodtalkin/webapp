@@ -23,6 +23,14 @@ class UserController extends Controller{
 			
 	}
 	
+	public function feeds($page=1){
+		
+		$obj = User::feeds($page);
+		return  $this->render('user/get', (array) $obj , self::SUCCESS_OK);
+		
+	}
+	
+	
 	public function follow($id){
 	
 		$obj = User::follow($id);

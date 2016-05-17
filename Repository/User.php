@@ -46,6 +46,13 @@ class User extends BaseRepository
 		
 	}	
 	
+	public static function feeds($page=1){
+		$postData['followedUserId'] = $userId;
+		$obj = new self($postData, self::USER_FOLLOW);
+	
+		return $obj;
+	}
+	
 	public static function follow($userId){
 		$postData['followedUserId'] = $userId;
 		$obj = new self($postData, self::USER_FOLLOW);
