@@ -13,7 +13,6 @@ class UserController extends Controller{
 	
 		
 	public function profile($userName, $page=1){
-				
 		
 		if($this->ajax)
 			$obj  = User::nextPostPage($userName, $page);
@@ -22,7 +21,18 @@ class UserController extends Controller{
 		
 		return  $this->render('user/get', (array) $obj , self::SUCCESS_OK);
 			
-	}	
+	}
+	
+	public function follow($id){
+	
+		$obj = User::follow($id);
+		return $obj->status;
+	}
   
+	public function unfollow($id){
+		
+		$obj = User::unfollow($id);
+		return $obj->status;
+	}
 }
 ?>

@@ -67,12 +67,15 @@ function renderTwig($view, array $data = []) {
 		} );
 	
 		
-		$followbutton = new Twig_SimpleFunction ( 'followbutton', function ($user) {
-		
-			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-				return true;
+		$islogin = new Twig_SimpleFunction ( 'islogin', function ($getinfo) {
+			if (isset ( $_SESSION ['user'] ) and !empty($_SESSION ['user'])) {
+				if($getinfo)
+					return $_SESSION ['user'];
+				else
+					return true;
+			}
 			else
-				return false;
+			return false;	
 		} );
 		
 		
@@ -86,7 +89,7 @@ function renderTwig($view, array $data = []) {
 	$twig->addFunction ( $postTitle );
 	$twig->addFunction ( $function );
 	$twig->addFunction ( $isajax );
-	$twig->addFunction ( $followbutton );
+	$twig->addFunction ( $islogin );
 	
 	
 	$twig->addFilter ( $filter );

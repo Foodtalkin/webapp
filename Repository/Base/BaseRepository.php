@@ -7,12 +7,15 @@ class BaseRepository
 	
 	public $repository = null;
 	public $error = null;
+	public $status = null;
 	protected $apiResponse = null;
 	
 	const  USER_AUTH = 'auth/signin';
 	
 	const  USER_PROFILE = 'user/getProfile';
 	const  USER_POST = 'user/getImagePosts';
+	const  USER_FOLLOW = 'follower/follow';
+	const  USER_UNFOLLOW = 'follower/unfollow';
 	
 	
 	const  RESTAURANT_PROFILE = 'restaurant/getProfile';
@@ -39,6 +42,7 @@ class BaseRepository
 			if($result['errorCode'] !='23000')
 				abort(404);
 		}
+		$this->status = $result['status'];
 		
 		$this->apiResponse = $result;
 		$this->repository = get_called_class();

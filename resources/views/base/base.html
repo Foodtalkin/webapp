@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <meta name="robots" content="noindex,nofollow" />
 <title>{% block title %} FoodTalk {% endblock %}</title>
 {% block head %}
 <meta charset="utf-8" />
@@ -15,12 +16,57 @@
 {% endblock %}
 </head>
 <body>
+		<div class="mymodal">
+			<div class="main-body">				
+				<a href="" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+				<h2>Download App</h2>
+				<div class="button-container">
+					<a href="">
+						<img src="images/download.png" alt="">
+					</a>
+				</div>
+				<div class="button-container">
+					<a href="">
+						<img src="images/android.png" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+
 	<div id="wrapper">
+	<a href="#wrapper" class="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 		{% block header %}
 					<form action="/search" method="post">
 		<header id="header">
 			<div class="inner">
-				{{ loginStatus() |raw}}
+			
+			{% if islogin(0) %}
+			{% set user = islogin(1) %}
+
+				<a href="/home" title="Home" class="logo">
+								<span class="title">FOODTALK</span>
+							</a>
+							<!-- dropdown container -->
+							<div class="dropdown">
+
+							    <!-- trigger button -->
+							    <button class="button spacial small">Logout</button>
+
+							    <!-- dropdown menu -->
+							    <ul class="dropdown-menu">
+							        <li><a href="/{{user.userName}}">Profile</a></li>
+							        <li><a href="/logout">Logout</a></li>
+							    </ul>
+							</div>
+			
+			{% else %}
+				<a href="/index.html" title="Home" class="logo">
+								<span class="title">FOODTALK</span>
+							</a>
+							<a href="/login" class="button login special small">Login</a>
+			{% endif %}
+				
+				<a class="button special small get-app">get the app</a>
 				<div class="search">
 						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="search" minlength=2 required="required" /> 
 						<a href="" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -43,5 +89,20 @@
 			{% endblock %}
 
 	</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.mymodal').hide();
+	$('.get-app').on('click', function(event) {
+		event.preventDefault();
+		$('.mymodal').fadeIn('slow', function() {
+			
+		});
+	});
+	$('.close').on('click', function(event) {
+		event.preventDefault();
+		$('.mymodal').hide();
+	});
+});
+</script>	
 </body>
 </html>

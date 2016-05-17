@@ -1,4 +1,12 @@
 {% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block head %}
+{{ parent() }}
+<meta property="og:url"                content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ profile.fullName | capitalize}} on Foodtalk" />
+<meta property="og:description"        content="How much does culture influence creative thinking?" />
+<meta property="og:image"              content="http://res.cloudinary.com/digital-food-talk-pvt-ltd/image/upload/q_60,f_jpg/v1463482059/iaugqsmzgby5z9hci8ol.png" />
+{% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
 {# comment in twig #}

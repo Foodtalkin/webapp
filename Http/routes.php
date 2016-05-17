@@ -50,12 +50,13 @@ $app->group([
 	
 	$app->get('post/{id}','PostController@profile');
 	
+	$app->post('follow/{id}','UserController@follow');
+	$app->post('unfollow/{id}','UserController@unfollow');
+	
+	
 	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
 	
 		$ctrl = getContrller($id);
-		
-		
-		
 		return $ctrl->profile($id, $page);
 	
 	});
