@@ -1,0 +1,11 @@
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block style %}{{ parent() }}
+{% endblock %}
+{# comment in twig #}
+{% block postcontainer %}
+{% set mt5 = 'mt5' %}   
+{% include "base/postcontainer.html" with {'posts': posts} %}
+{% endblock %}
