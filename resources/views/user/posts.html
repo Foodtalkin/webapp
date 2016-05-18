@@ -1,5 +1,13 @@
 {% for post in posts %}
 			<article class="style1 home-feed">
+			<div class="user-details">
+									<span class="float-left">
+										<img src="{{post.userThumb}}&width=50&height=50" alt="">
+									</span>
+									<span class="float-left">
+										<a href="/{{post.userName}}"><h6>{{post.userName}}</h6></a>
+									</span>
+								</div>
 				<span class="image"> <a  href="/post/{{post.id}}"> <img src="{{post.postImage}}"
 					alt="Food Talk" />
 					<div class="img-grd"></div>

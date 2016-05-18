@@ -4,8 +4,8 @@
 			<div class="profile-buttons float-right">
 {% if islogin(0) %}
 {% set user = islogin(1) %}
-			{% if user.userName != profile.userName %} 
-			<a {% if profile.iFollowedIt == 1 %}style="display: none;"{% endif %} href="/follow/{{profile.id}}" class="followAction button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a> 					
+			{% if user.userName != profile.userName %}
+			<a {% if profile.iFollowedIt == 1 %}style="display: none;"{% endif %} href="/follow/{{profile.id}}" class="followAction button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
 			<a {% if profile.iFollowedIt == 0 %}style="display: none;"{% endif %} href="/unfollow/{{profile.id}}" class="followAction button small spacial following" id="following">Following</a>
 <script type="text/javascript">
 <!--
@@ -34,7 +34,7 @@ onclick="require(&quot;Popup&quot;).open(&quot;\/sharer.php?u=https\u00253A\u002
 					<a target="_blank" href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Fstg-web.foodtalk.in/{{ profile.userName }}" class="button spacial small share"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
 			</div>		
 			<div class="profile_pic_block">
-				<img src="{{ profile.image }}" alt="profile picture"
+				<img src="{{ profile.image }}&width=200&height=200" alt="profile picture"
 					class="profile_pic">
 			</div>
 			<div class="user_info_block">
