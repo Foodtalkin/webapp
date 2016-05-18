@@ -22,7 +22,7 @@
 <meta property="og:title" content="{{ profile.fullName }} ({{ profile.userName }}) • on FOODTALK " />
 <meta property="og:description" content="{{ profile.checkInImageCount }} CHECKINS | {{ profile.followersCount }} FOLLOWERS | {{ profile.totalPoints }} POINTS" />
 <meta property="og:url" content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
-
+<meta property="og:image" content="{{ profile.image }}" />
 
 {% endblock %}
 {% block style %}{{ parent() }}
