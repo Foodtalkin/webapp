@@ -1,18 +1,16 @@
 {% if isajax() %}
-{% include "base/posts.html" with {'posts': posts} %}
+{% include "user/posts.html" with {'posts': posts} %}
 {% else %}
-<div class="main" id="content">
-	<div class="inner">
-		<section id="posts" class="tiles">
-{% include "base/posts.html" with {'posts': posts} %}
-		</section>
+<div class="main mt5" id="content">
+	<div class="inner" id="posts">
+{% include "user/posts.html" with {'posts': posts} %}
+	</div>
 		<div id="loading" style="text-align: center;display: none;">
 		Loading....
 		</div>
 		<div id="stoploading" style="text-align: center;display: none;">
 		No more dishes
 		</div>
-	</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {

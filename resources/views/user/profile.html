@@ -1,26 +1,6 @@
 <div class="main" id="profile">
 	<div class="inner">
 		<header>
-			<div class="profile_pic_block">
-				<img src="{{ profile.image }}" alt="profile picture"
-					class="profile_pic">
-			</div>
-			<div class="user_info_block">
-				<h2 class="username">{{ profile.fullName }}</h2>
-				<h3 class="username">{{ profile.userName }}</h3>
-				<div class="username scores">
-					<h3>
-						<strong><b><span class="inhead_number">{{ profile.checkInImageCount }}</span></b></strong>&nbsp;<span
-							class="inhead_text">CHECKINS</span> &nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.followersCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWERS</span>
-						&nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.followingCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWING</span>
-						&nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.totalPoints }}</span></b></strong>&nbsp;<span class="inhead_text">POINTS</span>
-					</h3>
-
-				</div>
-			</div>
 			<div class="profile-buttons float-right">
 {% if islogin(0) %}
 {% set user = islogin(1) %}
@@ -49,7 +29,28 @@
 			<a href="/login" class="followAction button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>			
 {% endif %}
 					<a target="_blank" href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Fstg-web.foodtalk.in/{{ profile.userName }}" class="button spacial small share"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+			</div>		
+			<div class="profile_pic_block">
+				<img src="{{ profile.image }}" alt="profile picture"
+					class="profile_pic">
 			</div>
+			<div class="user_info_block">
+				<h2 class="username">{{ profile.fullName }}</h2>
+				<h3 class="username">{{ profile.userName }}</h3>
+				<div class="username scores">
+					<h3>
+						<strong><b><span class="inhead_number">{{ profile.checkInImageCount }}</span></b></strong>&nbsp;<span
+							class="inhead_text">CHECKINS</span> &nbsp;&nbsp;&nbsp; <strong><b><span
+								class="inhead_number">{{ profile.followersCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWERS</span>
+						&nbsp;&nbsp;&nbsp; <strong><b><span
+								class="inhead_number">{{ profile.followingCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWING</span>
+						&nbsp;&nbsp;&nbsp; <strong><b><span
+								class="inhead_number">{{ profile.totalPoints }}</span></b></strong>&nbsp;<span class="inhead_text">POINTS</span>
+					</h3>
+
+				</div>
+			</div>
+
 			
 		</header>
 	</div>

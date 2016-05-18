@@ -1,11 +1,29 @@
 {% extends isajax() ? "base/ajax.html" : "base/base.html" %}
 {% block head %}
 {{ parent() }}
+{#  
 <meta property="og:url"                content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ profile.fullName | capitalize}} on Foodtalk" />
 <meta property="og:description"        content="How much does culture influence creative thinking?" />
 <meta property="og:image"              content="http://res.cloudinary.com/digital-food-talk-pvt-ltd/image/upload/q_60,f_jpg/v1463482059/iaugqsmzgby5z9hci8ol.png" />
+            <meta property="al:ios:url" content="instagram://user?username=shuchirsuri" />
+            <meta property="al:android:app_name" content="Instagram" />
+            <meta property="al:android:package" content="com.instagram.android" />
+            <meta property="al:android:url" content="https://www.instagram.com/_u/shuchirsuri/" />
+        	<meta content="Entrepreneur with a twisted sense of humour." name="description" />
+            #}
+<link rel="canonical" href="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+<meta property="al:ios:app_name" content="Food Talk Plus" />
+<meta property="al:ios:app_store_id" content="923340748" />
+<meta property="fb:app_id" 			   content="567830766693152" /> 
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content="FOODTALK"/>
+<meta property="og:title" content="{{ profile.fullName }} ({{ profile.userName }}) • on FOODTALK " />
+<meta property="og:description" content="{{ profile.checkInImageCount }} CHECKINS | {{ profile.followersCount }} FOLLOWERS | {{ profile.totalPoints }} POINTS" />
+<meta property="og:url" content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+
+
 {% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
