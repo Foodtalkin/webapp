@@ -3,6 +3,7 @@
 // use Illuminate\Database\Eloquent\Model;
 // use App\Models\Base\BaseModel;
 use App\Repository\Base\BaseRepository;
+use Illuminate\Support\Facades\Redirect;
 
 class User extends BaseRepository
 {
@@ -53,6 +54,10 @@ class User extends BaseRepository
 	}	
 	
 	public static function feeds($page=1){
+		
+		if(!isset($_SESSION['user']['id'])){
+			return false;
+		}
 		
 		$postData['postUserId'] = $_SESSION['user']['id'];
 		$postData['includeCount'] = '1';

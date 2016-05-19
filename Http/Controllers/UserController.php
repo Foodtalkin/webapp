@@ -26,7 +26,11 @@ class UserController extends Controller{
 	public function feeds($page=1){
 		
 		$obj = User::feeds($page);
-		return  $this->render('user/feeds', (array) $obj , self::SUCCESS_OK);
+		
+		if($obj)
+			return  $this->render('user/feeds', (array) $obj , self::SUCCESS_OK);
+		else 
+			return redirect('/login');
 		
 	}
 	
