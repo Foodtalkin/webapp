@@ -25,14 +25,22 @@ $app->get('/', function () use ($app) {
 $app->get('favicon.ico', function ()  {
 	return '404';
 });
-	
+
+$app->group([
+		'middleware' => ['detectMobile'],
+		'namespace' => 'App\Http\Controllers'
+], function($app)
+{
+
 $app->get('signup',[ 'uses' =>'LoginController@signup']);
 $app->post('signup',[ 'uses' =>'LoginController@dosignup']);
 $app->get('logout',[ 'uses' =>'LoginController@logout']);
 $app->post('login',[ 'uses' =>'LoginController@login']);
 
+});
+
 $app->group([
-		'middleware' => ['logincheck'],
+		'middleware' => ['logincheck', 'detectMobile'],
 		'namespace' => 'App\Http\Controllers'
 ], function($app)
 {
