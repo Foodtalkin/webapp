@@ -16,7 +16,7 @@ class LoginController extends Controller{
 
 		
 		if(isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
-			return redirect('/'.$_SESSION['user']['userName']);
+			return redirect('/home');
 		}
 		
 		
