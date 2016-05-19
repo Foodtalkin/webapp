@@ -36,7 +36,7 @@ class LoginController extends Controller{
 				if(isset($_SESSION['refral_url']))
 					return redirect($_SESSION['refral_url']);
 				else
-					return redirect('/'.$_SESSION['user']['userName']);
+					return redirect('/home');
 				
 			}else{
 				return redirect('/signup');

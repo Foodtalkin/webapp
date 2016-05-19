@@ -2,7 +2,7 @@
 {% block head %}
 {{ parent() }}
 {#  
-<meta property="og:url"                content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+<meta property="og:url"                content="http://foodtalk.in/{{ profile.userName }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ profile.fullName | capitalize}} on Foodtalk" />
 <meta property="og:description"        content="How much does culture influence creative thinking?" />
@@ -13,7 +13,7 @@
             <meta property="al:android:url" content="https://www.instagram.com/_u/shuchirsuri/" />
         	<meta content="Entrepreneur with a twisted sense of humour." name="description" />
             #}
-<link rel="canonical" href="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+<link rel="canonical" href="http://foodtalk.in/{{ profile.userName }}" />
 <meta property="al:ios:app_name" content="Food Talk Plus" />
 <meta property="al:ios:app_store_id" content="923340748" />
 <meta property="fb:app_id" 			   content="567830766693152" /> 
@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="FOODTALK"/>
 <meta property="og:title" content="{{ profile.fullName }} ({{ profile.userName }}) on FOODTALK " />
 <meta property="og:description" content="{{ profile.checkInImageCount }} CHECKINS | {{ profile.followersCount }} FOLLOWERS | {{ profile.totalPoints |round(0, 'floor') }} POINTS" />
-<meta property="og:url" content="http://stg-web.foodtalk.in/{{ profile.userName }}" />
+<meta property="og:url" content="http://foodtalk.in/{{ profile.userName }}" />
 <meta property="og:image" content="{{ profile.image }}" />
 
 {% endblock %}
