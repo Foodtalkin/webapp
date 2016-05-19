@@ -48,7 +48,7 @@ onclick="require(&quot;Popup&quot;).open(&quot;\/sharer.php?u=https\u00253A\u002
 						&nbsp;&nbsp;&nbsp; <strong><b><span
 								class="inhead_number">{{ profile.followingCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWING</span>
 						&nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.totalPoints }}</span></b></strong>&nbsp;<span class="inhead_text">POINTS</span>
+								class="inhead_number">{{ profile.totalPoints |round(0, 'floor')}}</span></b></strong>&nbsp;<span class="inhead_text">POINTS</span>
 					</h3>
 
 				</div>

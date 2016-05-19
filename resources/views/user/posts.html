@@ -25,9 +25,9 @@
 					<h4 class="username" style="margin-top: 5px;">{{ postTitle(post, repository) | raw }}</h4>
 					<h6>
 						<span class="inhead_number" style="font-size: .9em;">{{post.likeCount}} <span
-							style="font-weight: 700;">Likes</span></span> | <span
+							style="font-weight: 700;">{% if post.likeCount==1 %}Like{% else %}Likes{% endif %}</span></span> | <span
 							class="inhead_number" style="font-size: .9em;">{{post.commentCount}} <span
-							style="font-weight: 700;">Comments</span></span>
+							style="font-weight: 700;">{% if post.commentCount==1 %}Comment{% else %}Comments{% endif %}</span></span>
 					</h6>
 					<p class="rev">{{post.tip | trim}}</p>
 					

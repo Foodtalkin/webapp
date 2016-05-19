@@ -18,7 +18,7 @@ session_start();
 */
 
 $app->get('/', function () use ($app) {
-		return redirect('/login');
+		return redirect('/index.html');
 });
 
 
