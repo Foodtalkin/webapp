@@ -1,5 +1,13 @@
 {% extends "base/base.html" %}
+{% block head %}
+{{ parent() }}
 
+<meta property="og:url"                content="http://foodtalk.in/post/{{ post.id }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{post.userName}} is having {{post.dishName}}  {% if post.restaurantName %} @ {{ post.restaurantName }} {% endif %}" />
+<meta property="og:description"        content="{{ post.like_count }} Likes | {{ post.comment_count }} Comments <br> {{ post.tip }}" />
+<meta property="og:image"              content="{{post.postImage}}" />
+{% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
 {# comment in twig #}
