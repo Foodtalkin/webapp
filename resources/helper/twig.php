@@ -30,11 +30,27 @@ function renderTwig($view, array $data = []) {
 				break;
 			
 			case 'App\Repository\Restaurant' :
+				
+				if ($post ['checkedInRestaurantId'] > 0)
+					if ($post ['restaurantIsActive'] == '1') {
 				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+// 						$title .= ' @ <a href="/' . $post ['checkedInRestaurantId'] . '">' . $post ['restaurantName'] . '</a>';
+					} else {
+						$title = $post ['dishName'];
+					}
+				
 				break;
 				
 			default:
+				
+				if ($post ['checkedInRestaurantId'] > 0)
+					if ($post ['restaurantIsActive'] == '1') {
 				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+// 						$title .= ' @ <a href="/' . $post ['checkedInRestaurantId'] . '">' . $post ['restaurantName'] . '</a>';
+					} else {
+						$title = $post ['dishName'];
+					}
+				
 				$withUser = true;
 				break;
 		}
