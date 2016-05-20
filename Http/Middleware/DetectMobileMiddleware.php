@@ -25,10 +25,11 @@ class DetectMobileMiddleware
     		case 'iPhone': /*do something...*/
     		case 'iPad': /*do something...*/
     		case 'iPod': /*do something...*/ 
-    			return redirect('https://itunes.apple.com/in/app/food-talk-plus/id923340748?mt=8');
+//     			return redirect('https://itunes.apple.com/in/app/food-talk-plus/id923340748?mt=8');
+    			return redirect('/mobile.html');
     			break;
     		case 'Android': /*do something...*/
-    			return redirect('/index.html');
+    			return redirect('/mobile.html');
     			break;
 //     		case 'webOS': /*do something...*/ break;
     	}
