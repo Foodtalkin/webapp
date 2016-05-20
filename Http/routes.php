@@ -52,8 +52,9 @@ $app->group([
 	$app->get('login',['middleware' => 'logincheck', 'uses' =>'LoginController@index']);
 	$app->get('tour',[ 'uses' =>'LoginController@tour']);
 	
-	$app->post('search',[ 'uses' =>'SearchController@search']);
-	$app->get('search',[ 'uses' =>'SearchController@index']);
+	$app->get('search',[ 'uses' =>'SearchController@search']);
+// 	$app->post('search',[ 'uses' =>'SearchController@search']);
+// 	$app->get('search',[ 'uses' =>'SearchController@index']);
 
 	$app->get('dish/{id}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
 	$app->get('dish/{id}/page/{page}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);

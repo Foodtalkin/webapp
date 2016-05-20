@@ -36,7 +36,7 @@
 	<div id="wrapper">
 
 		{% block header %}
-					<form action="/search" method="post">
+					<form action="/search" method="get">
 		<header id="header">
 			<div class="inner">
 			
@@ -72,8 +72,8 @@
 			{% endif %}
 				
 				<div class="search">
-						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="search" minlength=2 required="required" /> 
-						<a href="" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></a>
+						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="search" minlength=2 required="required" />
+						<button type="submit" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></button> 
 				</div>
 
 			</div>

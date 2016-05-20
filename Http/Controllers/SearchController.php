@@ -15,7 +15,11 @@ class SearchController extends Controller{
 	public function search(Request $request){
 				
 		$txt = $request->input('search');
-		$obj = new Search($txt);
+		$obj=[];
+		
+		if($txt)
+			$obj = new Search($txt);
+
 		
 		return  $this->render('search/get', (array) $obj , self::SUCCESS_OK);
 			

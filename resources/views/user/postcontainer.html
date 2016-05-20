@@ -3,7 +3,12 @@
 {% else %}
 <div class="main mt5" id="content">
 	<div class="inner" id="posts">
+{% if posts|length > 0 %}	
 {% include "user/posts.html" with {'posts': posts} %}
+{% else %}
+<div id="loading" class="center">No Dish to Display! :(</div>
+{% endif %}
+
 	</div>
 		<div id="loading" style="text-align: center;display: none;">
 		Loading....
