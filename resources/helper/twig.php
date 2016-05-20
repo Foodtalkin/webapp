@@ -19,6 +19,7 @@ function renderTwig($view, array $data = []) {
 	$postTitle = new Twig_SimpleFunction ( 'postTitle', function ($post, $repository = false) {
 		
 		$withUser = false;
+		$title = '';
 		
 		switch ($repository) {
 			case 'App\Repository\User' :
@@ -50,6 +51,9 @@ function renderTwig($view, array $data = []) {
 					} else {
 						$title = $post ['dishName'];
 					}
+				else	
+					$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+				
 				
 				$withUser = true;
 				break;
