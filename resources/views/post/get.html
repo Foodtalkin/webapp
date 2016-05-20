@@ -43,7 +43,7 @@
 													<ul>
 														{% for comment in comments %}
 
-														<li><p class="user-name"><a href="/{{comment.userName}}">{{comment.userName}}</a></p> <p class="user-name">{{ commentify(comment)| raw}}</p></li>
+														<li><p class="comment-user-name"><a href="/{{comment.userName}}">{{comment.userName}}</a></p> <p class="user-name">{{ commentify(comment)| raw}}</p></li>
 														
 														{% endfor %}
 														
