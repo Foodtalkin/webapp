@@ -15,10 +15,10 @@
 <div class="main" id="open-content">
 <div class="next-prev">
 							{% if post.previous > 0 %}
-							<a href="/post/{{post.previous}}" class="prev"><i class="fa fa-angle-left fa-5x" aria-hidden="true"></i></a>
+							<a href="/post/{{post.previous}}" id="previousPost"  class="prev"><i class="fa fa-angle-left fa-5x" aria-hidden="true"></i></a>
 							{% endif %}
 							{% if post.next > 0 %}
-							<a href="/post/{{ post.next }}" class="next"><i class="fa fa-angle-right fa-5x" aria-hidden="true"></i></a>
+							<a href="/post/{{ post.next }}" id="nextPost" class="next"><i class="fa fa-angle-right fa-5x" aria-hidden="true"></i></a>
 							{% endif %}
 						</div>
 
@@ -71,5 +71,20 @@
 							</section>
 						</div>
 					</div>
+<script type="text/javascript">
+window.addEventListener("keydown", checkKeyPressed, false);
+ 
+function checkKeyPressed(e) {
+    if (e.keyCode == "39") {
+		if($('#nextPost').attr('href'))
+			window.location.replace($('#nextPost').attr('href'))
+    }
+	if (e.keyCode == "37") {
+		if($('#previousPost').attr('href'))
+			window.location.replace($('#previousPost').attr('href'))
+	}
+}
+</script>
+							
 							
 {% endblock %}
