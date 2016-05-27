@@ -10,8 +10,7 @@
 							<h1>Foodtalk</h1>
 							<h4>Find & share Awesome Dishes</h4>
 							
-							<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge" ></fb:login-button> -->
-              <a onclick="checkLoginState();" class="facebook-login"><img src="images/login.png" alt=""></a>
+							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge" ></fb:login-button>
 {#
 <!--							
 							<a href="javascript:void(0)" scope="public_profile,email" onclick="checkLoginState();" class="facebook-login"><img src="images/login.png" alt=""></a>							
@@ -49,13 +48,11 @@
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
-        loginprocess(response);
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
-        loginprocess(response);
     }
   }
 
@@ -158,19 +155,6 @@
 	      });
 	      
 	    });
-  }
-
-  function loginprocess(response) {
-     FB.login(function(response) {
-        if (response.authResponse) {
-         console.log('Welcome!  Fetching your information.... ');
-         FB.api('/me', function(response) {
-           console.log('Good to see you, ' + response.name + '.');
-         });
-        } else {
-         console.log('User cancelled login or did not fully authorize.');
-        }
-      }, {scope: 'public_profile,email'});  
   }
   
 </script>
