@@ -20,7 +20,15 @@ class LoginController extends Controller{
 		}
 		
 		
-		if(isset($_SERVER['HTTP_REFERER']))
+		$pattern = '/foodtalk.in/';
+		$isMatch = preg_match($pattern, $_SERVER['HTTP_REFERER']);
+		
+		if($isMatch)
+			$isFromIndex = preg_match('/foodtalk.in\/index.html/', $_SERVER['HTTP_REFERER']);
+		else 
+			$isFromIndex = false;
+		
+		if(isset($_SERVER['HTTP_REFERER']) and $isMatch and !$isFromIndex)
 			$_SESSION['refral_url'] = $_SERVER['HTTP_REFERER'];
 		else
 			unset($_SESSION['refral_url']);
