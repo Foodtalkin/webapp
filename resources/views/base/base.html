@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="robots" content="noindex,nofollow" />
+{% if env('APP_ENV')!= 'production' %}
+	<meta name="robots" content="noindex,nofollow" />
+{% endif %}
 <title>{% block title %} FoodTalk {% endblock %}</title>
 {% block head %}
 <meta charset="utf-8" />

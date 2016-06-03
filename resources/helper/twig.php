@@ -88,6 +88,11 @@ function renderTwig($view, array $data = []) {
 	} );
 	
 	
+		$env = new Twig_SimpleFunction ( 'env', function ($env) {
+		
+				return env($env);
+		} );
+		
 		$isajax = new Twig_SimpleFunction ( 'isajax', function () {
 		
 			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
@@ -120,6 +125,7 @@ function renderTwig($view, array $data = []) {
 	$twig->addFunction ( $function );
 	$twig->addFunction ( $isajax );
 	$twig->addFunction ( $islogin );
+	$twig->addFunction ( $env );
 	
 	
 	$twig->addFilter ( $filter );
