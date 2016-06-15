@@ -8,9 +8,9 @@
 					<div class="form">
 		<form  method="post">
 							{% if userName is defined %}
-							<input type="text" name="userName" required="required" value="{{ userName }}" placeholder="Choose a User Name">
+							<input type="text" name="userName" pattern="^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$" onchange="try{setCustomValidity('')}catch(e){}" oninvalid="setCustomValidity('only alphabets and numbers are allowed without spaces')" required="required" value="{{ userName }}" placeholder="Choose a User Name">
 							{% endif %}
-							
+{# ^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$ #}							
 							{% if userNameNotAvilable is defined %}
 							<p class="details" style="color: red;">User name not avilable</p>
 							{% endif %}
