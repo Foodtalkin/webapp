@@ -80,6 +80,8 @@ class LoginController extends Controller{
 		$user['signInType'] = 'F';
 		$user['image'] = 'https://graph.facebook.com/'.$_SESSION['user']['facebookId'].'/picture?type=large';
 		
+		$user['region'] = $request->input('region');
+		
 		if( isset($_POST['email']) and strlen(trim($_POST['email']) ) > 1 )
 			$user['email'] = $request->input('email');
 		else{
