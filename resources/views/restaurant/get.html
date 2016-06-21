@@ -1,5 +1,7 @@
 {% extends isajax() ? "base/ajax.html" : "base/base.html" %}
-
+{% block title %}
+{{ profile.restaurantName }} | Restaurant reviews | Restaurant reviews india | Best places to eat | Best restaurants to eat | Restaurants
+{% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
 {# comment in twig #}

@@ -1,4 +1,7 @@
 {% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block title %}
+Food Talk | {{ profile.fullName }} 
+{% endblock %}
 {% block head %}
 {{ parent() }}
 {#  
