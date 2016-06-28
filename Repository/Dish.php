@@ -14,7 +14,7 @@ class Dish extends BaseRepository
 	public function __construct($postData, $api = self::DISH_POST)
 	{
 		$dishName = str_replace('-', ' ',$postData['dishId'] );
-		$postData['search'] = $dishName;
+// 		$postData['search'] = $dishName;
 		$postData['recordCount'] = 15;
 		
 		if(isset($_COOKIE['location'])){
@@ -28,8 +28,13 @@ class Dish extends BaseRepository
 		$this->profile['dishName'] = $dishName;
 		$this->profile['dishUrl'] = $postData['dishId'];
 		
-		if(isset($this->apiResponse['posts']))		
+		if(isset($this->apiResponse['posts'])){
+			
 			$this->posts = $this->apiResponse['posts'];
+			if(isset($this->posts[0]['dishName']))
+				$this->profile['dishName'] = $this->posts[0]['dishName'];
+			
+		}
 		
 	}
 	

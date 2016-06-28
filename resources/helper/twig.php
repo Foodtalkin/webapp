@@ -23,7 +23,7 @@ function renderTwig($view, array $data = []) {
 		
 		switch ($repository) {
 			case 'App\Repository\User' :
-				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+				$title = '<a href="/dish/' . $post ['dishUrl'] . '">' . $post ['dishName'] . '</a>';
 				break;
 			
 			case 'App\Repository\Dish' :
@@ -34,7 +34,7 @@ function renderTwig($view, array $data = []) {
 				
 				if ($post ['checkedInRestaurantId'] > 0)
 					if ($post ['restaurantIsActive'] == '1') {
-				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+				$title = '<a href="/dish/' . $post ['dishUrl'] . '">' . $post ['dishName'] . '</a>';
 // 						$title .= ' @ <a href="/' . $post ['checkedInRestaurantId'] . '">' . $post ['restaurantName'] . '</a>';
 					} else {
 						$title = $post ['dishName'];
@@ -46,19 +46,19 @@ function renderTwig($view, array $data = []) {
 				
 				if ($post ['checkedInRestaurantId'] > 0)
 					if ($post ['restaurantIsActive'] == '1') {
-				$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+				$title = '<a href="/dish/' . $post ['dishUrl'] . '">' . $post ['dishName'] . '</a>';
 // 						$title .= ' @ <a href="/' . $post ['checkedInRestaurantId'] . '">' . $post ['restaurantName'] . '</a>';
 					} else {
 						$title = $post ['dishName'];
 					}
 				else	
-					$title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+					$title = '<a href="/dish/' . $post ['dishUrl'] . '">' . $post ['dishName'] . '</a>';
 				
 				
 				$withUser = true;
 				break;
 		}
-		// $title = '<a href="/dish/' . str_replace ( ' ', '-', strtolower ( $post ['dishName'] ) ) . '">' . $post ['dishName'] . '</a>';
+		// $title = '<a href="/dish/' . $post ['dishUrl'] . '">' . $post ['dishName'] . '</a>';
 		if ($repository == 'App\Repository\Restaurant')
 			$title .= ' by <a href="/' . $post ['userName'] . '">' . $post ['userName'] . '</a>';
 		else if ($post ['checkedInRestaurantId'] > 0)
