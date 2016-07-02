@@ -12,21 +12,30 @@ class Search extends BaseRepository
 	public  $dishes = null;
 	public  $restaurants = null;
 	public  $searchTxt = NULL;
+	public  $searchCity = 'delhi';
 	
 	
 	public function __construct($Id)
 	{
 		$this->searchTxt = $Id;
 		
+		if(isset($_GET['city']) && $_GET['city']!='')
+			$this->searchCity = $_GET['city'];
+		
+		
+		
 		$userpostData['searchText'] = $Id;		
+		$userpostData['region'] = $this->searchCity;
 		$user = $this->post(self::USER_SEARCH, $userpostData);
 		$this->users = $user['users'];
 		
 		$dishpostData['search'] = $Id;
+		$dishpostData['region'] = $this->searchCity;
 		$dishes = $this->post(self::DISH_SEARCH, $dishpostData);
 		$this->dishes = $dishes['result'];
 		
 		$restaurantspostData['searchText'] = $Id;
+		$restaurantspostData['region'] = $this->searchCity;
 		$restaurants = $this->post(self::RESTAURANT_SEARCH, $restaurantspostData);
 		$this->restaurants = $restaurants['restaurants'];
 		

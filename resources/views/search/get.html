@@ -8,7 +8,37 @@ Find and share awesome dishes | Dish discovery in restaurants | Food discovery i
 <div class="main" id="search">
 	<div class="inner">
 		<div class="box alt">
-			<div class="row uniform">{% include "search/people.html" with
+		
+		<div class="row uniform">
+									<div class="12u">
+										<h2>Showing Result From
+											<select  id="searchCity" class="myselct" onchange="changeCity(this.value);">
+												<option value="Delhi">Delhi</option>
+												<option value="Mumbai">Mumbai</option>
+												<option value="Bangalore">Bangalore</option>
+												<option value="Pune">Pune</option>
+											</select>
+										</h2>
+									</div>
+								</div>
+		
+		
+			<div class="row uniform">
+<script type="text/javascript">
+function urlParam(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
+function changeCity(city){
+	var params = { search:urlParam('search'), city:city };
+	var str = jQuery.param( params );
+	window.location.href = '/search?' +str
+	console.log(str);
+}
+$('#searchCity').val(urlParam('city'))
+</script>			
+			
+			{% include "search/people.html" with
 				{'users': users} %} {% include "search/dish.html" with {'dishes':
 				dishes} %} {% include "search/restaurant.html" with
 				{'restaurants':restaurants} %}</div>
