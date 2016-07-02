@@ -13,10 +13,10 @@ Find and share awesome dishes | Dish discovery in restaurants | Food discovery i
 									<div class="12u">
 										<h2>Showing Result From
 											<select  id="searchCity" class="myselct" onchange="changeCity(this.value);">
-												<option value="Delhi">Delhi</option>
-												<option value="Mumbai">Mumbai</option>
-												<option value="Bangalore">Bangalore</option>
-												<option value="Pune">Pune</option>
+												<option value="delhi">Delhi</option>
+												<option value="mumbai">Mumbai</option>
+												<option value="bangalore">Bangalore</option>
+												<option value="pune">Pune</option>
 											</select>
 										</h2>
 									</div>
@@ -29,13 +29,21 @@ function urlParam(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	return results[1] || 0;
 }
+
 function changeCity(city){
 	var params = { search:urlParam('search'), city:city };
 	var str = jQuery.param( params );
 	window.location.href = '/search?' +str
 	console.log(str);
 }
+
+$( document ).ready(function() {
 $('#searchCity').val(urlParam('city'))
+});
+
+//alert(urlParam('search'));
+
+
 </script>			
 			
 			{% include "search/people.html" with
