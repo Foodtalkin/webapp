@@ -84,13 +84,17 @@
 			{% endif %}
 				
 				<div class="search">
-						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="search" minlength=2 required="required" />
+						<input type="text" name="search" value="{{searchTxt}}" id="name" placeholder="Search dishes, users & restaurant" minlength=2 required="required" />
 						<input type="hidden" name="city" value="{{ searchCity ? searchCity : "delhi" }}">
 <button type="submit" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></button> 
 {#	
 <a href="" class="searchbutton"><i class="fa fa-search" aria-hidden="true"></i></a>
 #}						
 				</div>
+				<a href="/discover" title="Discover what people are eating around you"  class="discover-btn right">
+					<i class="fa fa-compass fa-3x" aria-hidden="true"></i>
+				</a>
+
 
 			</div>
 		</header>
@@ -143,6 +147,17 @@ $(document).ready(function() {
 
 	
 });
+
+function urlParam(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	try{
+		return results[1];		
+	}catch(e){
+//		console.log(e);
+		return false;
+	}
+}
+
 </script>
 <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow27.js"></script>	
 </body>

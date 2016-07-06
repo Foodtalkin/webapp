@@ -46,6 +46,8 @@ $app->group([
 {
 	
 	$app->get('home',[ 'uses' =>'UserController@feeds']);
+	$app->get('discover',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
+	$app->get('discover/page/{page}',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
 	$app->get('home/page/{page}',[ 'uses' =>'UserController@feeds']);
 	
 	$app->get('redirect',[ 'uses' =>'LoginController@redirect']);

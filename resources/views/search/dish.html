@@ -6,7 +6,8 @@
 	
 {% for dish in dishes %}
 	<div class="result">
-		<a href="/dish/{{dish.dishName | replace({' ':'-'})}}"> <span class="r-image"> <img src="/images/dish.jpg" alt="">
+	
+		<a href="/dish/{{dish.url }}?city={{searchCity}}"> <span class="r-image"> <img src="/images/dish.jpg" alt="">
 		</span> <span class="r-dish">
 				<p>{{ dish.dishName }}</p>
 		</span>

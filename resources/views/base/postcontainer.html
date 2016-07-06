@@ -27,6 +27,13 @@ $(document).ready(function() {
 	
 	var page = 2
 	var hasmore = true;
+	
+
+	var param = ''
+	
+	if(urlParam('city'))
+		param = '?city=' + urlParam('city');
+	
 	// Each time the user scrolls
 	win.scroll(function() {
 	if(hasmore){
@@ -43,7 +50,7 @@ $(document).ready(function() {
 			
 			$.ajax({
 				url: path 
-				+'/page/'+ page
+				+'/page/'+ page + param
 				,
 				dataType: 'html',
 				success: function(html) {

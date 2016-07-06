@@ -25,6 +25,9 @@ class BaseRepository
 	
 	const  POST_GET = 'post/get';
 	const  DISH_POST = 'post/getImageCheckInPosts';
+// 	const  DISCOVER_POST = 'post/getImageCheckInPosts';
+	
+	
 	
 	const  RESTAURANT_SEARCH ='restaurant/list';
 	const  DISH_SEARCH = 'dish/search';
@@ -35,10 +38,19 @@ class BaseRepository
 	
 	public function __construct($postData, $api){
 
+		
+		if(isset($_GET['city']) && strlen($_GET['city'])>0)
+			$postData['region'] = $_GET['city'];
+		
 		$result = $this->post($api, $postData);
 		
 		if($result['status'] == 'error'){
 			$this->error = $result['errorCode'];
+			
+			if($this->error == '6'){
+				session_destroy();
+				header("Refresh:0");
+			}
 			
 			if($result['errorCode'] !='23000')
 				abort(404);
