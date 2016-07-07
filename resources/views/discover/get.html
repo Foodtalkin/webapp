@@ -1,0 +1,13 @@
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block title %}
+Discover dishes near you | Dish reviews | Food reviews | Dish reviews india | Best dishes to eat | Best food to eat | Dishes | Food 
+{% endblock %}
+{% block style %}{{ parent() }}
+{% endblock %}
+{# comment in twig #}
+{% block profile %}
+{% include "discover/profile.html" with {'profile': profile} %}
+{% endblock %}
+{% block postcontainer %}   
+{% include "base/postcontainer.html" with {'posts': posts, 'showDistance' : 'yes' } %}
+{% endblock %}
