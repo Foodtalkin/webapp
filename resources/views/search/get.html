@@ -13,10 +13,9 @@ Find and share awesome dishes | Dish discovery in restaurants | Food discovery i
 									<div class="12u">
 										<h2>Showing Result From
 											<select  id="myselect" class="myselct" >
-											    <option value="delhi">Delhi</option>
-												<option value="mumbai">Mumbai</option>
-												<option value="bangalore">Bangalore</option>
-												<option value="pune">Pune</option>
+											{% for region in regionList  %}
+											<option value="{{region.name}}">{{region.name | capitalize}}</option>											
+											{% endfor %}	
 											</select>
 											<div class="mainul">
 												<div id="linkforul" class="linkforul"></div>

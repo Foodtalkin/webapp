@@ -33,6 +33,8 @@ class BaseRepository
 	const  DISH_SEARCH = 'dish/search';
 	const  USER_SEARCH = 'user/listNames';
 	
+	const  LIST_REGIONS = 'region/list';
+	
 // 	const  USER_PROFILE = 'user/Profile';
 	
 	

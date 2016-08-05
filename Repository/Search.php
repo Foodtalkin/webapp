@@ -13,6 +13,7 @@ class Search extends BaseRepository
 	public  $restaurants = null;
 	public  $searchTxt = NULL;
 	public  $searchCity = 'delhi';
+	public  $regionList = null;
 	
 	
 	public function __construct($Id)
@@ -22,6 +23,9 @@ class Search extends BaseRepository
 		if(isset($_GET['city']) && $_GET['city']!='')
 			$this->searchCity = $_GET['city'];
 		
+		
+		$region = $this->post(self::LIST_REGIONS, array());
+		$this->regionList = $region['regions'];
 		
 		
 		$userpostData['searchText'] = $Id;		
