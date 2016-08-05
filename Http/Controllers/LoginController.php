@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // use DB;
 // use App\Models\Contact;
 use App\Repository\Login;
+use App\Repository\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Jsonable;
@@ -12,7 +13,7 @@ class LoginController extends Controller{
   
 	
 	
-	public function index(){
+	public function index1(){
 
 		
 		if(isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
@@ -41,6 +42,19 @@ class LoginController extends Controller{
 		
 		return  $this->render('login/index', [] , self::SUCCESS_OK);
 	}
+	
+	public function index(){
+		
+// 		if($this->ajax)
+// 			$obj  = User::nextPostPage($userName, $page);
+// 		else
+// 			$obj = User::profile('foodtalk');
+			$obj = User::feeds(1);
+		
+		return  $this->render('login/login', (array) $obj , self::SUCCESS_OK);
+		
+	}
+	
 	
 	
 	public function redirect(){

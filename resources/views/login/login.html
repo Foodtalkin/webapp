@@ -1,0 +1,17 @@
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block style %}{{ parent() }}
+{% endblock %}
+{# comment in twig
+{% block profile %}
+{% include "user/profile.html" with {'profile': profile} %}
+{% endblock %}
+ #}
+{% block postcontainer %}
+<script>
+var donotloadmore = true;
+</script>   
+{% include "base/postcontainer.html" with {'posts': posts} %}
+{% endblock %}

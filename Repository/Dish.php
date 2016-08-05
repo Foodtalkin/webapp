@@ -18,10 +18,17 @@ class Dish extends BaseRepository
 		$postData['recordCount'] = 15;
 		
 		if(isset($_COOKIE['location'])){
-			$location = json_decode($_COOKIE['location']);
+			
+			var_dump($_COOKIE['location']);
+			$location = json_decode($_COOKIE['location'], true);
+			
+// 			var_dump($location);
+// 		die('DEAD');
 			$postData['longitude'] = $location->longitude;
 			$postData['latitude'] = $location->latitude;
 		}
+		
+		
 		
 		parent::__construct($postData, $api);
 		

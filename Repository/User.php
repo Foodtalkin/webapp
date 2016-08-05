@@ -53,13 +53,16 @@ class User extends BaseRepository
 		
 	}	
 	
-	public static function feeds($page=1){
+	public static function feeds($page=1, $user=1){
 		
 		if(!isset($_SESSION['user']['id'])){
-			return false;
-		}
+			$postData['postUserId'] = $user;
+// 			return false;
+		}else 
+			$postData['postUserId'] = $_SESSION['user']['id'];
+			
+			
 		
-		$postData['postUserId'] = $_SESSION['user']['id'];
 		$postData['includeCount'] = '1';
 		$postData['recordCount'] = '15';
 		$postData['page'] = $page;

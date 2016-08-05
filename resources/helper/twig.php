@@ -68,7 +68,7 @@ function renderTwig($view, array $data = []) {
 				$title .= ' @ ' . $post ['restaurantName'];
 			}
 		if($withUser){
-// 			$title .= ' by <a href="/' . $post ['userName'] . '">' . $post ['userName'] . '</a>';
+ 			$title .= ' by <a href="/' . $post ['userName'] . '">' . $post ['userName'] . '</a>';
 		}
 		
 		return $title;
