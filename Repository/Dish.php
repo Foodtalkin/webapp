@@ -19,8 +19,8 @@ class Dish extends BaseRepository
 		
 		if(isset($_COOKIE['location'])){
 			
-			var_dump($_COOKIE['location']);
-			$location = json_decode($_COOKIE['location'], true);
+// 			var_dump($_COOKIE['location']);
+			$location = json_decode($_COOKIE['location']);
 			
 // 			var_dump($location);
 // 		die('DEAD');
