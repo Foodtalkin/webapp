@@ -30,7 +30,7 @@ $(document).ready(function() {
 	win.scroll(function() {
 	if(hasmore){
 		// End of the document reached?
-		if ($(document).height() - win.height() == win.scrollTop()) {
+		if ($(document).height() - win.height() <= win.scrollTop()) {
 			pp++;			
 			if(pp > page){
 				console.log('abort')
