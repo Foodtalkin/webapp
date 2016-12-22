@@ -24,6 +24,18 @@ class BaseRepository
 	
 	
 	const  POST_GET = 'post/get';
+	
+	const  POST_LIKE = 'like/add';
+	const  POST_UNLIKE = 'like/delete';
+	
+	const  POST_BOOKMARK = 'bookmark/add';
+	const  POST_UNBOOKMARK = 'bookmark/delete';
+	
+	const  POST_REPORT = 'flag/add';
+	
+	const  COMMENT_ADD = 'comment/add';
+	
+	
 	const  DISH_POST = 'post/getImageCheckInPosts';
 // 	const  DISCOVER_POST = 'post/getImageCheckInPosts';
 	

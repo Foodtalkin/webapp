@@ -7,6 +7,7 @@ use App\Repository\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repository\Post;
+use App\Repository\Comment;
 // use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller{
@@ -20,6 +21,43 @@ class PostController extends Controller{
 		
 	}	
   
+	public function like($id, $action){
+		
+		if($action == 'add')
+			$obj = Post::addLike($id);
+		
+		if($action == 'remove')
+			$obj = Post::removeLike($id);
+		
+		return $obj->status;
+		
+	}
+
+	
+	public function bookmark($id, $action){
+		
+		if($action == 'add')
+			$obj = Post::addBookmark($id);
+		if($action == 'remove')
+			$obj = Post::removeBookmark($id);
+		return $obj->status;
+	
+	}
+	
+	
+	public function report($id){
+		
+			$obj = Post::report($id);
+			return $obj->status;
+	}
+	
+	public function comment($id, Request $request){
+		$comment = $request->input('comment');
+		$obj = Comment::addComment($id, $comment);
+		return  $this->render('post/comment', (array)$obj , self::SUCCESS_OK);
+	}
+	
+	
 // 	public function listAll() {
 				
 // 		$contact = Contact::orderBy('created_at', 'desc')->paginate ($this->pageSize);

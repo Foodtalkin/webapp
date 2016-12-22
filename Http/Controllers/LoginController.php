@@ -45,6 +45,9 @@ class LoginController extends Controller{
 	
 	public function index(){
 		
+		if(isset($_SESSION['user']['userName']) and strlen(trim($_SESSION['user']['userName']))>1 ){
+			return redirect('/home');
+		}
 // 		if($this->ajax)
 // 			$obj  = User::nextPostPage($userName, $page);
 // 		else
@@ -153,6 +156,25 @@ class LoginController extends Controller{
 		$user['image'] = 'https://graph.facebook.com/'.$request->input('facebookId').'/picture?type=large';
 		
 		$webUser = Login :: doLogin($user);
+		
+		
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$pattern = '/foodtalk.in/';
+			$isMatch = preg_match($pattern, $_SERVER['HTTP_REFERER']);
+		}else
+			$isMatch = false;
+		
+		if($isMatch)
+			$isFromIndex = preg_match('/foodtalk.in\/index.html/', $_SERVER['HTTP_REFERER']);
+		else
+			$isFromIndex = false;
+		
+		
+		
+		if(isset($_SERVER['HTTP_REFERER']) and $isMatch and !$isFromIndex)
+			$_SESSION['refral_url'] = $_SERVER['HTTP_REFERER'];
+		else
+			unset($_SESSION['refral_url']);
 		
 			return response ()->json ( $webUser );
 	}

@@ -1,40 +1,40 @@
-<div class="main" id="rest-profile">
-	<div class="inner">
-		<header>
-			
-			<div class="restro_info_block">
-				<h1 class="username">{{profile.restaurantName}}</h1>
-				<h4 class="restro-address">{{profile.address}}</h4>
-				
-				
-				{% if profile.phone1|trim|length > 6 %}
-				<h3 class="restro-address"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{profile.phone1}}">{{profile.phone1}}</a>
-				{% if profile.phone2|trim|length > 6 %} 
-				, <a href="tel:{{profile.phone2}}">{{profile.phone2}}</a>
-				{% endif %}
-				</h3>
-				{% endif %}
-				
-				{% if profile.priceRange|trim|length > 1 %}
-				<h4 class="restro-address"><i class="fa fa-inr" aria-hidden="true"></i> 
-					 {% if profile.priceRange < 501 %}
-					Budget
-					{% elseif profile.priceRange > 1001 %}
-					Splurge
-					{% else %}
-					Mid range
-					{% endif %}
-				</h4>
-				{% endif %}
-			</div>
-				
-				
-				<div class="username scores float-right">
-					<h3 class="center">
-						<strong><b><span class="inhead_number font-big">{{profile.checkInCount}}</span></b></strong><br><span class="inhead_text">CHECKINS</span>
-					</h3>
-					
+					<div class="col-md-8 col-md-offset-2">
+						<div class="user-card-store">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="media mt10">
+										<!-- <div class="media-left media-middle">
+										    <a href="#">
+										      <img class="media-object" src="https://scontent.fdel1-1.fna.fbcdn.net/v/t1.0-9/15027489_1219583844778540_3107325425961688675_n.jpg?oh=f2d474f042b71af034b0fa99c7f9fe54&oe=58C28C83" alt="...">
+										    </a>
+										</div> -->
+										<div class="media-body">
+										    <h2 class="media-heading w-700">{{profile.restaurantName}}</h2>
+										    <i class="fa fa-map-marker bluecolor" aria-hidden="true"></i>&nbsp; &nbsp; {{profile.address}}
+										    
+										    {% if profile.phone1|trim|length > 6 %}
+										    <br><i class="fa fa-phone bluecolor" aria-hidden="true"></i>&nbsp; &nbsp; {{profile.phone1}}
+										    {% if profile.phone2|trim|length > 6 %} 
+										    , {{profile.phone2}}
+											{% endif %}
+											{% endif %}
+											{% if profile.priceRange|trim|length > 1 %}
+										    <br><i class="fa fa-inr bluecolor" aria-hidden="true"></i>&nbsp; &nbsp; 
+												{% if profile.priceRange < 501 %}
+													Budget
+												{% elseif profile.priceRange > 1001 %}
+													Splurge
+												{% else %}
+													Mid range
+												{% endif %}
+											{% endif %}
+										</div>
+									</div>
+								</div>
+
+						</div>
+					</div>
 				</div>
-		</header>
-	</div>
-</div>
+				
+				
+

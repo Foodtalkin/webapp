@@ -1,64 +1,101 @@
-<div class="main" id="profile">
-	<div class="inner">
-		<header>
-			<div class="profile-buttons float-right">
-{% if islogin(0) %}
-{% set user = islogin(1) %}
-			{% if user.userName != profile.userName %}
-			<a {% if profile.iFollowedIt == 1 %}style="display: none;"{% endif %} href="/follow/{{profile.id}}" class="followAction button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
-			<a {% if profile.iFollowedIt == 0 %}style="display: none;"{% endif %} href="/unfollow/{{profile.id}}" class="followAction button small spacial following" id="following">Following</a>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="user-card-store">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="media mt10">
+							<div class="media-left media-middle">
+								<a href="#"> <img class="media-object"
+									src="{{ profile.image }}" alt="{{ profile.userName }}">
+								</a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">{{ profile.fullName | capitalize
+									}}</h4>
+								@{{ profile.userName }}
+							</div>
+						</div>
+					</div>
 <script type="text/javascript">
 <!--
 	$(document).ready(function(){
-		$('.followAction').click(function(event){
+		$('.follow-button').click(function(event){
 			event.preventDefault();
+			checkLogin(event);
 			$.ajax({
 				method: "post",
 				url: this.href,
 				success: function(html) {
-					$('#follow').toggle();
-					$('#following').toggle();
+					$('#follow1').toggle();
+					$('#following1').toggle();
 					}
 			});
 		});
 	});
 //-->
-</script>
-{% endif %}
-{% else %}
-			<a href="/login" class="followAction button small follow" id="follow"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>			
-{% endif %}
-{#
-onclick="require(&quot;Popup&quot;).open(&quot;\/sharer.php?u=https\u00253A\u00252F\u00252Fdevelopers.facebook.com\u00252Fdocs\u00252Fplugins\u00252Fshare-button\u00252F&amp;display=popup&amp;ref=plugin&amp;src=like&amp;app_id=113869198637480&quot;, 670, 340);
-#}
-					<a target="_blank" href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Ffoodtalk.in/{{ profile.userName }}" class="button spacial small share"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
-			</div>		
-			<div class="profile_pic_block">
-				<img src="{{ profile.image }}&width=200&height=200" alt="dish discovery in restaurants, food discovery in restaurants, dish reviews, food reviews, best places to eat, best dishes to eat, food dish, best dishes india, best food india"
-					class="profile_pic"/>
-			</div>
-			<div class="user_info_block">
-				<h2 class="username">{{ profile.fullName }}</h2>
-				<h3 class="username">{{ profile.userName }}</h3>
-				<div class="username scores">
-					<h3>
-						<strong><b><span class="inhead_number">{{ profile.checkInImageCount }}</span></b></strong>&nbsp;<span
-							class="inhead_text">CHECKINS</span> &nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.followersCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWERS</span>
-						&nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.followingCount }}</span></b></strong>&nbsp;<span class="inhead_text">FOLLOWING</span>
-						&nbsp;&nbsp;&nbsp; <strong><b><span
-								class="inhead_number">{{ profile.totalPoints |round(0, 'floor')}}</span></b></strong>&nbsp;<span class="inhead_text">POINTS</span>
-					</h3>
+</script>					
+					<div class="col-md-5 share-follow">
 
+
+						{% if islogin(0) %} {% set user = islogin(1) %} {% if
+						user.userName != profile.userName %} <a {% if
+							profile.iFollowedIt== 1 %}style="display: none;"
+							{% endif %} href="/follow/{{profile.id}}"
+							class="follow-button purchase-button ml20" id="follow1">Follow</a> <a {% if
+							profile.iFollowedIt== 0 %}style="display: none;"
+							{% endif %} href="/unfollow/{{profile.id}}"
+							class="follow-button ml20" id="following1">Following</a>
+
+						{% endif %} {% else %} <a href="/login" class="follow-button ml20">Follow</a>
+						{% endif %} 
+						
+						<a target="_blank" 
+						href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Ffoodtalk.in/{{ profile.userName }}" 
+						class="purchase-button ml20">
+						Share
+						</a> 
+						
+						{% if islogin(0) %}{% if
+						user.userName == profile.userName %}
+						<span
+							class="dropdown ml20 mt10px"
+							style="display: inline-block; transform: translateY(25%);">
+							<a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="5" height="20"
+									viewBox="0 0 5 20">
+												  	<path fill="#8492A6" fill-rule="evenodd"
+										d="M-2.5,10 C-2.5,11.3808333 -3.61916667,12.5 -5,12.5 C-6.38083333,12.5 -7.5,11.3808333 -7.5,10 C-7.5,8.61916667 -6.38083333,7.5 -5,7.5 C-3.61916667,7.5 -2.5,8.61916667 -2.5,10 L-2.5,10 Z M5,10 C5,11.3808333 3.88083333,12.5 2.5,12.5 C1.11916667,12.5 5.32907052e-15,11.3808333 5.32907052e-15,10 C5.32907052e-15,8.61916667 1.11916667,7.5 2.5,7.5 C3.88083333,7.5 5,8.61916667 5,10 L5,10 Z M12.5,10 C12.5,11.3808333 11.3808333,12.5 10,12.5 C8.61916667,12.5 7.5,11.3808333 7.5,10 C7.5,8.61916667 8.61916667,7.5 10,7.5 C11.3808333,7.5 12.5,8.61916667 12.5,10 L12.5,10 Z"
+										transform="rotate(-90 2.5 10)"></path>
+												</svg>
+						</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<li><a href="logout">Logout</a></li>
+								<!--  <li><a href="#">Another action</a></li>
+											    <li><a href="#">Something else here</a></li>
+											    <li role="separator" class="divider"></li>
+											    <li><a href="#">Separated link</a></li> -->
+							</ul>
+						</span>
+						{% endif %}
+						{% endif %}
+						
+					</div>
+				</div>
+				<div class="row mt10">
+					<div class="col-md-4 counts">
+						<strong>{{ profile.followingCount }}</strong> Following
+					</div>
+					<div class="col-md-4 counts">
+						<strong>{{ profile.followersCount }}</strong> FOLLOWERS
+					</div>
+					<!-- <div class="col-md-4 counts">
+									<strong>36</strong> Checkins
+								</div> -->
+					<div class="col-md-4 counts">
+						<strong>{{ profile.totalPoints |round(0, 'floor')}}</strong>
+						Points
+					</div>
 				</div>
 			</div>
-
-			
-		</header>
-	</div>
-</div>
-
-{#
-<a id="gm_facebook" href="javascript:void(0)" class="facebook_new" data-social="{&quot;type&quot;:&quot;facebook&quot;, &quot;url&quot;:&quot;http://www.indiatimes.com/news/world/this-british-chef-is-so-obsessed-with-jhal-muri-he-s-selling-it-all-over-london-255079.html&quot;, &quot;text&quot;: &quot;This British Chef Is So Obsessed With Jhal Muri, He’s Selling It All Over London&quot;, &quot;image&quot;:&quot;http://media.indiatimes.in/media/facebook/2016/May/brit8_1463230738_800x420.jpg&quot;,&quot;desc&quot;:&quot;British chef Angus Denoon has made the Jhal Muri, an Indian snack, famous on the streets of London.&quot;}" onmousedown="ga('send', 'event', 'FBclicks', 'TopArticle','http://www.indiatimes.com/news/world/this-british-chef-is-so-obsessed-with-jhal-muri-he-s-selling-it-all-over-london-255079.html');"><span class="sprite">facebook</span></a>
-#}
+		</div>
+		<div class="row">

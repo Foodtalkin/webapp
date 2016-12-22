@@ -1,19 +1,26 @@
-<div class="4u">
-	<h3>Restaurants</h3>
-{% if restaurants is empty %}	
-<p> No Such Restaurants</p>
- {% else %}
-{% for restaurant in restaurants %}
-	<div class="result">
-		<a href="/{{restaurant.id}}"> <span class="r-image"> <img
-				src="/images/restro.jpg" alt="">
-		</span> <span class="r-name">
-			<h6>{{ restaurant.restaurantName }}</h6>
-			<p> {{ restaurant.area }}</p>
-
-		</span>
-		</a>
-	</div>
-{% endfor %} 
-{% endif %}
-</div>
+<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-12">
+								<h5 class="result-heading">places</h5>
+							</div>
+							
+							{% if restaurants is empty %}	
+							<p> No Such Restaurants</p>
+							{% else %}
+							{% for restaurant in restaurants %}
+							<div class="col-md-12 resultitem">
+								<a href="/{{restaurant.id}}">
+									<div class="media mt1em">
+										<div class="media-body">
+										    <h4 class="media-heading">{{ restaurant.restaurantName }}</h4>
+										    {{ restaurant.area }}, {{ restaurant.cityName }}  
+										</div>
+									</div>
+								</a>
+							</div>
+							{% endfor %} 
+							{% endif %}	
+							
+							
+						</div>
+					</div>

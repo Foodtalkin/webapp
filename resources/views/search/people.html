@@ -1,19 +1,30 @@
-<div class="4u">
-	<h3>People</h3>
-{% if users is empty %}	
-<p> No Such User</p>
- {% else %}	
-
-{% for user in users %}
-	<div class="result">
-		<a href="/{{ user.userName }}"> <span class="r-image"> <img
-				src="{{ user.thumb }}" alt="">
-		</span> <span class="r-name">
-				<h6>{{ user.userName }}</h6>
-				<p> {{ user.fullName }}</p>
-		</span>
-		</a>
-	</div>
-{% endfor %}
-{% endif %}
-</div>
+<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-12">
+								<h5 class="result-heading">users</h5>
+							</div>
+							{% if users is empty %}	
+							<p> No Such User</p>
+							 {% else %}	
+							
+							{% for user in users %}
+							
+							<div class="col-md-12 resultitem">
+								<a href="/{{ user.userName }}">
+									<div class="media mt1em">
+										<div class="media-left media-middle">
+										    <img class="media-object" src="{{ user.thumb }}">
+										</div>
+										<div class="media-body">
+										   <h4 class="media-heading">{{ user.userName }}</h4>
+										   {{ user.fullName }}
+										</div>
+									</div>
+								</a>
+							</div>
+							
+							{% endfor %}
+							{% endif %}
+							
+						</div>
+					</div>

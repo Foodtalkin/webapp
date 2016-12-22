@@ -1,22 +1,20 @@
 {% if isajax() %}
 {% include "user/posts.html" with {'posts': posts} %}
 {% else %}
-<div class="main mt5" id="content">
-	<div class="inner" id="posts">
-{% if posts|length > 0 %}	
-{% include "user/posts.html" with {'posts': posts} %}
-{% else %}
-<div id="loading" class="center">No Dish to Display! :(</div>
-{% endif %}
 
-	</div>
-		<div id="loading" style="text-align: center;display: none;">
-		Loading....
+			
+			{% if posts|length > 0 %}	
+				{% include "user/posts.html" with {'posts': posts} %}
+			{% else %}
+				<div id="loading" class="center">No Dish to Display! :(</div>
+			{% endif %}
+
+			</div>
 		</div>
-		<div id="stoploading" style="text-align: center;display: none;">
-		No more dishes
-		</div>
-</div>
+			<div id="loading" style="text-align: center; display: none;"> Loading....</div>
+			<div id="stoploading" style="text-align: center; display: none;"> No more dishes</div>
+		
+
 <script type="text/javascript">
 $(document).ready(function() {
 	var request;
@@ -64,4 +62,140 @@ $(document).ready(function() {
 	
 });
 </script>
+<script>
+			$(document).ready(function() {
+					
+				$('.home-card .home-card-stats .dishreview p').each(function(index, el) {
+					if($(this).text()){
+						$(this).show();
+					}else{
+						$(this).hide();
+					}
+				});
+				checklike();
+				checkbookmark();
+				function checklike(){
+					$('.home-card .home-card-stats .l-b-c-n .like .count').each(function(index, el) {
+						if($(this).text() == '0'){
+							$(this).parent('.like').hide();
+						}else{
+							$(this).parent('.like').show();
+						}
+					});
+						
+				}
+				$('.home-card .home-card-stats .l-b-c-n .comment .count').each(function(index, el) {
+					if($(this).text() == '0'){
+						$(this).parent('.comment').hide();
+					}else{
+						$(this).parent('.comment').show();
+					}
+				});
+					
+				function checkbookmark(){
+					$(' .home-card .home-card-stats .l-b-c-n .bookmark .count').each(function(index, el) {
+						if($(this).text() == '0'){
+						$(this).parent('.bookmark').hide();
+						}else{
+							$(this).parent('.bookmark').show();
+							
+						}
+					});
+					
+				}
+				
+
+			    $(document).on('click', '.clickreport', function(event) {
+					event.preventDefault();
+
+					report = this;
+
+					if (report.text == 'Report') {
+						$.ajax({
+							method : "post",
+							url : this.href,
+							success : function(html) {
+								report.text = 'You reported this.';
+							}
+						});
+					}
+				});
+
+				$(document).on(
+						'click',
+						'.home-card-details .home-card-icons div',
+						function(event) {
+
+							checkLogin(event);
+
+							var allcounts = $(this).parent('.home-card-icons')
+									.siblings('.home-card-stats').children(
+											'.l-b-c-n');
+
+							if ($(this).hasClass('lk')) {
+								event.preventDefault();
+								baseurl = this.children[0].href;
+
+								if ($(this).hasClass('liked')) {
+									$(this).removeClass('liked puls');
+									var like_c = allcounts.find('.like .count')
+											.text();
+									allcounts.find('.like .count').text(
+											parseInt(like_c) - 1);
+									checklike();
+									baseurl = baseurl + '/remove'
+								} else {
+									$(this).addClass('liked puls');
+									var like_c = allcounts.find('.like .count')
+											.text();
+									allcounts.find('.like .count').text(
+											parseInt(like_c) + 1);
+									checklike();
+									baseurl = baseurl + '/add'
+								}
+
+								$.ajax({
+									method : "post",
+									url : baseurl,
+									success : function(html) {
+									}
+								});
+
+							} else if ($(this).hasClass('bkm')) {
+								event.preventDefault();
+								baseurl = this.children[0].href;
+								if ($(this).hasClass('bookmarked')) {
+									$(this).removeClass('bookmarked puls');
+									var like_c = allcounts.find(
+											'.bookmark .count').text();
+									allcounts.find('.bookmark .count').text(
+											parseInt(like_c) - 1);
+									checkbookmark()
+									baseurl = baseurl + '/remove'
+								} else {
+									$(this).addClass('bookmarked puls');
+									var like_c = allcounts.find(
+											'.bookmark .count').text();
+									allcounts.find('.bookmark .count').text(
+											parseInt(like_c) + 1);
+									checkbookmark()
+									baseurl = baseurl + '/add'
+								}
+
+								$.ajax({
+									method : "post",
+									url : baseurl,
+									success : function(html) {
+									}
+								});
+
+							} else if ($(this).hasClass('dropdown')) {
+								$(this).removeClass('puls');
+							} else {
+								$(this).toggleClass('puls');
+							}
+						});
+			});
+</script>
+
 {% endif %}

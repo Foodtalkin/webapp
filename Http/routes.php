@@ -61,6 +61,13 @@ $app->group([
 	$app->get('dish/{id}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
 	$app->get('dish/{id}/page/{page}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
 	
+	$app->post('post/{id}/like/{action:add|remove}','PostController@like');
+	$app->post('post/{id}/comment','PostController@comment');
+	$app->post('post/{id}/report','PostController@report');
+	
+	$app->post('post/{id}/bookmark/{action:add|remove}','PostController@bookmark');
+	
+	$app->post('follow/{id}','UserController@follow');
 	
 	$app->get('post/{id}','PostController@profile');
 	

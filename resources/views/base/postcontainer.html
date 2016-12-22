@@ -1,23 +1,21 @@
 {% if isajax() %}
 {% include "base/posts.html" with {'posts': posts} %}
 {% else %}
-<div class="main" id="content">
-	<div class="inner">
+
 {% if posts|length > 0 %}
-		<section id="posts" class="tiles">
-{% include "base/posts.html" with {'posts': posts} %}
-		</section>
+	{% include "base/posts.html" with {'posts': posts} %}
 {% else %}
-<div id="loading" class="center">No Dish to Display! :(</div>
-{% endif %}		
+
+{% endif %}	
+			</div>
+			</div>	
 		<div id="loading"  class="center" style="display: none;">
 		Loading....
 		</div>
 		<div id="stoploading"  class="center" style="display: none;">
 		No more dishes
 		</div>
-	</div>
-</div>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	var request;

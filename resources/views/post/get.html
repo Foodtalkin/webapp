@@ -1,94 +1,297 @@
-{% extends "base/base.html" %}
-{% block title %}
-{{post.dishName}} | Dish reviews | Food reviews | Dish reviews india | Best dishes to eat | Best food to eat | Dishes | Food | by {{post.userName}}
+{% extends "base/base.html" %} {% block title %} {{post.dishName}} |
+Dish reviews | Food reviews | Dish reviews india | Best dishes to eat |
+Best food to eat | Dishes | Food | by {{post.userName}} {% endblock %}
+{% block head %} {{ parent() }}
 
-{% endblock %}
-{% block head %}
-{{ parent() }}
-
-<meta property="og:url"                content="http://foodtalk.in/post/{{ post.id }}" />
-<meta property="og:type"               content="article" />
-<meta property="og:title"              content="{{post.dishName}}  {% if post.restaurantName %} @ {{ post.restaurantName }} {% endif %} By {{post.userName}}" />
-<meta property="og:description"        content="{{ post.like_count }} Likes | {{ post.comment_count }} Comments {{ post.tip }}" />
-<meta property="og:image"              content="{{post.postImage}}" />
-{% endblock %}
-{% block style %}{{ parent() }}
-{% endblock %}
-{# comment in twig #}
-{% block profile %}
-<div class="main" id="open-content">
-<div class="next-prev">
-							{% if post.previous > 0 %}
-							<a href="/post/{{post.previous}}" id="previousPost"  class="prev"><i class="fa fa-angle-left fa-5x" aria-hidden="true"></i></a>
-							{% endif %}
-							{% if post.next > 0 %}
-							<a href="/post/{{ post.next }}" id="nextPost" class="next"><i class="fa fa-angle-right fa-5x" aria-hidden="true"></i></a>
-							{% endif %}
-						</div>
-
-						<div class="inner">
-							<section class="tiles open_post_container">
-									<article class="style1 open_post">
-											<div class="image open_post_image">
-												<img src="{{post.postImage}}" alt="best dishes to eat, best food to eat, food reviews, dish reviews, dish reviews india, food reviews india, dish reviews in restaurants, dish, dishes, best dishes india, best food india, restaurant reviews india, dish discovery, food discovery, best places to eat in delhi, best dishes to eat in mumbai" />
-												<div class="img-grd">
-												</div>
-												<p id="stars" class="star-{{post.rating}} p-b-no">
-														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
-														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
-														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
-														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
-														<i class="fa fa-star fa-lg" aria-hidden="true"></i>
-												</p>
-											</div>
-											<div class="details_open_post">
-												<div class="caption">
-													<h3 class="username l-s-l"> <a href="/dish/{{post.dishName | replace({' ':'-'})}}">{{post.dishName}}</a> {% if post.restaurantName %} @ <a href='/{{ post.checkedInRestaurantId }}' >{{ post.restaurantName }}</a> {% endif %}</h3>
-													<h4 class="username">by <a href="/{{post.userName}}">{{post.userName}}</a></h4>
-												</div>
-												<h6>
-													<span class="inhead_number" style="font-size:.9em;">{{ post.like_count }} <span style="font-weight:700;">Likes</span></span>
-													|
-													<span class="inhead_number" style="font-size:.9em;">{{ post.comment_count }} <span style="font-weight:700;">Comments</span></span>
-												</h6>
-												<div class="review">
-													<p>{{ post.tip }}</p>
-													<ul>
-														{% for comment in comments %}
-
-														<li><p class="comment-user-name"><a href="/{{comment.userName}}">{{comment.userName}}</a></p> <p class="user-name">{{ commentify(comment)| raw}}</p></li>
-														
-														{% endfor %}
-														
-{#														
-														<li><p class="user-name"><a href="">sepinaco</a></p> <p class="user-name"><a href="">@julipichan</a></p></li>
-														<li><p class="user-name"><a href="">julipichan</a></p> <p>Puaaaaaaaff que me muero 😍😍😍😍 con lo k me gustan las cokies 😍😍 </p></li>
-														<li><p class="user-name"><a href="">sonalisonali</a></p> <p class="user-name"><a href="">@lexii_rosee</a></p> <p>kind of scary looking but the concept is great</p></li>
-														<li><p class="user-name"><a href="">glittergirl_24</a></p> <p>I wanna eat dat 😣</p></li>
-														<li><p class="user-name"><a href="">rasleen04</a></p> <p>Haha..but I don't know how to make this baby 😘😁 </p><p class="user-name"><a href="">@parmeetkaur</a></p></li>
-														<li><p class="user-name"><a href="">trishala_3</a></p> <p>I've had an overdose of chocolate since morning @ashitanarang some other day for sure :D 😂</p></li>
-#}
-													</ul>
-												</div>
-											</div>
-									</article>
-							</section>
-						</div>
+<meta property="og:url" content="http://foodtalk.in/post/{{ post.id }}" />
+<meta property="og:type" content="article" />
+<meta property="og:title"
+	content="{{post.dishName}}  {% if post.restaurantName %} @ {{ post.restaurantName }} {% endif %} By {{post.userName}}" />
+<meta property="og:description"
+	content="{{ post.like_count }} Likes | {{ post.comment_count }} Comments {{ post.tip }}" />
+<meta property="og:image" content="{{post.postImage}}" />
+{% endblock %} {% block style %}{{ parent() }} {% endblock %} {# comment
+in twig #} {% block profile %}
+<div class="col-md-1 ">
+	<p class="v-mid" style="margin-top: 275.682px;">
+		{% if post.previous > 0 %} <a href="/post/{{post.previous}}"
+			id="previousPost"> <i class="fa fa-chevron-circle-left fa-2x"
+			aria-hidden="true"></i>
+		</a> {% endif %}
+	</p>
+</div>
+<div class="col-md-10">
+	<div class="row flex-container">
+		<div class="col-md-8 flex-item-img">
+			<img src="{{post.postImage}}" alt="" class="img-responsive">
+			<div class="img-overlay"></div>
+			<p id="stars" class="star-{{post.rating}} pb0 mb10">
+				<i class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+					class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+					class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+					class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+					class="fa fa-star fa-2x" aria-hidden="true"></i>
+			</p>
+		</div>
+		<div class="col-md-4 flex-item">
+			<div class="header-dish-open">
+				<div class="media mt1em">
+					<div class="media-left media-middle">
+						<img class="media-object"
+							src="{{ post.userThumb }}?&width=50&height=50" alt="">
 					</div>
+					<div class="media-body">
+						<a href="/{{ post.userName }}">{{ post.userName }}</a> is having <a
+							href="/dish/{{ post.dishUrl }}">{{ post.dishName }}</a> {% if
+						post.restaurantName %} {% if post.checkedInRestaurantId > 0 %} {%
+						if post.restaurantIsActive ==1 %} at <a
+							href="/{{ post.checkedInRestaurantId }}">{{
+							post.restaurantName }}, {{ post.cityName }}</a> {% else %} at {{
+						post.restaurantName }}, {{ post.cityName }} {% endif %} {% endif
+						%} {% endif %}
+					</div>
+				</div>
+				<div>
+					<p class="mt10px fontsize-small">{{ post.tip }}</p>
+				</div>
+				<div class="dish-open-stats border1">
+					<span class="like ml0"><span class="count">{{ post.like_count }}</span>Like</span> 
+					<span class="comment ml0"><span class="count">{{ post.comment_count }}</span> Comment</span> 
+					<span class="bookmark ml0"><span class="count">{{ post.bookmarkCount }}</span> Bookmark</span>
+				</div>
+			</div>
+			<div class="comments-section">
+				<ul id="comments">
+					{% for comment in comments %}
+					<li><a class="user-to-comment" href="/{{comment.userName}}">{{comment.userName}}</a>
+						{{ commentify(comment)| raw}}</li> {% endfor %}
+
+				</ul>
+			</div>
+			<div class="footer-dish-open border1">
+				<a href="/post/{{ post.id }}/like" class="like-btn{% if islogin(0) %}{% if post.iLikedIt == 1 %} liked{% endif %}{% endif %}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="23"
+						viewBox="0 0 25 23">
+											  <path fill="none" stroke="#8492A6" stroke-width="2"
+							d="M161.579348,5.12272727 C159.777717,0.214545455 150.709783,0.943636364 150.709783,8.36636364 C150.709783,12.0645455 153.481522,16.9854545 161.579348,22 C169.677174,16.9854545 172.448913,12.0645455 172.448913,8.36636364 C172.448913,0.986363636 163.390942,0.185454545 161.579348,5.12272727 L161.579348,5.12272727 Z"
+							transform="translate(-149 -1)"></path>
+											</svg>
+				</a>
+				<div class="comment-box">
+					<form id="commentForm" method="post"
+						action="/post/{{post.id}}/comment">
+						<input id="comment" type="text" name="comment" autocomplete="off" placeholder="Add a comment.... ">
+					</form>
+				</div>
+				<div class="more-btn dropup">
+					<a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <svg xmlns="http://www.w3.org/2000/svg"
+							width="5" height="20" viewBox="0 0 5 20">
+												<path fill="#8492A6" fill-rule="evenodd"
+								d="M-2.5,10 C-2.5,11.3808333 -3.61916667,12.5 -5,12.5 C-6.38083333,12.5 -7.5,11.3808333 -7.5,10 C-7.5,8.61916667 -6.38083333,7.5 -5,7.5 C-3.61916667,7.5 -2.5,8.61916667 -2.5,10 L-2.5,10 Z M5,10 C5,11.3808333 3.88083333,12.5 2.5,12.5 C1.11916667,12.5 5.32907052e-15,11.3808333 5.32907052e-15,10 C5.32907052e-15,8.61916667 1.11916667,7.5 2.5,7.5 C3.88083333,7.5 5,8.61916667 5,10 L5,10 Z M12.5,10 C12.5,11.3808333 11.3808333,12.5 10,12.5 C8.61916667,12.5 7.5,11.3808333 7.5,10 C7.5,8.61916667 8.61916667,7.5 10,7.5 C11.3808333,7.5 12.5,8.61916667 12.5,10 L12.5,10 Z"
+								transform="rotate(-90 2.5 10)"></path>
+											</svg>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<li>
+							<a href="/post/{{post.id}}/bookmark"
+					{% if islogin(0) %}
+						{% if post.iBookark == 1 %}
+						class="clickbookmark bkmed">UnBookmark
+						{% else %}
+						class="clickbookmark">Bookmark
+						{% endif %}
+					{% else %}
+						class="clickbookmark">Bookmark
+					{% endif %} 							
+							</a>
+						</li>
+						<li><a 
+							href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Ffoodtalk.in/post/{{ post.id }}"
+							target="_blank">
+								Share
+						</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a class="clickreport" href="/post/{{post.id}}/report">{% if islogin(0) %}{% if post.iFlaggedIt == 1 %} You reported this.{% else %}Report{% endif %}{% else %}Report{% endif %}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-md-1">
+	<p class="text-right v-mid" style="margin-top: 275.682px;">
+		{% if post.next > 0 %} <a href="/post/{{ post.next }}" id="nextPost">
+			<i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i>
+		</a> {% endif %}
+	</p>
+</div>
+
 <script type="text/javascript">
-window.addEventListener("keydown", checkKeyPressed, false);
- 
-function checkKeyPressed(e) {
-    if (e.keyCode == "39") {
-		if($('#nextPost').attr('href'))
-			window.location.replace($('#nextPost').attr('href'))
-    }
-	if (e.keyCode == "37") {
-		if($('#previousPost').attr('href'))
-			window.location.replace($('#previousPost').attr('href'))
+
+	window.addEventListener("keydown", checkKeyPressed, false);
+	function checkKeyPressed(e) {
+		if (e.keyCode == "39") {
+			if ($('#nextPost').attr('href'))
+				window.location.replace($('#nextPost').attr('href'))
+		}
+		if (e.keyCode == "37") {
+			if ($('#previousPost').attr('href'))
+				window.location.replace($('#previousPost').attr('href'))
+		}
 	}
-}
+
+	$(document).ready(function() {
+		$("#commentForm").submit(function(e) {
+			e.preventDefault(e);
+			checkLogin(e);
+			
+			$.ajax({
+				method : "post",
+				url : this.action,
+				data : $(this).serialize(),
+				success : function(html) {
+					$('#comments').append(html)
+					$('#comment').val('');
+					$('.comment .count').text(parseInt($('.comment .count').text()) + 1)
+				}
+			});
+
+		});
+	});
+
+	$(document).ready(
+			function() {
+				if ($('.dishreview').text()) {
+					$('.dishreview').show();
+				} else {
+					$('.dishreview').hide();
+				}
+				checklike();
+				checkbookmark();
+				function checklike() {
+					if ($('.dish-open-stats .like .count').text() == '0') {
+						$('.dish-open-stats .like').hide();
+					} else {
+						$('.dish-open-stats .like').show();
+					}
+				}
+				if ($('.dish-open-stats .comment .count').text() == '0') {
+					$('.dish-open-stats .comment').hide();
+				} else {
+					$('.dish-open-stats .comment').show();
+				}
+				function checkbookmark() {
+					if ($('.dish-open-stats .bookmark .count').text() == '0') {
+						$('.dish-open-stats .bookmark').hide();
+					} else {
+						$('.dish-open-stats .bookmark').show();
+					}
+				}
+				$('.v-mid').css('margin-top',
+						$('.flex-item-img').height() / 2.2 + 'px');
+				$('.clickbookmark').on(
+						'click',
+						function(event) {
+							event.preventDefault();
+							baseurl = this.href;
+							checkLogin(event);
+							
+							if ($(this).hasClass('bkmed')) {
+								$(this).removeClass('bkmed');
+								var like_c = $(
+										'.dish-open-stats .bookmark .count')
+										.text();
+								$('.dish-open-stats .bookmark .count').text(
+										parseInt(like_c) - 1);
+								checkbookmark();
+								baseurl = baseurl + '/remove'
+								this.text = 'Bookmark';
+							} else {
+								$(this).addClass('bkmed');
+								var like_c = $(
+										'.dish-open-stats .bookmark .count')
+										.text();
+								$('.dish-open-stats .bookmark .count').text(
+										parseInt(like_c) + 1);
+								checkbookmark();
+								baseurl = baseurl + '/add'
+								this.text = 'UnBookmark';
+							}
+							
+							$.ajax({
+								method: "post",
+								url: baseurl,
+								success: function(html) {}
+							});
+							
+							
+
+						});
+				$('.clickreport').on(
+						'click',
+						function(event){
+							event.preventDefault();
+							checkLogin(event)
+							$.ajax({
+								method: "post",
+								url: this.href,
+								success: function(html) {}
+							});
+							
+						}
+					);
+				
+				
+				$('.footer-dish-open a').on(
+						'click',
+						function(event) {
+
+							if ($(this).hasClass('like-btn')) {
+								event.preventDefault();
+								checkLogin(event);
+								
+								baseurl = this.href;
+								if ($(this).hasClass('liked')) {
+									$(this).removeClass('liked puls');
+									var like_c = $(
+											'.dish-open-stats .like .count')
+											.text();
+									$('.dish-open-stats .like .count').text(
+											parseInt(like_c) - 1);
+									checklike();
+									baseurl = baseurl + '/remove'	
+								} else {
+									$(this).addClass('liked puls');
+									$(this).addClass('liked puls');
+									var like_c = $(
+											'.dish-open-stats .like .count')
+											.text();
+									$('.dish-open-stats .like .count').text(
+											parseInt(like_c) + 1);
+									checklike();
+									baseurl = baseurl + '/add'
+								}
+								
+								$.ajax({
+									method: "post",
+									url: baseurl,
+									success: function(html) {}
+								});
+								
+							}
+							
+							else if ($(this).hasClass('more-btn')) {
+								$(this).removeClass('puls');
+							} else {
+
+							}
+							
+							
+							
+						});
+			});
 </script>
-							
-							
+
+
 {% endblock %}

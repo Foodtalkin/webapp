@@ -6,8 +6,6 @@ Discover dishes near you | Dish reviews | Food reviews | Dish reviews india | Be
 {% endblock %}
 {# comment in twig #}
 {% block profile %}
-{% include "discover/profile.html" with {'profile': profile} %}
-{% endblock %}
-{% block postcontainer %}   
+<h2 class="username">Discover</h2>
 {% include "base/postcontainer.html" with {'posts': posts, 'showDistance' : 'yes' } %}
 {% endblock %}

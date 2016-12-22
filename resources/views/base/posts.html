@@ -1,32 +1,47 @@
 {% for post in posts %}
-			<article class="style1">
-				<span class="image"> <a  href="/post/{{post.id}}"> <img src="{{post.postImage}}"
-					alt="food discovery, dish reviews, dish reviews delhi, food reviews, food reviews delhi, restaurant reviews, restaurant reviews india, best dishes to eat, best food to eat, best dishes in restaurant, best places to eat in delhi, best places to eat in mumbai, best dishes in india, dish discovery, dish discovery in restaurants, food discovery in restaurants, food dish" />
-					<div class="img-grd"></div>
-					<p id="stars" class="star-{{ post.rating }}">
-						<i class="fa fa-star fa-lg" aria-hidden="true"></i> <i
-							class="fa fa-star fa-lg" aria-hidden="true"></i> <i
-							class="fa fa-star fa-lg" aria-hidden="true"></i> <i
-							class="fa fa-star fa-lg" aria-hidden="true"></i> <i
-							class="fa fa-star fa-lg" aria-hidden="true"></i>
-					</p>
-				</a>
-				</span> <a data-fancybox-type="iframe" class="iframe">
-				</a>
-				<div class="details">
-					<h4 class="username" style="margin-top: 5px;">{{ postTitle(post, repository) | raw }}</h4>
-					<h6>
-						<span class="inhead_number" style="font-size: .9em;">{{post.likeCount}} <span
-							style="font-weight: 700;">{% if post.likeCount==1 %}Like{% else %}Likes{% endif %}</span></span> | <span
-							class="inhead_number" style="font-size: .9em;">{{post.commentCount}} <span
-							style="font-weight: 700;">{% if post.commentCount==1 %}Comment{% else %}Comments{% endif %}</span></span>
-							 {% if post.restaurantDistance is defined   %}
-							 {% set distance = post.restaurantDistance/1000 %}
-							 
-							<span class="inhead_number right" style="font-size:.9em;">{{ distance | number_format (2)}} <span style="font-weight:700;">Km</span></span>
-							{% endif %}
-							
-					</h6>
-				</div>
-			</article>
+<div class="col-md-3">
+	<div class="small-card">
+		<a href="/post/{{post.id}}"> <img
+			src="{{post.postImage}}"
+			alt="" class="small-card-img">
+		</a>
+		<div>
+			<a href=""> <span>{{post.likeCount}}</span> <svg
+					version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="14.867px" height="14px" viewBox="4.942 5.167 14.867 14"
+					enable-background="new 4.942 5.167 14.867 14" xml:space="preserve">
+											<path fill="none" stroke="#8492A6" stroke-width="2"
+						d="M12.375,8.213c-1.036-2.822-6.25-2.403-6.25,1.865c0,2.126,1.593,4.956,6.25,7.839c4.655-2.884,6.249-5.713,6.249-7.839C18.624,5.835,13.415,5.375,12.375,8.213L12.375,8.213z"></path>
+										</svg>
+			</a> 
+			<a href="/post/{{post.id}}"> <span>{{post.commentCount}}</span> <svg version="1.1" id="Layer_1"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="14.867px" height="14px" viewBox="4.4 4 14.867 14"
+					enable-background="new 4.4 4 14.867 14" xml:space="preserve">
+											<path fill="none" stroke="#8492A6" stroke-width="2"
+						d="M18.247,10.022c0-2.691-2.846-4.873-6.358-4.873
+											c-3.511,0-6.359,2.182-6.359,4.873c0,2.71,2.887,4.902,6.424,4.871c-0.208,1.071-1.466,1.745-2.409,1.956
+											C14.901,16.376,18.247,13.399,18.247,10.022L18.247,10.022z"></path>
+										</svg>
+			</a>
+			<a href="#"> <span>{{post.bookmarkCount}}</span> <svg version="1.1" id="Layer_1"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="9.625px" height="13.208px"
+					viewBox="1.417 4.584 9.625 13.208"
+					enable-background="new 1.417 4.584 9.625 13.208"
+					xml:space="preserve">
+											<polygon fill="none" stroke="#8492A6" stroke-width="2"
+						points="3.628,5.625 3.628,15.625 6.229,13.43 8.83,15.625 8.83,5.625 "></polygon>
+										</svg>
+			</a>
+		</div>
+	</div>
+	<div class="from">
+	{{ postTitle(post, repository) | raw }}
+
+	</div>
+</div>
 {% endfor %}

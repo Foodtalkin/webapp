@@ -1,18 +1,24 @@
-<div class="4u">
-	<h3>Dish</h3>
-{% if dishes is empty %}	
-<p> No Such Dish</p>
- {% else %}	
-	
-{% for dish in dishes %}
-	<div class="result">
-	
-		<a href="/dish/{{dish.url }}?city={{searchCity}}"> <span class="r-image"> <img src="/images/dish.jpg" alt="">
-		</span> <span class="r-dish">
-				<p>{{ dish.dishName }}</p>
-		</span>
-		</a>
-	</div>
-{% endfor %}
-{% endif %}
+<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-12">
+								<h5 class="result-heading">Dishes</h5>
+							</div>
+							{% if dishes is empty %}	
+							<p> No Such Dish</p>
+							{% else %}	
+							{% for dish in dishes %}
+							<div class="col-md-12 resultitem">
+								<a href="/dish/{{dish.url }}">
+									<div class="media mt1em">
+										<div class="media-body">
+										    <h4 class="media-heading">{{ dish.dishName }}</h4>
+										    {{ dish.postCount }} dishes
+										</div>
+									</div>
+								</a>
+							</div>
+							{% endfor %}
+							{% endif %}							
+						</div>
 </div>
+					
