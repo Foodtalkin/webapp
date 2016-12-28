@@ -95,10 +95,13 @@
 			event.preventDefault();
 			checkLogin(event);
 
+			btn = this;
+			btnTxt = $(btn).html();
+			$(btn).html("<i class='fa fa-spinner fa-pulse fa-fw' style='color:#fff;'></i>");
+			
 			$.ajax({
 				method : "post",
 				url : this.href,
-				
 				success : function(json) {
 					
 					if(json.status.trim() == 'OK')
@@ -107,7 +110,13 @@
 						$('#errMsg').text(json.apiMessage)
 						$('#redmodel').modal('show');
 					}
-				}
+					$(btn).html(btnTxt);
+				},
+				error: function (request, status, error) {
+		        	alert(request.responseText);
+		        	$(btn).html(btnTxt);
+		    	}
+			
 			});
 
 		});
