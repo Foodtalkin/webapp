@@ -1,0 +1,97 @@
+					<div class="col-md-12 m-b-2em">
+						<div class="col-md-4">
+							<a href="/store"><h4>BACK TO STORE</h4></a>
+						</div>
+						<div class="col-md-4 center"><h4 class="gray-color">YOUR PURCHASES</h4></div>
+					</div>
+{% for purchase in storePurchase %}
+{% if purchase.type == 'OFFER' %}
+{% include "store/purchasedoffer.html" with {'purchase': purchase} %}
+{% endif %}
+{% endfor %}
+<script type="text/javascript">
+//var copyEmailBtn = document.querySelector('.copycode');  
+//copyEmailBtn.addEventListener('click', 
+		
+$(document).ready(function() {
+				$('.copycode, .copied').hide();
+				
+				$(document).on('mouseenter', '.cupon-code', function(event) {
+					event.preventDefault();
+					$(this).siblings('.copycode').html('Copy').css('color', '#1E63B3').show('fast');
+				});
+				$(document).on('mouseleave', '.cupon-code', function(event) {
+					event.preventDefault();
+					$(this).siblings('.copycode').hide();
+				});
+
+				$(document).on('mouseenter', '.copycode', function(event) {
+					event.preventDefault();
+					$(this).show('fast');
+				});
+				$(document).on('mouseleave', '.copycode', function(event) {
+					event.preventDefault();
+					$(this).hide();
+				});
+				
+				$(document).on('click','.cupon-code, .copycode', function(event) {
+					// event.preventDefault();
+					
+					if($(this).hasClass('cupon-code')){
+						console.log(this);
+						copyCode(this)
+						// $(this).siblings('.copycode').hide();
+						$(this).siblings('.copycode').html('Copied').css('color', 'green').fadeIn('slow').fadeOut('slow');
+					}else{
+						// $(this).hide();
+						$(this).html('Copied').css('color', 'green').fadeIn('slow').fadeOut('slow');
+					}
+				});
+			});		
+
+function copyCode(cuponElement){
+	  var range = document.createRange();  
+	  range.selectNode(cuponElement);  
+	  window.getSelection().addRange(range);
+	  
+	  try {  
+	    // Now that we've selected the anchor text, execute the copy command  
+	    var successful = document.execCommand('copy');  
+	    var msg = successful ? 'successful' : 'unsuccessful';
+	    $(this).siblings('.copycode').html('Copy').css('color', '#1E63B3').show('fast');
+	    console.log('Copy email command was ' + msg);  
+	  } catch(err) {  
+	    console.log('Oops, unable to copy');  
+	  }
+	  // Remove the selections - NOTE: Should use
+	  // removeRange(range) when it is supported  
+	  window.getSelection().removeAllRanges();  
+}
+
+$('.copycode').on(
+		'click',
+		function(event) {  
+  // Select the email link anchor text
+  event.preventDefault()
+
+  var cuponElement = this.parentNode.querySelector('.cupon-code'); 
+  var range = document.createRange();  
+  range.selectNode(cuponElement);  
+  window.getSelection().addRange(range);
+  
+  try {  
+    // Now that we've selected the anchor text, execute the copy command  
+    var successful = document.execCommand('copy');  
+    var msg = successful ? 'successful' : 'unsuccessful';
+    $(this).siblings('.copycode').html('Copy').css('color', '#1E63B3').show('fast');
+    console.log('Copy email command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to copy');  
+  }
+  // Remove the selections - NOTE: Should use
+  // removeRange(range) when it is supported  
+  window.getSelection().removeAllRanges();  
+});
+
+
+</script>

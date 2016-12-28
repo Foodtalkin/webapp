@@ -1,0 +1,8 @@
+{% extends isajax() ? "base/ajax.html" : "base/base.html" %}
+{% block title %}
+{% endblock %}
+{% block style %}{{ parent() }}
+{% endblock %}
+{% block postcontainer %}   
+{% include "store/purchasesdetailes.html" with {'posts': posts} %}
+{% endblock %}

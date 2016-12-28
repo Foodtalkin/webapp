@@ -16,6 +16,14 @@ function renderTwig($view, array $data = []) {
 		return $comment;
 	} );
 	
+	
+	
+	$jsonDecode = new Twig_SimpleFunction ( 'jsonDecode', function ($json) {
+		
+		return json_decode($json, true);
+		
+	} );
+	
 	$postTitle = new Twig_SimpleFunction ( 'postTitle', function ($post, $repository = false) {
 		
 		$withUser = false;
@@ -133,6 +141,8 @@ function renderTwig($view, array $data = []) {
 	$twig->addFunction ( $isajax );
 	$twig->addFunction ( $islogin );
 	$twig->addFunction ( $env );
+	$twig->addFunction ( $jsonDecode );	
+	
 	
 	
 	$twig->addFilter ( $filter );

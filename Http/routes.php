@@ -46,8 +46,16 @@ $app->group([
 {
 	
 	$app->get('home',[ 'uses' =>'UserController@feeds']);
-	$app->get('discover',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
-	$app->get('discover/page/{page}',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
+	
+	$app->get('store',[ 'uses' =>'UserController@store']);
+	$app->get('purchases',[ 'uses' =>'UserController@purchases']);
+	$app->get('store/offer/{id}',[ 'uses' =>'UserController@offer']);
+	$app->post('/storeItem/{id}/purchase',[ 'uses' =>'UserController@purchase']);
+	
+	
+// 	$app->get('discover',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
+// 	$app->get('discover/page/{page}',[ 'middleware' => ['getlocation'], 'uses' =>'DiscoverController@profile']);
+
 	$app->get('home/page/{page}',[ 'uses' =>'UserController@feeds']);
 	
 	$app->get('redirect',[ 'uses' =>'LoginController@redirect']);

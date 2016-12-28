@@ -1,0 +1,72 @@
+{% set metaData = jsonDecode(purchase.metaData) %}
+
+<div class="col-md-4">
+{% if "now"|date('Y-m-d') < metaData.validTill | date('Y-m-d') %}
+	<div class="ticket">
+		<div class="ticket-top">
+			<img src="{{purchase.coverImage}}" alt="" class="ticket-img">
+			<span class="type-p-purchase offer">Offer</span>
+			<div class="body-top-ticket">
+				<h6 class="typewriter">Offer code</h6>
+				<h4>{{ purchase.title }}</h4>
+				<div class="row">
+					<div class="col-md-7">
+						<div class="w-s-t">Valid till</div>
+						<div class="w-s-t-value typewriter">{{ metaData.validTill | date("d-M-Y") }}</div>
+					</div>
+					<div class="col-md-5">
+						<div class="w-s-t">Type</div>
+						<div class="w-s-t-value typewriter">{{ metaData.type }}</div>
+					</div>
+					<div class="col-md-12 mt1em">
+						<div class="w-s-t">Coupon Code</div>
+						<div class="cupon-code typewriter">{{ metaData.couponCode }}</div>
+						<a href="#" class="copycode">Copy</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ticket-bottom">
+			<div class="body-bottom-ticket ">
+				<div class="w-s-t">Use this coupon code at:</div>
+				<div class="cupon-redeamplace typewriter">{{ metaData.redemptionUrl }}</div>
+				<a target="_blank" href="{{ metaData.redemptionUrl }}" target="_blank">Redeem Now</a>
+			</div>
+		</div>
+	</div>
+	{% else %}
+
+	<div class="ticket  exp-btm">
+		<div class="ticket-top">
+			<img src="{{purchase.coverImage}}" alt="" class="ticket-img">
+			<span class="type-p-purchase offer">Offer</span>
+			<div class="body-top-ticket">
+				<h6 class="typewriter">Offer code</h6>
+				<h4>{{ purchase.title }}</h4>
+				<div class="row">
+					<div class="col-md-7">
+						<div class="w-s-t">Valid till</div>
+						<div class="w-s-t-value typewriter">{{ metaData.validTill | date("d-M-Y") }}</div>
+					</div>
+					<div class="col-md-5">
+						<div class="w-s-t">Type</div>
+						<div class="w-s-t-value typewriter">{{ metaData.type }}</div>
+					</div>
+					<div class="col-md-12 mt1em">
+						<div class="w-s-t">Coupon Code</div>
+						<div class="cupon-code typewriter">{{ metaData.couponCode }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ticket-bottom">
+			<div class="body-bottom-ticket">
+				<div class="w-s-t">Use this coupon code at:</div>
+				<div class="cupon-redeamplace typewriter">{{ metaData.redemptionUrl }}</div>
+				<a href="{{ metaData.redemptionUrl }}">Redeem Now</a>
+			</div>
+		</div>
+		<img src="/assets/images/exp.png" alt="" class="exp">
+	</div>
+	{% endif %}	
+</div>

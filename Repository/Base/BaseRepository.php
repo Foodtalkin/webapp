@@ -8,7 +8,8 @@ class BaseRepository
 	public $repository = null;
 	public $error = null;
 	public $status = null;
-	protected $apiResponse = null;
+	public $apiResponse = null;
+	public $apiMessage = null;
 	
 	const  USER_AUTH = 'auth/signin';
 	
@@ -18,19 +19,15 @@ class BaseRepository
 	const  USER_UNFOLLOW = 'follower/unfollow';
 	const  USER_HOME_FEEDS = 'post/list';
 	
-	
 	const  RESTAURANT_PROFILE = 'restaurant/getProfile';
 	const  RESTAURANT_POST = 'restaurant/getImagePosts';
 	
-	
 	const  POST_GET = 'post/get';
-	
 	const  POST_LIKE = 'like/add';
 	const  POST_UNLIKE = 'like/delete';
 	
 	const  POST_BOOKMARK = 'bookmark/add';
 	const  POST_UNBOOKMARK = 'bookmark/delete';
-	
 	const  POST_REPORT = 'flag/add';
 	
 	const  COMMENT_ADD = 'comment/add';
@@ -46,6 +43,15 @@ class BaseRepository
 	const  USER_SEARCH = 'user/listNames';
 	
 	const  LIST_REGIONS = 'region/list';
+	
+	
+	const  STORE_ITEMS = 'storeItem/listItems';
+	const  STORE_OFFER = 'storeOffer/get';
+	const  STORE_PURCHASE = 'storeItem/purchase';
+	const  STORE_ALLPURCHASES = 'storeItem/listPurchase';
+	
+
+	
 	
 // 	const  USER_PROFILE = 'user/Profile';
 	
@@ -66,10 +72,11 @@ class BaseRepository
 				header("Refresh:0");
 			}
 			
-			if($result['errorCode'] !='23000')
+			if(!in_array($result['errorCode'], ['23000', '106']))
 				abort(404);
 		}
 		$this->status = $result['status'];
+		$this->apiMessage = $result['apiMessage'];
 		
 		$this->apiResponse = $result;
 		$this->repository = get_called_class();

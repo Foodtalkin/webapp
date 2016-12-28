@@ -1,0 +1,33 @@
+{% if profile is not empty %}
+<div class="col-md-6 col-md-offset-3">
+	<div class="user-card-store">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="media mt10">
+					<div class="media-left media-middle">
+						<a href="/{{profile.userName}}"> <img class="media-object"
+							src="{{ profile.image }}" alt="{{ profile.userName }}">
+						</a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">{{ profile.fullName | capitalize }}</h4>
+						@{{profile.userName}}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 points">
+				<h1>{{ profile.totalPoints |round(0, 'floor')}}</h1>
+				Points
+			</div>
+		</div>
+		<div class="row mt10">
+			<div class="col-md-8">
+				<p>You have no upcoming events</p>
+			</div>
+			<div class="col-md-4 center">
+				<a href="/purchases" class="purchase-button">Purchases</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
