@@ -15,7 +15,7 @@ class Dish extends BaseRepository
 	{
 		$dishName = str_replace('-', ' ',$postData['dishId'] );
 // 		$postData['search'] = $dishName;
-		$postData['recordCount'] = 15;
+		$postData['recordCount'] = 12;
 		
 		if(isset($_COOKIE['location'])){
 			

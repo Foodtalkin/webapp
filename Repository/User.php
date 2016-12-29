@@ -64,7 +64,7 @@ class User extends BaseRepository
 			
 		
 		$postData['includeCount'] = '1';
-		$postData['recordCount'] = '15';
+		$postData['recordCount'] = '12';
 		$postData['page'] = $page;
 		$postData['includeFollowed'] = '1';
 		$obj = new self($postData, self::USER_HOME_FEEDS);

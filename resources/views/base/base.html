@@ -1,3 +1,4 @@
+{% spaceless %}
 <!doctype html>
 <html>
 <head>
@@ -272,6 +273,12 @@ var donotloadmore = false;
 	{% block profile %}{% endblock %}
 	{% block postcontainer %}{% endblock %}
 	</div>
+	<div id="loading"  class="center" style="display: none;">
+		Loading....
+		</div>
+		<div id="stoploading"  class="center" style="display: none;">
+		No more dishes
+		</div>
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}			
@@ -304,3 +311,4 @@ var donotloadmore = false;
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>
+{% endspaceless %}
