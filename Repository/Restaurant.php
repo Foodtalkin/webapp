@@ -10,6 +10,7 @@ class Restaurant extends BaseRepository
 	const REPOSITORY = __CLASS__;
 	public  $profile = null;
 	public  $posts = null;
+	public  $for = 'resturant';
 	
 	
 	public function __construct($postData, $api = self::RESTAURANT_PROFILE)

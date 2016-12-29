@@ -11,6 +11,7 @@ class Post extends BaseRepository
 	public  $post = null;
 	public  $comments = null;
 // 	public  $favourites = null;
+	public  $for = null;
 	
 	
 	public function __construct($postData, $api = self::POST_GET)
@@ -23,10 +24,17 @@ class Post extends BaseRepository
 		if(isset($this->apiResponse['comments']))
 			$this->comments = $this->apiResponse['comments'];
 		
+		if(isset($postData['for']) && in_array($postData['for'], ['user','dish', 'resturant']) )
+			$this->for = $postData['for'];
+		
+		
 	}
 	
-	public static function profile($Id){
+	public static function profile($Id, $for=false){
 	
+		if($for)
+			$postData['for'] = $for;
+		
 		$postData['postId'] = $Id;
 		$obj = new self($postData);
 		return $obj;

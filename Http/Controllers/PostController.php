@@ -14,9 +14,9 @@ class PostController extends Controller{
   
 	
 	
-	public function profile($id){
+	public function profile($id,$for = false){
 		
-		$obj = Post::profile($id);
+		$obj = Post::profile($id,$for);
 		return  $this->render('post/get', (array)$obj , self::SUCCESS_OK);
 		
 	}	

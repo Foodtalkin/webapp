@@ -66,11 +66,14 @@ $app->group([
 // 	$app->post('search',[ 'uses' =>'SearchController@search']);
 // 	$app->get('search',[ 'uses' =>'SearchController@index']);
 
-	
-// 	$app->get('dish/{id}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
-// 	$app->get('dish/{id}/page/{page}',[	'middleware' => ['getlocation'], 'uses' =>'DishController@profile']);
-	$app->get('dish/{id}',[	'uses' =>'DishController@profile']);
-	$app->get('dish/{id}/page/{page}',[ 'uses' =>'DishController@profile']);
+	$app->get('dish/{id}',[
+// 			'middleware' => ['getlocation'], 
+			'uses' =>'DishController@profile'
+	]);
+	$app->get('dish/{id}/page/{page}',[
+// 			'middleware' => ['getlocation'],
+			'uses' =>'DishController@profile'
+	]);
 	
 	$app->post('post/{id}/like/{action:add|remove}','PostController@like');
 	$app->post('post/{id}/comment','PostController@comment');
@@ -80,6 +83,8 @@ $app->group([
 	
 	$app->post('follow/{id}','UserController@follow');
 	
+	
+	$app->get('post/{id}/{for}','PostController@profile');
 	$app->get('post/{id}','PostController@profile');
 	
 	$app->post('follow/{id}','UserController@follow');

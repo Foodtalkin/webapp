@@ -12,6 +12,7 @@ class User extends BaseRepository
 	public  $profile = null;
 	public  $posts = null;
 	public  $favourites = null;
+	public  $for = 'user';
 	
 	
 	public function __construct($postData, $api = self::USER_PROFILE)

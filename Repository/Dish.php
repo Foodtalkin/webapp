@@ -10,6 +10,7 @@ class Dish extends BaseRepository
 	const REPOSITORY = __CLASS__;
 	public  $profile = null;
 	public  $posts = null;
+	public  $for = 'dish';
 	
 	public function __construct($postData, $api = self::DISH_POST)
 	{

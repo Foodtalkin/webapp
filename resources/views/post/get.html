@@ -14,7 +14,7 @@ Best food to eat | Dishes | Food | by {{post.userName}} {% endblock %}
 in twig #} {% block profile %}
 <div class="col-md-1 ">
 	<p class="v-mid" style="margin-top: 275.682px;">
-		{% if post.previous > 0 %} <a href="/post/{{post.previous}}"
+		{% if post.previous > 0 %} <a href="/post/{{post.previous}}/{{ for }}"
 			id="previousPost"> <i class="fa fa-chevron-circle-left fa-2x"
 			aria-hidden="true"></i>
 		</a> {% endif %}
@@ -23,7 +23,7 @@ in twig #} {% block profile %}
 <div class="col-md-10">
 	<div class="row flex-container">
 		<div class="col-md-8 flex-item-img">
-			<img src="{{post.postImage}}" alt="" class="img-responsive">
+			<img src="{{post.postImage}}" alt="" class="img-responsive full-width-img">
 			<div class="img-overlay"></div>
 			<p id="stars" class="star-{{post.rating}} pb0 mb10">
 				<i class="fa fa-star fa-2x" aria-hidden="true"></i> <i
@@ -121,7 +121,7 @@ in twig #} {% block profile %}
 </div>
 <div class="col-md-1">
 	<p class="text-right v-mid" style="margin-top: 275.682px;">
-		{% if post.next > 0 %} <a href="/post/{{ post.next }}" id="nextPost">
+		{% if post.next > 0 %} <a href="/post/{{ post.next }}/{{ for }}" id="nextPost">
 			<i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i>
 		</a> {% endif %}
 	</p>

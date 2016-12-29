@@ -273,12 +273,8 @@ var donotloadmore = false;
 	{% block profile %}{% endblock %}
 	{% block postcontainer %}{% endblock %}
 	</div>
-	<div id="loading"  class="center" style="display: none;">
-		Loading....
-		</div>
-		<div id="stoploading"  class="center" style="display: none;">
-		No more dishes
-		</div>
+	<div id="loading"  class="center" style="display: none;">Loading....</div>
+		<div id="stoploading"  class="center" style="display: none;">No more dishes</div>
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}			
@@ -295,7 +291,6 @@ var donotloadmore = false;
 					return false;
 				}
 			}
-			
 			function checkLogin(event){
 				if(!isLogedin){
 					event.preventDefault();
@@ -304,7 +299,6 @@ var donotloadmore = false;
 				}
 				return true;
 			}
-			
 		</script>
 		
 		<script type="text/javascript" src="http://arrow.scrolltotop.com/arrow27.js"></script>
