@@ -69,6 +69,7 @@ function LoadNextPage(){
 		dataType: 'html',
 		error: function(e){
 			console.log(e);
+			pp--;
 			$('#loading').hide();
 			$('#stoploading').hide();
 			$('#loadmore').show();
