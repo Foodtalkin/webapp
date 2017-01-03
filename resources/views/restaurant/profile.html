@@ -58,10 +58,10 @@
                         </svg>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><a href="#">Report</a></li>
-                        <li><a href="#">Number Mismatch</a></li>
-                        <li><a href="#">Address Mismatch</a></li>
-                        <li><a href="#">Shutdown</a></li>
+                        <li><a class="center" href="javascript:void(0);">Report</a></li>
+                        <li><a class="clickreport" href="/restaurant/{{profile.id}}/1">Number Mismatch</a></li>
+                        <li><a class="clickreport" href="/restaurant/{{profile.id}}/2">Address Mismatch</a></li>
+                        <li><a class="clickreport" href="/restaurant/{{profile.id}}/3">Shutdown</a></li>
                      </ul>
                 </div>
         </div>
@@ -72,4 +72,23 @@
 				</div>
 				
 				
+
+<script type="text/javascript">
+$(document).ready(function() {	
+	$(document).on('click', '.clickreport', function(event) {
+		event.preventDefault();
+		
+		btn = this;
+		btnTxt = $(btn).html();
+		$(btn).html("<i class='fa fa-spinner fa-pulse fa-fw' style='color:#000;'></i>");
+			$.ajax({
+				method : "post",
+				url : this.href,
+				success : function(html) {
+					$(btn).html(btnTxt);
+				}
+			});
+	});
+});
+</script>
 

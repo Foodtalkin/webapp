@@ -26,6 +26,11 @@ class RestaurantController extends Controller{
 		
 	}
 	
+	
+	public function report($id,$type){
+	
+	}
+	
 	public function nextPostPage(){
 		
 // 		return  $this->render('restaurant/get', $data , self::SUCCESS_OK);

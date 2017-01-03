@@ -90,6 +90,8 @@ $app->group([
 	$app->post('follow/{id}','UserController@follow');
 	$app->post('unfollow/{id}','UserController@unfollow');
 	
+	$app->post('restaurant/{id}/{type}','RestaurantController@report');
+
 	
 	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
 	

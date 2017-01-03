@@ -34,6 +34,18 @@ class Restaurant extends BaseRepository
 	
 	}
 	
+	public static function report($Id, $type){
+	
+		$postData['restaurantId'] = $Id;
+		$postData['reportType'] = $type;
+	
+		$obj = new self($postData, self::RESTAURANT_REPORT);
+	
+		return $obj;
+	
+	}
+	
+	
 	public static function nextPostPage($Id, $page = 2){
 		
 		$postData['restaurantId'] = $Id;
