@@ -13,7 +13,7 @@
 		</div>
 			<div id="loading" style="text-align: center; display: none;"> Loading....</div>
 			<div id="stoploading" style="text-align: center; display: none;"> No more dishes</div>
-			<div id="loadmore" style="text-align: center; display: none;"><a onclick="LoadNextPage();" href="javascript:void(0);">Load more</a></div>
+			<div id="loadmore" style="text-align: center;"><a href="#">Load more</a></div>
 		
 
 <script type="text/javascript">
@@ -24,6 +24,14 @@ var page = 2
 var hasmore = true;
 
 $(document).ready(function() {
+	
+	
+    $(document).on('click', '#loadmore a', function(event) {
+	//$('#loadmore').click(function(event){
+		event.preventDefault();
+		LoadNextPage()
+	});
+	
 	var request;
 	var win = $(window);
 	
@@ -39,6 +47,8 @@ $(document).ready(function() {
 	});
 	
 });
+
+
 
 function LoadNextPage(){
 	
