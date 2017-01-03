@@ -4,11 +4,17 @@
 						</div>
 						<div class="col-md-4 center"><h4 class="gray-color">YOUR PURCHASES</h4></div>
 					</div>
+					
+{% if storePurchase | length > 0 %}	
 {% for purchase in storePurchase %}
 {% if purchase.type == 'OFFER' %}
 {% include "store/purchasedoffer.html" with {'purchase': purchase} %}
 {% endif %}
 {% endfor %}
+
+{% else %}
+<div class="col-md-12 center gray-color" style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%);">Nothing to show here :(</div>
+{% endif %}	
 <script type="text/javascript">
 $(document).ready(function() {
 	$(document).on('click','.cupon-code, .copycode', function(event) {

@@ -13,6 +13,7 @@
 		</div>
 			<div id="loading" style="text-align: center; display: none;"> Loading....</div>
 			<div id="stoploading" style="text-align: center; display: none;"> No more dishes</div>
+			<div id="loadmore" style="text-align: center; display: none;"><a href="javascript void(0);">Load more</a></div>
 		
 
 <script type="text/javascript">
@@ -29,6 +30,8 @@ $(document).ready(function() {
 	if(hasmore){
 		// End of the document reached?
 		if ($(document).height() - win.height() <= win.scrollTop()) {
+			
+			
 			pp++;			
 			if(pp > page){
 				console.log('abort')
@@ -45,6 +48,9 @@ $(document).ready(function() {
 				dataType: 'html',
 				error: function(e){
 					console.log(e);
+					$('#loading').hide();
+					$('#stoploading').hide();
+					$('#loadmore').show();
 				},
 				success: function(html) {					
 					if( html.trim() == '' ){
@@ -63,6 +69,9 @@ $(document).ready(function() {
 					checklike()
 				}
 			});
+			
+			
+			
 		}
 	}
 	});

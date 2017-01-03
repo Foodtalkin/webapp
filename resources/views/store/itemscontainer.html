@@ -1,4 +1,6 @@
 
+
+{% if storeItems|length > 0 %}
 {% for item in storeItems %}
 <div class="col-md-4 padding-left-right-30">
 	<a href="/store/{{ item.type | lower }}/{{ item.storeItemId }}" class="card-link">
@@ -15,3 +17,6 @@
 	</a>
 </div>
 {% endfor %}
+{% else %}
+<div class="col-md-12 center gray-color" style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%);">Nothing to show here :(</div>
+{% endif %}	
