@@ -3,6 +3,7 @@
 {% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
+{% block store_active %}active{% endblock %}
 {% block postcontainer %}   
 {% include "store/purchasesdetailes.html" with {'posts': posts} %}
 {% endblock %}

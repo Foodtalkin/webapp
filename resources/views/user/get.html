@@ -30,6 +30,9 @@ Food Talk | {{ profile.fullName }}
 {% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
+{% block profile_active %}
+{% if islogin(0) %} {% set user = islogin(1) %} {% if user.userName == profile.userName %}active{% endif %}{% endif %}
+{% endblock %}
 {# comment in twig #}
 {% block profile %}
 {% include "user/profile.html" with {'profile': profile} %}

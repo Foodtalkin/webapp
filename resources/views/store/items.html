@@ -3,6 +3,7 @@
 {% endblock %}
 {% block style %}{{ parent() }}
 {% endblock %}
+{% block store_active %}active{% endblock %}
 {% block profile %}
 {% include "store/profile.html" with {'profile': profile} %}
 {% endblock %}

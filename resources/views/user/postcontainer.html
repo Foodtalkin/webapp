@@ -43,7 +43,10 @@ $(document).ready(function() {
 				+'/page/'+ page
 				,
 				dataType: 'html',
-				success: function(html) {
+				error: function(e){
+					console.log(e);
+				},
+				success: function(html) {					
 					if( html.trim() == '' ){
 						$('#stoploading').show();
 						$('#loading').hide();
@@ -54,6 +57,10 @@ $(document).ready(function() {
 						page++;
 						pp = page-1
 					$('#loading').hide();
+					checkreview()	
+					checkbookmark()
+					checkcomments()
+					checklike()
 				}
 			});
 		}
@@ -63,47 +70,56 @@ $(document).ready(function() {
 });
 </script>
 <script>
-			$(document).ready(function() {
+function checkreview(){
+	
+    $(document).find('.home-card .home-card-stats .dishreview p').each(function(index, el) {
+        if($(this).text()){
+            $(this).show();
+        }else{
+            $(this).hide();
+        }
+    });
+}
+function checklike(){
+	$(document).find('.home-card .home-card-stats .l-b-c-n .like .count').each(function(index, el) {
+        if($(this).text() == '0'){
+            $(this).parent('.like').hide();
+        }else{
+            $(this).parent('.like').show();
+        }
+    });
+        
+}
+function checkcomments(){
+	$(document).find('.home-card .home-card-stats .l-b-c-n .comment .count').each(function(index, el) {
+        if($(this).text() == '0'){
+            $(this).parent('.comment').hide();
+        }else{
+            $(this).parent('.comment').show();
+        }
+    });
+}
+    
+function checkbookmark(){
+	
+	console.log('TEST')
+	
+	$(document).find('.home-card .home-card-stats .l-b-c-n .bookmark .count').each(function(index, el) {
+        if($(this).text() == '0'){
+        $(this).parent('.bookmark').hide();
+        }else{
+            $(this).parent('.bookmark').show();
+            
+        }
+    });
+    
+}
+$(document).ready(function() {
 					
-				$('.home-card .home-card-stats .dishreview p').each(function(index, el) {
-					if($(this).text()){
-						$(this).show();
-					}else{
-						$(this).hide();
-					}
-				});
-				checklike();
-				checkbookmark();
-				function checklike(){
-					$('.home-card .home-card-stats .l-b-c-n .like .count').each(function(index, el) {
-						if($(this).text() == '0'){
-							$(this).parent('.like').hide();
-						}else{
-							$(this).parent('.like').show();
-						}
-					});
-						
-				}
-				$('.home-card .home-card-stats .l-b-c-n .comment .count').each(function(index, el) {
-					if($(this).text() == '0'){
-						$(this).parent('.comment').hide();
-					}else{
-						$(this).parent('.comment').show();
-					}
-				});
-					
-				function checkbookmark(){
-					$(' .home-card .home-card-stats .l-b-c-n .bookmark .count').each(function(index, el) {
-						if($(this).text() == '0'){
-						$(this).parent('.bookmark').hide();
-						}else{
-							$(this).parent('.bookmark').show();
-							
-						}
-					});
-					
-				}
-				
+				    checkreview();
+	                checklike();
+	                checkbookmark();
+	                checkcomments();
 
 			    $(document).on('click', '.clickreport', function(event) {
 					event.preventDefault();
