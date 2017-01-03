@@ -17,66 +17,72 @@
 		
 
 <script type="text/javascript">
+
+var pp = 1
+
+var page = 2
+var hasmore = true;
+
 $(document).ready(function() {
 	var request;
 	var win = $(window);
 	
-	var pp = 1
 	
-	var page = 2
-	var hasmore = true;
 	// Each time the user scrolls
 	win.scroll(function() {
 	if(hasmore){
 		// End of the document reached?
 		if ($(document).height() - win.height() <= win.scrollTop()) {
-			
-			
-			pp++;			
-			if(pp > page){
-				console.log('abort')
-				return true
-			}
-				
-			$('#loading').show();
-			var path = window.location.pathname;
-			
-			$.ajax({
-				url: path 
-				+'/page/'+ page
-				,
-				dataType: 'html',
-				error: function(e){
-					console.log(e);
-					$('#loading').hide();
-					$('#stoploading').hide();
-					$('#loadmore').show();
-				},
-				success: function(html) {					
-					if( html.trim() == '' ){
-						$('#stoploading').show();
-						$('#loading').hide();
-						hasmore = false;
-					}
-					else
-						$('#posts').append(html);
-						page++;
-						pp = page-1
-					$('#loading').hide();
-					checkreview()	
-					checkbookmark()
-					checkcomments()
-					checklike()
-				}
-			});
-			
-			
-			
+			LoadNextPage();
 		}
 	}
 	});
 	
 });
+
+function LoadNextPage(){
+	
+	pp++;			
+	if(pp > page){
+		console.log('abort')
+		return true
+	}
+		
+	$('#loading').show();
+	$('#loadmore').hide();
+	var path = window.location.pathname;
+	
+	$.ajax({
+		url: path 
+		+'/page/'+ page
+		,
+		dataType: 'html',
+		error: function(e){
+			console.log(e);
+			$('#loading').hide();
+			$('#stoploading').hide();
+			$('#loadmore').show();
+		},
+		success: function(html) {					
+			if( html.trim() == '' ){
+				$('#stoploading').show();
+				$('#loading').hide();
+				hasmore = false;
+			}
+			else
+				$('#posts').append(html);
+				page++;
+				pp = page-1
+			$('#loading').hide();
+			checkreview()	
+			checkbookmark()
+			checkcomments()
+			checklike()
+		}
+	});	
+	
+}
+
 </script>
 <script>
 function checkreview(){
