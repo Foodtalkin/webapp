@@ -72,7 +72,7 @@ class BaseRepository
 				header("Refresh:0");
 			}
 			
-			if(!in_array($result['errorCode'], ['23000', '106']))
+			if(!in_array($result['errorCode'], ['23000', '106','7']))
 				abort(404);
 		}
 		$this->status = $result['status'];

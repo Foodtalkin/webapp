@@ -58,7 +58,7 @@
                         </svg>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><a class="center" href="javascript:void(0);">Report</a></li>
+                        <li class="center">Report</li>
                         <li><a class="clickreport" href="/restaurant/{{profile.id}}/1">Number Mismatch</a></li>
                         <li><a class="clickreport" href="/restaurant/{{profile.id}}/2">Address Mismatch</a></li>
                         <li><a class="clickreport" href="/restaurant/{{profile.id}}/3">Shutdown</a></li>
@@ -85,11 +85,14 @@ $(document).ready(function() {
 				method : "post",
 				url : this.href,
 				success : function(html) {
-					$(btn).html(btnTxt);
+					
+					console.log(html);
+					
+					$(btn).html(html.apiMessage);
 				},
 				error : function(err){
 					$(btn).html(btnTxt);
-					console.log(err);
+					console.log(err)
 				}
 			});
 	});

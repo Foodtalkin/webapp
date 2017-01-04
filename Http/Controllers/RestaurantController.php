@@ -30,7 +30,9 @@ class RestaurantController extends Controller{
 	public function report($id,$type){
 	
 		$obj = Restaurant::report($id, $type);
-		return $obj->status;
+// 		return $obj->status;
+		return response()->json ( $obj );
+		
 		
 	}
 	
