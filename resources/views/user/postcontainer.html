@@ -80,8 +80,10 @@ function LoadNextPage(){
 				$('#loading').hide();
 				hasmore = false;
 			}
-			else
+			else{
 				$('#posts').append(html);
+				$('#loadmore').show();				
+			}
 				page++;
 				pp = page-1
 			$('#loading').hide();
