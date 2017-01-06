@@ -1,59 +1,115 @@
-{% extends "login/base.html" %}
-{% block body %}
-		<div class="reveal">
-			<div class="slides">
-				<section data-transition="slide fade-out" data-transition-speed="slow">
-					<h3 class="heading">Create Profile</h3>
-					<img src="{{ image }}" alt="Food discovery, dish discovery, Best dishes to eat, Best places to eat, Restaurant reviews india, Restaurant reviews, Dish reviews, Food reviews, dish reviews india, food reviews india, dish discovery in restaurants, food discovery in restaurants" class="image-user">
-					<div class="form">
-		<form  method="post">
-							{% if userName is defined %}
-							<input type="text" name="userName" pattern="^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$" onchange="try{setCustomValidity('')}catch(e){}" oninvalid="setCustomValidity('only alphabets and numbers are allowed without spaces')" required="required" value="{{ userName }}" placeholder="Choose a User Name">
-							{% endif %}
-{# [A-Za-z0-9\S]{2,16}       ^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*{2,16}$ #}							
-							{% if userNameNotAvilable is defined %}
-							<p class="details" style="color: red;">User name not avilable</p>
-							{% endif %}
-							
-							{% if nofbemail is defined %}
-							<input type="email" required="required" name="email" value="{{ email }}" placeholder="Email">
-							{% endif %}
-							
-							<select name="region" required="required" >
-								<option value="">Select City</option>
-								<option value="delhi">Delhi</option>
-								<option value="mumbai">Mumbai</option>
-								<option value="bangalore">Bangalore</option>
-								<option value="pune">Pune</option>
-{#								
-								<option value="hyderabad">Hyderabad</option>
-#}
-							</select>
-							
-							<input type="submit" value="CONTINUE">
-<!--
-				<a href="index.html" class="my-btn" id="next1">CONTINUE</a>
--->
-		</form>
-
+{% extends "login/base.html" %} {% block body %}
+<div>
+	<div class="container">
+		<div class="row" style="margin-top: 80px;">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-12 center">
+					<img alt="Brand" src="assets/images/logo.png" class="logo m-b-2em"
+						style="width: auto; height: 30px;">
+				</div>
+				<div class="col-md-12">
+					<div class="media" style="padding-left: 30px; margin-bottom: 20px">
+						<div class="media-left media-middle">
+							<a href="#"> <img class="media-object" src="{{ image }}"
+								alt="..." style="width: 70px">
+							</a>
+						</div>
+						<div class="media-body">
+							<h2 class="media-heading"
+								style="margin-bottom: 10px; margin-top: 5px;">Hello,
+								{{fullName | split(' ')[0] | capitalize}}</h2>
+							<h3 class="media-heading">Welcome to Food Talk.</h3>
+						</div>
 					</div>
-					
-				</section>
+				</div>
+				<div class="col-md-12">
+					<form method="post" class="has-validation-callback">
+								<div class="col-md-12 m-b-1em">
+								
+								
+									{% if userNameNotAvilable %}
+									<div class="form-group has-error">
+										<label for="" class="col-md-12 control-label">Let's create a Username for you. </label>
+										<div class="col-md-12">
+											<div class="onbordingmsg">Your username should be unique &amp; will be used to identify you on Food Talk</div>
+										</div>
+										<div class="col-md-12">
+											<input type="text" value="{{userName}}" name="userName" id="username" class="form-control" placeholder="Username" data-validation="required length alphanumeric" data-validation-length="2-16" data-validation-error-msg="Username has to be an alphanumeric value (3-16 chars)" data-validation-allowing="_">
+										</div>
+										<span class="help-block form-error">Oops! Username not avilable</span>
+										
+									</div>
+									{% else %}
+									<div class="form-group">
+										<label for="" class="col-md-12 control-label">Let's create a Username for you. </label>
+										<div class="col-md-12">
+											<div class="onbordingmsg">Your username should be unique &amp; will be used to identify you on Food Talk</div>
+										</div>
+										<div class="col-md-12">
+											<input type="text" value="{{userName}}" name="userName" id="username" class="form-control" placeholder="Username" data-validation="required length alphanumeric" data-validation-length="2-16" data-validation-error-msg="Username has to be an alphanumeric value (3-16 chars)" data-validation-allowing="_">
+										</div>
+									</div>
+									{% endif %}
+								</div>
+								<div class="col-md-12 m-b-1em">
+									<div class="form-group">
+										<label for="" class="col-md-12 control-label">What is your email?</label>
+										<div class="col-md-12">
+											<div class="onbordingmsg">
+												don't worry we wont spam you. this is only required to make sure we can contact you if need be.
+											</div>
+										</div>
+										<div class="col-md-12">
+											<input type="text" value="{{email}}" name="email" id="email" class="form-control" placeholder="Email Address" data-validation="email required">
+										</div>
+										
+									</div>
+								</div>
+								
+
+								<div class="col-md-12 m-b-1em">
+									<div class="form-group">
+										<label for="" class="col-md-12 control-label">Where do you Live?</label>
+										<div class="col-md-12">
+											<div class="onbordingmsg">
+												We will customize you experience based on where you live
+											</div>
+										</div>
+										<div class="col-md-12">
+											<input type="text" id="city" name="city" value="{{city}}" class="form-control" placeholder="HomeTown" data-validation="required">
+											<input type="hidden" id="place_id" name="place_id" value="{{ place_id }}" data-validation="required">
+										</div>
+										
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-12">
+										<input class="button-onboarding" type="submit" value="Finish">
+									</div>
+								</div>
+							</form>
+				</div>
 			</div>
 		</div>
+	</div>
+</div>
+<script type="text/javascript">
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+	
+	$.validate({validateHiddenInputs : true});
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
+	$('#city').bootcomplete({
+        url:'/city',
+//        url:'https://maps.googleapis.com/maps/api/place/autocomplete/json',
+ //       dataParams:{'types':'(cities)', 'key' : 'AIzaSyCkhfzw_JLdFtJkwkHEUNBtsHm_GRNF59Y'},
+        idField:true,
+        idFieldName:'place_id',
+        minLength : 3
+    });
+
+
+</script>
 {% endblock %}
+
+
+

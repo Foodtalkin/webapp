@@ -86,6 +86,9 @@ class LoginController extends Controller{
 	
 	public function dosignup(Request $request){
 		
+		print_r($_SESSION);
+		
+		
 		if( isset($_POST['userName']) and strlen(trim($_POST['userName']) ) > 1 )
 			$user['userName'] = $request->input('userName');
 		else{
@@ -96,8 +99,12 @@ class LoginController extends Controller{
 		$user['deviceToken'] = 'web';
 		$user['signInType'] = 'F';
 		$user['image'] = 'https://graph.facebook.com/'.$_SESSION['user']['facebookId'].'/picture?type=large';
-		
 		$user['region'] = $request->input('region');
+// 		google_place_id
+		$user['place_id'] = $request->input('place_id');
+ 		$user['google_place_id'] = $request->input('place_id');
+		$user['city'] = $request->input('city');
+		
 		
 		if( isset($_POST['email']) and strlen(trim($_POST['email']) ) > 1 )
 			$user['email'] = $request->input('email');
@@ -111,9 +118,11 @@ class LoginController extends Controller{
 			if($webUser->error =='23000'){
 				$user['userNameNotAvilable'] = true;
 			}
+			
 			return  $this->render('login/signup', $user , self::SUCCESS_OK);
 		}
-		return redirect('/tour');
+//		return redirect('/tour');
+		return redirect('/home');
 	}
 	
 	
@@ -131,6 +140,7 @@ class LoginController extends Controller{
 			else 	
 				$user['nofbemail'] = true;
 				
+			
 			return  $this->render('login/signup', $user , self::SUCCESS_OK);
 			
 		}else {
@@ -180,7 +190,20 @@ class LoginController extends Controller{
 	}
 	
 	
+	public function getCity(Request $request){
 	
+		$city = $request->input('query');
+		$url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input='.urlencode($city).'&types=(cities)&key=AIzaSyCkhfzw_JLdFtJkwkHEUNBtsHm_GRNF59Y';
+		
+		$result = file_get_contents($url);
+
+		return response ()->json ( json_decode($result) );
+		
+		$res = json_decode($result, true);
+		
+		return response ()->json ( $res['predictions'] );
+		
+	}
   
 	public function logout() {
 		return Login::logout();				

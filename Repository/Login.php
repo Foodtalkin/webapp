@@ -29,6 +29,10 @@ class Login extends BaseRepository
 			
 			if(isset($postData['email']))
 				$_SESSION['user']['email'] = $postData['email'];
+			
+			if(isset($this->profile['cityId']))
+				$_SESSION['user']['cityId'] = $this->profile['cityId'];
+			
 				
 		}
 		

@@ -17,6 +17,9 @@ session_start();
 |
 */
 
+$app->get('city',[ 'uses' =>'LoginController@getCity']);
+
+
 $app->get('/', function () use ($app) {
 		return redirect('/index.html');
 });
@@ -46,6 +49,8 @@ $app->group([
 {
 	
 	$app->get('home',[ 'uses' =>'UserController@feeds']);
+	
+//	$app->get('city',[ 'uses' =>'LoginController@getCity']);
 	
 	$app->get('store',[ 'uses' =>'UserController@store']);
 	$app->get('purchases',[ 'uses' =>'UserController@purchases']);
