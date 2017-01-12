@@ -86,9 +86,6 @@ class LoginController extends Controller{
 	
 	public function dosignup(Request $request){
 		
-		print_r($_SESSION);
-		
-		
 		if( isset($_POST['userName']) and strlen(trim($_POST['userName']) ) > 1 )
 			$user['userName'] = $request->input('userName');
 		else{
