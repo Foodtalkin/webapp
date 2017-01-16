@@ -10,7 +10,12 @@
 			<p class="product-desc">{{ item.shortDescription |raw }}</p>
 
 			<div class="crd-btncon">
-				<button class="card-button-full">{{ item.cardActionButtonText }}</button>
+				<button class="card-button-full
+				{% if item.iPurchasedIt > 0 %} green-button">Purchased
+				{% else %}
+				">{{ item.cardActionButtonText }}
+				{% endif %}
+				</button>
 			</div>
 			<span class="type-p offer">{{ item.type }}</span>
 		</div>
