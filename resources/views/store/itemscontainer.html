@@ -7,7 +7,7 @@
 		<div class="card">
 			<img src="{{ item.cardImage }}" alt="" class="card-img">
 			<h3 class="product-name">{{ item.title }}</h3>
-			<p class="product-desc">{{ item.shortDescription }}</p>
+			<p class="product-desc">{{ item.shortDescription |raw }}</p>
 
 			<div class="crd-btncon">
 				<button class="card-button-full">{{ item.cardActionButtonText }}</button>

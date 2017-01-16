@@ -25,11 +25,12 @@ class DetectMobileMiddleware
     		case 'iPhone': /*do something...*/
     		case 'iPad': /*do something...*/
     		case 'iPod': /*do something...*/ 
-//     			return redirect('https://itunes.apple.com/in/app/food-talk-plus/id923340748?mt=8');
-    			return redirect('/mobile.html');
+    			return redirect('https://ad.apps.fm/jmXM2toyVlrwIvmv8VZDkPE7og6fuV2oOMeOQdRqrE125Vg6lhH50uF5NCjHXTL9ndN7N82s3TL60zJZOK6POUBYEUDp6GpykR5a_XD8NGKkdSPWlsFH6ajCbGh5uIRv');
+//     			return redirect('/mobile.html');
     			break;
     		case 'Android': /*do something...*/
-    			return redirect('/mobile.html');
+    			return redirect('https://ad.apps.fm/9MpxPO99wKQgBEPRqzDo815KLoEjTszcQMJsV6-2VnHFDLXitVHB6BlL95nuoNYfYvrzlFgS_zzkrHYzgzi8dsJvx-g4JaFUTDh_-g1MzffBHpUDVnJfCIp-45MBCvZW0EBbbxphpu_GHoB5DVgsXw');
+//     			return redirect('/mobile.html');
     			break;
 //     		case 'webOS': /*do something...*/ break;
     	}

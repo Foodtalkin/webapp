@@ -38,7 +38,7 @@
 							storeOffer.costPoints }}{% else %}FREE{% endif %}</div>
 					</div>
 					<div class="col-md-12 body-text">
-						<p>{{ storeOffer.description }}</p>
+						<p>{{ storeOffer.description |raw }}</p>
 					</div>
 					<div class="col-md-12 center mt2em">
 						<a id="purchase" href="/storeItem/{{storeOffer.storeItemId}}/purchase" class="open-page-button">{{
