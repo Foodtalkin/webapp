@@ -21,7 +21,7 @@ $app->get('city',[ 'uses' =>'LoginController@getCity']);
 
 
 $app->get('/', function () use ($app) {
-		return redirect('/index.html');
+		return redirect('/index.html?index');
 });
 
 
