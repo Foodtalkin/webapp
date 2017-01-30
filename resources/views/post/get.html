@@ -94,7 +94,7 @@ in twig #} {% block profile %}
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 						<li>
-							<a href="/post/{{post.id}}/bookmark"
+							<a rel="nofollow" href="/post/{{post.id}}/bookmark"
 					{% if islogin(0) %}
 						{% if post.iBookark == 1 %}
 						class="clickbookmark bkmed">UnBookmark
@@ -112,7 +112,7 @@ in twig #} {% block profile %}
 								Share
 						</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a class="clickreport" href="/post/{{post.id}}/report">{% if islogin(0) %}{% if post.iFlaggedIt == 1 %} You reported this.{% else %}Report{% endif %}{% else %}Report{% endif %}</a></li>
+						<li><a class="clickreport" rel="nofollow" href="/post/{{post.id}}/report">{% if islogin(0) %}{% if post.iFlaggedIt == 1 %} You reported this.{% else %}Report{% endif %}{% else %}Report{% endif %}</a></li>
 					</ul>
 				</div>
 			</div>

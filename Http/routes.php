@@ -80,7 +80,11 @@ $app->group([
 			'uses' =>'DishController@profile'
 	]);
 	
+
+	
 	$app->post('post/{id}/like/{action:add|remove}','PostController@like');
+	
+	
 	$app->post('post/{id}/comment','PostController@comment');
 	$app->post('post/{id}/report','PostController@report');
 	
@@ -94,9 +98,21 @@ $app->group([
 	
 	$app->post('follow/{id}','UserController@follow');
 	$app->post('unfollow/{id}','UserController@unfollow');
+
+	$app->get('post/{id}/like/{action:add|remove}', function ($id,$action) {
+		return redirect('/post/'.$id);
+	});
+	
+	$app->get('restaurant/{id}/{type}', function ($id,$page) {
+		return redirect('/'.$id);
+	});
+
+	
 	
 	$app->post('restaurant/{id}/{type}','RestaurantController@report');
 
+
+	
 	
 	$app->get('/{id}/page/{page}', function (Request $request, $id, $page) {
 	
