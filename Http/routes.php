@@ -55,6 +55,7 @@ $app->group([
 	$app->get('store',[ 'uses' =>'UserController@store']);
 	$app->get('purchases',[ 'uses' =>'UserController@purchases']);
 	$app->get('store/offer/{id}',[ 'uses' =>'UserController@offer']);
+	$app->get('store/dine-in/{id}',[ 'uses' =>'UserController@offer']);
 	$app->post('/storeItem/{id}/purchase',[ 'uses' =>'UserController@purchase']);
 	
 	
