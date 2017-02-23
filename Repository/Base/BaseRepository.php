@@ -20,6 +20,7 @@ class BaseRepository
 	const  USER_HOME_FEEDS = 'post/list';
 	
 	const  RESTAURANT_PROFILE = 'restaurant/getProfile';
+	const  RESTAURANT_POST = 'restaurant/getImagePosts';
 	const  RESTAURANT_REPORT = 'restaurantReport/add';
 	
 	const  POST_GET = 'post/get';
