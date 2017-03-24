@@ -1,0 +1,54 @@
+{% spaceless %}
+<!doctype html>
+<html>
+<head>
+<meta name="robots" content="noindex,nofollow" />
+<title>{% block title %}Food Talk | Find and share Awesome dishes | Dish discovery | Food discovery | Best dishes to eat | Best places to eat | dish reviews {% endblock %}</title>
+{% block head %}
+<meta charset="utf-8" />
+<meta name="copyright" content="Food Talk"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{% endblock %} 
+{% block style %}		
+		<!-- bootstrap css -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- raleway font -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+		<!-- font awasome -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- custom css -->
+		<link rel="stylesheet" href="/assets/css/style.css">
+{% endblock %}
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+{% block scripts %}
+{% endblock %}
+	</head>
+	<body>
+
+
+
+
+	<div class="">
+{% block header %}
+{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row" id="posts">
+	{% block profile %}{% endblock %}
+	{% block postcontainer %}{% endblock %}
+	</div>
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3" style="padding-bottom:20px">
+	<div id="loading"  class="center" style="display: none;">Loading....</div>
+		<div id="stoploading"  class="center" style="display: none;">No more dishes</div>
+		</div>
+	</div>	
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}			
+		</div>
+
+	</body>
+</html>
+{% endspaceless %}
