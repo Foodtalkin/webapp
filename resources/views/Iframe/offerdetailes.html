@@ -1,0 +1,137 @@
+{% extends "base/iframe.html" %}
+
+{% block style %}{{ parent() }} {% endblock %} {# comment
+in twig #} {% block profile %}
+
+
+<div class="col-md-6 col-md-offset-3">
+	<div class="open-card">
+		<div class="open-card-container" style="margin-top: -81.9844px;">
+			<div class="open-card-header">
+				<div class="row">
+					<div class="col-md-12">
+						<img src="{{ storeOffer.coverImage }}"
+							alt="{{ storeOffer.title }}" class="cover"> <span
+							class="type-p-open offer">{{ storeOffer.type }}</span>
+					</div>
+				</div>
+			</div>
+			<div class="open-card-body">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>{{ storeOffer.title }}</h3>
+					</div>
+					<div class="col-md-4 mt1em">
+						<div class="w-s">Valid till</div>
+						<div class="w-s-value">{{ storeOffer.validTill |date("D
+							d-M-Y") }}</div>
+					</div>
+					<div class="col-md-4 mt1em">
+						<div class="w-s">Where</div>
+						<div class="w-s-value">{{ storeOffer.cityText }}</div>
+					</div>
+					<div class="col-md-4 mt1em">
+						<div class="w-s">How Much</div>
+						<div class="w-s-value">{% if storeOffer.costPoints > 0 %}{{
+							storeOffer.costPoints }}{% else %}FREE{% endif %}</div>
+					</div>
+					<div class="col-md-12 body-text">
+						<p>{{ storeOffer.description |raw }}</p>
+					</div>
+					<div class="col-md-12 center mt2em">
+						<a id="purchase" href="/storeItem/{{storeOffer.storeItemId}}/purchase" class="open-page-button">{{
+							storeOffer.actionButtonText }}</a>
+					</div>
+					
+					<div class="col-md-12 center mt1em">
+						<a target="_blank" href="{{ storeOffer.termConditionsLink }}" style="font-size: 12px;text-decoration: underline;">Terms &amp; condition apply</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="modal fade successmodel mymodel" id="greenmodel"
+	tabindex="-1" role="dialog">
+	<div class="mybody">
+		<div class="icon">
+			<i class="fa fa-3x fa-check" aria-hidden="true"></i>
+		</div>
+		<div class="text">
+			<h1>Epic!</h1>
+			<h5>Your Purchase was successful.</h5>
+		</div>
+	</div>
+	<div class="myfooter">
+		<a href="/purchases">Go to Purchases</a> <a class="white"
+			href="/store">Go to Store</a>
+	</div>
+</div>
+
+<div class="modal fade failmodel mymodel" id="redmodel" tabindex="-1"
+	role="dialog">
+	<div class="mybody">
+		<div class="icon">
+			<i class="fa fa-3x fa-exclamation" aria-hidden="true"></i>
+		</div>
+		<div class="text">
+			<h1>Sorry!</h1>
+			<h5 id="errMsg" >Oops... something went wrong. Try again later.</h5>
+		</div>
+	</div>
+	<div class="myfooter">
+		<a href="/purchases">Go to Purchases</a> <a class="white"
+			href="/store">Go to Store</a>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#purchase').click(function(event) {
+
+			event.preventDefault();
+			checkLogin(event);
+
+			btn = this;
+			btnTxt = $(btn).html();
+			$(btn).html("<i class='fa fa-spinner fa-pulse fa-fw' style='color:#fff;'></i>");
+			
+			$.ajax({
+				method : "post",
+				url : this.href,
+				success : function(json) {
+					
+					if(json.status.trim() == 'OK')
+						$('#greenmodel').modal('show');
+					else{
+						$('#errMsg').text(json.apiMessage)
+						$('#redmodel').modal('show');
+					}
+					$(btn).html(btnTxt);
+				},
+				error: function (request, status, error) {
+		        	alert(request.responseText);
+		        	$(btn).html(btnTxt);
+		    	}
+			
+			});
+
+		});
+
+	});
+	
+	$(document).ajaxStart(function(){
+//	   alert('TESTING');
+	});
+	
+	$(document).ajaxComplete(function(){
+	//    $("#wait").css("display", "none");
+	});
+	
+</script>
+{% endblock %}

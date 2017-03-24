@@ -1,0 +1,136 @@
+{% extends "base/iframe.html" %} {% block title %} {{post.dishName}} |
+Dish reviews | Food reviews | Dish reviews india | Best dishes to eat |
+Best food to eat | Dishes | Food | by {{post.userName}} {% endblock %}
+{% block head %} {{ parent() }}
+
+<meta property="og:url" content="http://foodtalk.in/post/{{ post.id }}" />
+<meta property="og:type" content="article" />
+<meta property="og:title"
+	content="{{post.dishName}}  {% if post.restaurantName %} @ {{ post.restaurantName }} {% endif %} By {{post.userName}}" />
+<meta property="og:description"
+	content="{{ post.like_count }} Likes | {{ post.comment_count }} Comments {{ post.tip }}" />
+<meta property="og:image" content="{{post.postImage}}" />
+{% endblock %} {% block style %}{{ parent() }} {% endblock %} {# comment
+in twig #} {% block profile %}
+
+	<div class="col-md-6 col-md-offset-3">
+		<div class="home-card">
+			<div class="home-card-header">
+
+
+
+				<div class="col-md-11 home-card-dp">
+					<div class="media">
+						<div class="media-left media-middle">
+							<img class="media-object"
+								src="{{ post.userThumb }}?&width=50&height=50"
+								alt="{{post.userName}}">
+						</div>
+						<div class="media-body">
+							<a href="/{{ post.userName }}">{{ post.userName }}</a> is having
+							<a href="/dish/{{ post.dishUrl }}">{{ post.dishName }}</a> {% if
+							post.checkedInRestaurantId > 0 %} {% if post.restaurantIsActive
+							==1 %} at <a href="/{{ post.checkedInRestaurantId }}">{{
+								post.restaurantName }}, {{ post.cityName }}</a> {% else %} at {{
+							post.restaurantName }}, {{ post.cityName }} {% endif %} {% endif
+							%}
+						</div>
+					</div>
+				</div>
+				<div class="home-card-time col-md-1">
+					{{post.timeElapsed | replace({'min':'m'})}} </span>
+				</div>
+				<div class="home-card-image">
+					<a href="/post/{{ post.id }}"> <img src="{{post.postImage}}"
+						class="dish-img">
+						<div class="img-overlay"></div>
+						<p id="stars" class="star-{{ post.rating }}">
+							<i class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+								class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+								class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+								class="fa fa-star fa-2x" aria-hidden="true"></i> <i
+								class="fa fa-star fa-2x" aria-hidden="true"></i>
+						</p>
+					</a>
+				</div>
+
+				<div class="home-card-details">
+					<div class="home-card-icons row">
+						<div class="lk{% if islogin(0) %}{% if post.iLikedIt == 1 %} liked{% endif %}{% endif %}">
+						<a href="/post/{{ post.id }}/like">
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="23"
+								viewBox="0 0 25 23">
+											  <path fill="none" stroke="#8492A6" stroke-width="2"
+									d="M161.579348,5.12272727 C159.777717,0.214545455 150.709783,0.943636364 150.709783,8.36636364 C150.709783,12.0645455 153.481522,16.9854545 161.579348,22 C169.677174,16.9854545 172.448913,12.0645455 172.448913,8.36636364 C172.448913,0.986363636 163.390942,0.185454545 161.579348,5.12272727 L161.579348,5.12272727 Z"
+									transform="translate(-149 -1)"></path>
+											</svg>
+						</a>
+						</div>
+						<div>
+							<a href="/post/{{post.id}}"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="24" height="22"
+									viewBox="0 0 24 22">
+											  <path fill="none" stroke="#8492A6" stroke-width="2"
+										d="M21.7586957,10.3290909 C21.7586957,5.72909091 16.8918478,2 10.8891304,2 C4.88641304,2 0.0195652174,5.72909091 0.0195652174,10.3290909 C0.0195652174,14.9627273 4.95344203,18.7045455 10.9987319,18.6572727 C10.6445652,20.4890909 8.4942029,21.6345455 6.88188406,22 C16.038587,21.1909091 21.7586957,16.1009091 21.7586957,10.3290909 L21.7586957,10.3290909 Z"
+										transform="translate(1 -1)"></path>
+											</svg>
+							</a>
+						</div>
+						<div class="bkm{% if islogin(0) %}{% if post.iBookark == 1 %} bookmarked{% endif %}{% endif %}">
+							<a href="/post/{{post.id}}/bookmark">
+							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="24"
+								viewBox="0 0 13 24">
+											  <polygon fill="none" stroke="#8492A6" stroke-width="2"
+									points="81.034 2 81.034 22 86.234 17.609 91.434 22 91.434 2"
+									transform="translate(-80 -1)"></polygon>
+											</svg>
+
+							</a>
+						</div>
+						<div>
+							<a href="https://www.facebook.com/dialog/share?app_id=567830766693152&display=popup&href=http%3A%2F%2Ffoodtalk.in/post/{{ post.id }}"
+							target="_blank">
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
+								viewBox="0 0 25 24">
+											  	<path fill="#8492A6" fill-rule="evenodd"
+									d="M236.724457,9 C238.378457,9 239.724457,10.346 239.724457,12 C239.724457,13.654 238.378457,15 236.724457,15 C235.070457,15 233.724457,13.654 233.724457,12 C233.724457,10.346 235.070457,9 236.724457,9 L236.724457,9 Z M236.724457,7 C233.962457,7 231.724457,9.239 231.724457,12 C231.724457,14.761 233.962457,17 236.724457,17 C239.486457,17 241.724457,14.761 241.724457,12 C241.724457,9.239 239.486457,7 236.724457,7 L236.724457,7 Z M251.724457,16 C250.559457,16 249.520457,16.506 248.789457,17.301 L243.301457,14.374 C243.071457,15.01 242.752457,15.603 242.357457,16.138 L247.845457,19.065 C247.773457,19.366 247.724457,19.676 247.724457,20 C247.724457,22.209 249.515457,24 251.724457,24 C253.933457,24 255.724457,22.209 255.724457,20 C255.724457,17.791 253.933457,16 251.724457,16 L251.724457,16 Z M251.724457,22 C250.621457,22 249.724457,21.103 249.724457,20 C249.724457,18.897 250.621457,18 251.724457,18 C252.827457,18 253.724457,18.897 253.724457,20 C253.724457,21.103 252.827457,22 251.724457,22 L251.724457,22 Z M251.724457,0 C249.515457,0 247.724457,1.791 247.724457,4 C247.724457,4.324 247.773457,4.634 247.845457,4.935 L242.357457,7.862 C242.752457,8.398 243.070457,8.99 243.301457,9.626 L248.789457,6.699 C249.520457,7.494 250.559457,8 251.724457,8 C253.933457,8 255.724457,6.209 255.724457,4 C255.724457,1.791 253.933457,0 251.724457,0 L251.724457,0 Z M251.724457,6 C250.621457,6 249.724457,5.103 249.724457,4 C249.724457,2.897 250.621457,2 251.724457,2 C252.827457,2 253.724457,2.897 253.724457,4 C253.724457,5.103 252.827457,6 251.724457,6 L251.724457,6 Z"
+									transform="translate(-231)"></path>
+											</svg>
+							</a>
+						</div>
+						<div class="dropdown">
+							<a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="5" height="20"
+									viewBox="0 0 5 20">
+												  	<path fill="#8492A6" fill-rule="evenodd"
+										d="M-2.5,10 C-2.5,11.3808333 -3.61916667,12.5 -5,12.5 C-6.38083333,12.5 -7.5,11.3808333 -7.5,10 C-7.5,8.61916667 -6.38083333,7.5 -5,7.5 C-3.61916667,7.5 -2.5,8.61916667 -2.5,10 L-2.5,10 Z M5,10 C5,11.3808333 3.88083333,12.5 2.5,12.5 C1.11916667,12.5 5.32907052e-15,11.3808333 5.32907052e-15,10 C5.32907052e-15,8.61916667 1.11916667,7.5 2.5,7.5 C3.88083333,7.5 5,8.61916667 5,10 L5,10 Z M12.5,10 C12.5,11.3808333 11.3808333,12.5 10,12.5 C8.61916667,12.5 7.5,11.3808333 7.5,10 C7.5,8.61916667 8.61916667,7.5 10,7.5 C11.3808333,7.5 12.5,8.61916667 12.5,10 L12.5,10 Z"
+										transform="rotate(-90 2.5 10)"></path>
+												</svg>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<li><a class="clickreport" href="/post/{{post.id}}/report">{% if islogin(0) %}{% if post.iFlaggedIt == 1 %} You reported this.{% else %}Report{% endif %}{% else %}Report{% endif %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="home-card-stats row">
+						<div class="col-md-12 l-b-c-n">
+
+							<span class="like"><span class="count">{{post.likeCount
+									}}</span> Like</span> <span class="comment"><span class="count">{{
+									post.commentCount }}</span>Comment</span> <span class="bookmark"><span
+								class="count">{{ post.bookmarkCount }}</span>Bookmark</span>
+						</div>
+						<div class="col-md-12">
+							<p>{{ post.tip | trim }}</p>
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

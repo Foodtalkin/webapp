@@ -1,0 +1,38 @@
+{% extends "base/iframe.html" %}
+
+{% block style %}{{ parent() }} {% endblock %} {# comment
+in twig #} {% block profile %}
+
+
+<div class="col-md-6 col-md-offset-3">
+		<div class="open-card-container" >
+			<div class="open-card-header">
+				<div class="row">
+					<div class="col-md-12">
+						<img src="{{ news.coverImage }}"
+							alt="{{ news.title }}" class="cover"> <span
+							class="type-p-open"></span>
+					</div>
+				</div>
+			</div>
+			<div class="open-card-body">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>{{ news.title }}</h3>
+					</div>
+					<div class="col-md-12 body-text">
+						<p>{{ news.description |raw }}</p>
+					</div>
+					<div class="col-md-4 mt1em">
+						<div class="w-s">Source {{ news.source }}</div>
+					</div>
+					<div class=" pull-right">
+						<a target="_blank" href="#" style="font-size: 12px;text-decoration: none;"><b>READ MORE</b></a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+</div>
+{% endblock %}
