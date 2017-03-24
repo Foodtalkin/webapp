@@ -63,6 +63,20 @@ class UserController extends Controller{
 			
 	}
 	
+	public function iframeoffer($id){
+	
+		$obj = Store::offer($id);
+		return  $this->render('Iframe/offerdetailes', (array) $obj , self::SUCCESS_OK);
+			
+	}
+	
+	public function iframenews($id){
+	
+		$obj = Store::news($id);
+		return  $this->render('Iframe/news', (array) $obj , self::SUCCESS_OK);
+			
+	}
+	
 	public function purchase($id, Request $request){
 	
 		$obj = Store::purchase($id);

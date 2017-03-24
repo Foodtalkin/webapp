@@ -47,6 +47,8 @@ class BaseRepository
 	
 	
 	const  STORE_ITEMS = 'storeItem/listItems';
+	const  NEWS_GET = 'news/get';
+	
 	const  STORE_OFFER = 'storeOffer/get';
 	const  STORE_PURCHASE = 'storeItem/purchase';
 	const  STORE_ALLPURCHASES = 'storeItem/listPurchase';

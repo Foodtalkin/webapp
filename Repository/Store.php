@@ -13,6 +13,7 @@ class Store extends BaseRepository
 	public  $storeItems = null;
 	public  $storeOffer = null;
 	public  $storePurchase = null;
+	public  $news = null;
 	
 	
 	
@@ -33,6 +34,9 @@ class Store extends BaseRepository
 		if(isset($this->apiResponse['storePurchase']))
 			$this->storePurchase = $this->apiResponse['storePurchase'];
 		
+		if(isset($this->apiResponse['news']))
+			$this->news = $this->apiResponse['news'];
+		
 		
 	}
 	
@@ -40,6 +44,14 @@ class Store extends BaseRepository
 		$store = new self();
 		return $store;
 		
+	}
+	
+	public static function news($id){
+	
+		$postData['id'] = $id;
+		$result = new self($postData, self::NEWS_GET);
+		return $result;
+	
 	}
 	
 	public static function offer($id){

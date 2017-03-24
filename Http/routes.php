@@ -51,6 +51,10 @@ $app->group([
 	$app->get('home',[ 'uses' =>'UserController@feeds']);
 	
 //	$app->get('city',[ 'uses' =>'LoginController@getCity']);
+
+	$app->get('iframe/post/{id}',[ 'uses' =>'PostController@iframepost']);
+	$app->get('iframe/storeItem/{id}',[ 'uses' =>'UserController@iframeoffer']);
+	$app->get('iframe/news/{id}',[ 'uses' =>'UserController@iframenews']);
 	
 	$app->get('store',[ 'uses' =>'UserController@store']);
 	$app->get('purchases',[ 'uses' =>'UserController@purchases']);

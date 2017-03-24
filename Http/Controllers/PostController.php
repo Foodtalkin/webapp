@@ -58,6 +58,11 @@ class PostController extends Controller{
 	}
 	
 	
+	public function iframepost($id){
+		$obj = Post::profile($id, false);
+		return  $this->render('Iframe/get', (array)$obj , self::SUCCESS_OK);
+	}
+	
 // 	public function listAll() {
 				
 // 		$contact = Contact::orderBy('created_at', 'desc')->paginate ($this->pageSize);
